@@ -2,7 +2,7 @@
 # CodeplaC
 
 
-**CodeplaC** é uma plataforma online desenvolvida para facilitar a inscrição e gestão de competições de programação voltadas para estudantes de TI da UNICEPLAC. Além de promover a participação dos alunos em competições e palestras, a plataforma oferece recursos para o acompanhamento de eventos e resultados, tudo com foco na linguagem C.
+**CodeplaC** é uma plataforma online desenvolvida para facilitar a inscrição e gestão de competições de programação voltadas para estudantes de TI. Além de promover a participação dos alunos em competições e palestras, a plataforma oferece recursos para o acompanhamento de eventos e resultados, tudo com foco na linguagem C.
 
 ## Objetivo
 
