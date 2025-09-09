@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Participe do CodeplaC, uma competição universitária de programação em C, com desafios emocionantes para estudantes de TI. Desenvolva suas habilidades enquanto se diverte!" />
+  <meta name="keywords" content="CodeplaC, competição de programação, programação em C, eventos de programação, estudantes de TI, desafios de programação, Uniceplac" />
+  <meta name="author" content="Equipe CodeplaC" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.codeplac.com.br/" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="theme-color" content="#ffffff" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/juizcodigo.css" />
+  <title>CodeplaC - Envio de Código</title>
+</head>
+<body>
+  <header style="background-image: url('img/basedefundositeindex.jpg');">
+    <div class="container">
+      <nav>
+        <a href="https://www.codeplac.com.br/index">
+          <img src="img/logoprincipalparaosite.png" alt="Logo" />
+        </a>
+        <div class="menu-icon" onclick="openMenu()"><i class="fa fa-bars"></i></div>
+        <div class="close-icon" onclick="closeMenu()" style="display: none;"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
+        <ul class="ul">
+          <li class="dropdown"><a href="https://www.codeplac.com.br" class="dropdown">Home</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
+          <li class="dropdown"><a href="#" class="dropdown">Atividades</a>
+            <ul class="dropdown-menu">
+              <li><a href="https://www.codeplac.com.br/eventos">Eventos</a></li>
+              <li><a href="https://www.codeplac.com.br/historico">Histórico</a></li>
+              <li><a href="https://www.codeplac.com.br/galeria">Galeria</a></li>
+              <li><a href="https://www.codeplac.com.br/feedback">Feedback</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
+          <li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
+          <li class="btndestaque hidden"><a href="https://www.codeplac.com.br/login">Login</a></li>
+          <li class="usuario-icon hidden" id="userIcon">
+            <a href="https://www.codeplac.com.br/usuario"><i class="ri-user-line"></i></a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="banner">
+        <div class="banner-text">
+          <h1>Juiz</h1>
+          <p>Envie seu código aqui</p>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 2rem;">
+    <h2>Envio de Código</h2>
+    <form id="formJuizCodigo" novalidate>
+      <label for="nomeEquipe">Nome da Equipe:</label><br />
+      <input type="text" id="nomeEquipe" name="nomeEquipe" required maxlength="100" />
+      <span class="error" id="nomeEquipeError"></span><br /><br />
+
+      <label for="numeroCodigo">Número do Código:</label><br />
+      <input type="number" id="numeroCodigo" name="numeroCodigo" required min="1" />
+      <span class="error" id="numeroCodigoError"></span><br /><br />
+
+      <label for="nomeLider">Nome do Líder:</label><br />
+      <input type="text" id="nomeLider" name="nomeLider" required maxlength="100" />
+      <span class="error" id="nomeLiderError"></span><br /><br />
+
+      <label for="codigo">Código:</label><br />
+      <textarea id="codigo" name="codigo" rows="15" required></textarea>
+      <span class="error" id="codigoError"></span><br /><br />
+
+      <button type="submit">Enviar Código</button>
+    </form>
+
+    <div id="message" style="margin-top: 1rem; font-weight: bold;"></div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo" />
+      <p>&copy;2024 Desenvolvido pela equipe CodeplaC.<br /></p>
+      <ul class="footer-links">
+        <li><a href="https://www.codeplac.com.br/privacidade">Privacidade</a></li>
+        <li><a href="https://www.codeplac.com.br/termos">Termos</a></li>
+        <li><a href="https://www.codeplac.com.br/politicadecookies">Política de Cookies</a></li>
+      </ul>
+      <div class="social-icons"></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <script src="js/responsivocel.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="js/juizcodigo.js"></script>
+</body>
+</html>

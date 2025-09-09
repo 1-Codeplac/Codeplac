@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #1d283d, #020203);
+    color: #FFFFFF;
+    line-height: 1.6;
+}
+
+
+.codeplac-section {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #143844;
+}
+
+.codeplac-section:nth-child(even) {
+    background-color: #365C68;
+}
+
+/* Estilo das caixas de conteúdo */
+.content-box {
+    max-width: 800px;
+    background-color: #1e2f47;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Estilo dos títulos */
+.content-box h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo dos parágrafos */
+.content-box p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: justify;
+}

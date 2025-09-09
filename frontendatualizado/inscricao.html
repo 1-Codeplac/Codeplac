@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Equipe</title>
+        <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/inscricao.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-panel">
+            <h1>Inscreva sua Equipe</h1>
+            <p>Preencha os dados ao lado para se inscrever no evento e criar sua equipe. É permitido entre 4 a 6 pessoas por equipe</p>
+            <img src="img/logo_icone.png" alt="Logo da Equipe">
+        </div>
+
+        <div class="right-panel">
+            <div class="header">
+                <h2>Formulário de Inscrição</h2>
+                <p id="counterInfo"></p> <!-- Contador de inscrições retirado devido a limite -->
+            </div>
+
+            <a href="https://www.codeplac.com.br/usuario" class="back-button">Voltar para o Perfil</a>
+
+            <form id="registrationForm">
+                <div class="team-info">
+                    <label for="teamName">Nome da Equipe</label>
+                    <input type="text" id="teamName" name="teamName" placeholder="Nome da Equipe" required>
+
+                    <div class="members">
+                        <div class="members-group">
+                            <label for="leaderMatricula">CPF do Líder</label>
+                            <input type="text" id="leaderMatricula" name="leaderMatricula" placeholder="CPF do Líder" required>
+
+                            <label for="member2">Membro 2 (CPF)</label>
+                            <input type="text" id="member2" name="member2" placeholder="CPF do Membro 2" required>
+
+                            <label for="member3">Membro 3 (CPF)</label>
+                            <input type="text" id="member3" name="member3" placeholder="CPF do Membro 3" required>
+                        </div>
+
+                        <div class="members-group">
+                            <label for="member4">Membro 4 (CPF)</label>
+                            <input type="text" id="member4" name="member4" placeholder="CPF do Membro 4" required>
+
+                            <label for="member5">Membro 5 (CPF)</label>
+                            <input type="text" id="member5" name="member5" placeholder="CPF do Membro 5">
+
+                            <label for="member6">Membro 6 (CPF)</label>
+                            <input type="text" id="member6" name="member6" placeholder="CPF do Membro 6">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitButton">Inscrever</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/inscricao.js"></script>
+</body>
+</html>

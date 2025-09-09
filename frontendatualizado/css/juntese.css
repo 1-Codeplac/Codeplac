@@ -1,0 +1,292 @@
+/* ================== Importações ================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap');
+
+/* ================== Reset & Base ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Ajusta body para layout em coluna e ocupar 100vh */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121317;
+    color: #FFFFFF;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Faz o main crescer e centralizar o conteúdo */
+main.container {
+    flex: 1; /* ocupa espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 50px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background: #1e2128;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+
+/* ================== Banner ================== */
+.banner {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.banner h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #43B3FF; /* azul ciano */
+    letter-spacing: 1.2px;
+}
+
+.banner p {
+    color: #AAB3BB; /* cinza claro para subtítulo */
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* ================== Títulos ================== */
+h1 {
+    font-weight: 700;
+    color: #43B3FF; /* azul ciano */
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1.2px;
+}
+
+/* ================== Formulário ================== */
+form#recrutamentoForm {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Cada grupo label + campo */
+form#recrutamentoForm > div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #AAB3BB;
+    letter-spacing: 0.03em;
+}
+
+/* Inputs e textarea estilizados */
+input[type="text"],
+input[type="email"],
+textarea {
+    background-color: #2F3136; 
+    border: 2px solid #23272A;
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.6);
+    resize: vertical;
+    min-height: 44px;
+}
+
+/* Placeholder com cor mais clara */
+input::placeholder,
+textarea::placeholder {
+    color: #72767D;
+    font-weight: 400;
+}
+
+/* Foco */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #43B3FF; 
+    background-color: #36393F;
+    box-shadow: 0 0 8px #43B3FFaa;
+}
+
+/* Textarea altura mínima */
+textarea {
+    min-height: 100px;
+}
+
+/* ================== Radio Buttons ================== */
+form#recrutamentoForm > div > div {
+    display: flex;
+    gap: 25px;
+    margin-top: 8px;
+}
+
+input[type="radio"] {
+    accent-color: #43B3FF;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type="radio"] + label {
+    color: #FFFFFF;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ================== Mensagens de erro ================== */
+.error {
+    color: #FF5555;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    min-height: 18px;
+}
+
+/* ================== Botão ================== */
+button[type="submit"] {
+    background-color: #43B3FF;
+    color: #121317;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(67,179,255,0.6);
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2C91D9;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(44,145,217,0.8);
+}
+
+/* ================== Link "Voltar" ================== */
+main > div > a {
+    display: inline-block;
+    margin-top: 25px;
+    text-align: center;
+    width: 100%;
+    color: #43B3FF;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+main > div > a:hover {
+    color: #2C91D9;
+    text-decoration: underline;
+}
+
+a[href="https://www.codeplac.com.br"] {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #2C91D9; /* azul ciano escuro */
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+a[href="https://www.codeplac.com.br"]:hover {
+    background-color: #43B3FF; /* azul ciano */
+}
+
+
+
+/* ================== Responsivo ================== */
+@media (max-width: 600px) {
+    main.container {
+        padding: 30px 25px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+}
+
+/* ================== Footer ================== */
+footer {
+    background-color: #131A27;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    width: 30px;
+}
+
+/* Estilo dos links no footer */
+.footer-links {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li a {
+    color: #FFFFFF;
+    background-color: transparent;
+    padding: 6px 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links li a:hover {
+    background-color: #43B3FF;
+    color: #121317;
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+}
+
+.social-icons a {
+    display: inline-block;
+}

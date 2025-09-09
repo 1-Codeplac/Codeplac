@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Participe do CodeplaC, uma competição universitária de programação em C, com desafios emocionantes para estudantes de TI. Desenvolva suas habilidades enquanto se diverte!">
+    <meta name="keywords" content="CodeplaC, competição de programação, programação em C, eventos de programação, estudantes de TI, desafios de programação, Uniceplac">
+    <meta name="author" content="Equipe CodeplaC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.codeplac.com.br/">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>CodeplaC</title>
+</head>
+<body>
+    <header style="background-image: url('img/basedefundositeindex.jpg');">
+        <div class="container">
+            <nav>
+                <a href="https://www.codeplac.com.br/index">
+                    <img src="img/logoprincipalparaosite.png" alt="Logo">
+                </a>
+
+    <div class="menu-icon" onclick="openMenu()">
+        <i class="fa fa-bars"></i>
+    </div>
+
+
+    <div class="close-icon" onclick="closeMenu()" style="display: none;">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </div>
+    <ul class="ul">
+        <li class="dropdown">
+            <a href="https://www.codeplac.com.br" class="dropdown">Home</a>
+            <ul class="dropdown-menu">
+                <li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
+            </ul>
+        </li>
+        <li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
+        <li class="dropdown">
+            <a href="" class="dropdown">Atividades</a>
+            <ul class="dropdown-menu">
+                <li><a href="https://www.codeplac.com.br/eventos">Eventos</a></li>
+                <li><a href="https://www.codeplac.com.br/historico">Histórico</a></li>
+                <li><a href="https://www.codeplac.com.br/galeria">Galeria</a></li>
+            </ul>
+        </li>
+        <li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
+        <li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
+        <li class="btndestaque hidden" onclick="window.location.href='https://www.codeplac.com.br/login';"><a href="https://www.codeplac.com.br/login">Login</a></li>
+        <li class="usuario-icon hidden" id="userIcon">
+            <a href="https://www.codeplac.com.br/usuario"><i class="ri-user-line"></i></a>
+        </li>
+    </ul>
+    
+            </nav>
+            <section class="banner">
+                <div class="banner-text">
+                    <h1>CodeplaC</h1>
+                    <p>Competição de programação em C</p>
+
+                </div>
+            </section>
+        </div>
+
+    </header>
+
+</body>
+</html>
+
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" id="eventModalLabel">
+          <span style="color: #ffffff; font-weight: 900; font-size: 1.8rem;">🎉 CodeplaC 🎉</span>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div style="max-width: 500px; margin: 0 auto; text-align: justify;">
+          <ul style="list-style: none; padding-left: 0;">
+            <li>🎲 <Strong>Agenda</Strong> </li>
+            <li>🕗 <strong>08:00 - 08:30</strong> — Confirmar Presença (Auditório Verde)</li>
+            <li>🧾 <strong>08:30 - 09:00</strong> — Abertura (Auditório Verde)</li>
+            <li>🎤 <strong>09:00 - 10:00</strong> — Palestras 1 e 2</li>
+            <li>💻 <strong>09:00 - 11:40</strong> — Competição (Lab. 1 a 5 - Bloco A)</li>
+            <li>🎮 <strong>10:00 - 11:00</strong> — Jogos Digitais</li>
+            <li>🎤 <strong>11:00 - 11:40</strong> — Palestras 3 e 4</li>
+            <li>🏆 <strong>11:40 - 12:30</strong> — Encerramento e Premiações</li>
+          </ul>
+        </div>
+        <div class="text-center">
+          <a href="https://www.codeplac.com.br/eventos" class="btn btn-primary">Veja os detalhes do evento!</a>
+        </div></br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <section class="codeplac1">
+
+        <div class="container">
+            <div class="codeplac1-text">
+                <h3>Sobre</h3>
+                <p>
+                    Somos mais que um simples site, somos uma plataforma dedicada a conectar talentos com desafios emocionantes para superarem seu limite no mundo da programação. Aqui oferecemos a oportunidade dos nossos estudantes de todos os semestres testarem suas habilidades em competições desafiadoras, ganhando experiência e reconhecimento. Além de promover o aprendizado prático e o aprimoramento técnico da plataforma de inscrição, também oferecemos aos alunos a possibilidade de acessar informações relacionadas a gestão de eventos.                     
+                </p>
+                <a href="https://www.codeplac.com.br/login" class="btn">Inscrição</a>
+            </div>
+            <div class="codeplac1-img">
+                <img src="img/imagemC.png">
+            </div>
+        </div>
+
+    </section>
+</div>
+
+</header>
+
+<section class="codeplac1">
+
+<div class="container">
+    <div class="codeplac1-img">
+        <img src="img/imagem1.png">
+    </div>
+    <div class="codeplac1-text">
+        <h3> Competição</h3>
+        <p>Nosso objetivo é criar um ambiente que incentive o desenvolvimento de habilidades de programação
+             entre os nossos alunos, proporcionando oportunidades de aprendizado prático e competitivo. Queremos 
+             preparar vocês para desafios reais no mercado de trabalho, ajudando-os a aprimorar suas capacidades
+              e a fomentar sua criatividade, promovendo a colaboração em equipe.
+        </p>
+        <a href="https://www.codeplac.com.br/historico" class="btn">Histórico</a>
+    </div>
+</div>
+
+<div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/vU6GGAT-w1k?si=mUylUlCq-FSMhxH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+     </section>
+
+     <section class="codeplac1">
+
+        <div class="container">
+            <div class="codeplac1-text">
+                <h3>Público-Alvo</h3>
+                <p>
+                    Nosso público-alvo são os alunos, que são a força vital da nossa plataforma. 
+                    Compreendemos as necessidades e aspirações dos estudantes, e estamos aqui para 
+                    oferecer uma experiência que impulsione suas carreiras e habilidades.  
+                </p>
+            </div>
+            <div class="codeplac2-img">
+                <img src="img/carinhalegal.gif" alt="CarinhaLegal">
+            </div>
+        </div>
+
+    </section>
+
+      <section class="Normas">
+        <div class="container">
+            <h3></h3>
+            <p></p>
+            <div class="cards">
+
+                <div class="cards-item">
+                    <img src="img/imagemprogramacao (1).gif" alt="imagem1programacao">
+                    <p class="nome-user">Missão</p>
+                    <p class="Normas-user">Nossa missão é capacitar os alunos  oferecendo oportunidades de aprendizado por
+                         meio de competições desafiadoras e eventos que promovem o desenvolvimento profissional na área de 
+                         tecnologia.
+                    </p>
+                    <div class="estrela">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>    
+                    </div>
+                </div>
+                <div class="cards-item">
+                    <img src="img/imagemprogramacao (2).gif" alt="imagem2programacao">
+                    <p class="nome-user">Visão</p>
+                    <p class="Normas-user">Ser a plataforma referência para competições de programação no ambiente acadêmico, 
+                        preparando os alunos para enfrentar desafios do mercado de trabalho e incentivando a inovação tecnológica 
+
+                    </p>
+                    <div class="estrela">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>    
+                    </div>
+                </div>
+                <div class="cards-item">
+                    <img src="img/imagemprogramacao (3).gif" alt="imagem3programacao">
+                    <p class="nome-user">Valores</p>
+                    <p class="Normas-user">Inovação: Inspiramos criatividade com novas abordagens e desafios.<br>
+                        Aprendizado Contínuo: Promovemos crescimento pessoal e profissional a cada desafio.
+                    </p>
+                    <div class="estrela">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>    
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    <footer>
+        <div class="footer-content">
+            <img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo">
+            <p>&copy;2024 Desenvolvido pela equipe Codeplac.<br> 
+                <ul class="footer-links">
+                    <li><a href="https://www.codeplac.com.br/privacidade">Privacidade</a></li>
+                    <li><a href="https://www.codeplac.com.br/termos">Termos</a></li>
+                    <li><a href="https://www.codeplac.com.br/politicadecookies">Política de Cookies</a></li>
+                </ul>
+            <div class="social-icons">
+                
+            </div>
+        </div>
+    </footer>
+    
+     <script src="js/script.js"></script>
+     <script src="js/responsivocel.js"></script>
+     <script src="js/popup.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

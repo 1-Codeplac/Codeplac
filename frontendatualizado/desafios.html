@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lista de desafios de programação do CodeplaC para estudantes de TI.">
+    <meta name="keywords" content="CodeplaC, desafios de programação, programação em C, Java, Uniceplac, lógica de programação">
+    <meta name="author" content="Equipe CodeplaC">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/desafios.css">
+    <title>Lista de Desafios - CodeplaC</title>
+</head>
+<body>
+
+    <header style="background-image: url('img/basedefundositeindex.jpg');">
+        <div class="container">
+            <nav>
+                <a href="index.html">
+                    <img src="img/logoprincipalparaosite.png" alt="Logo">
+                </a>
+                <ul class="ul">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Ranking</a></li>
+                    <li><a href="lista-desafios.html">Desafios</a></li>
+                    <li><a href="#">Equipe</a></li>
+                    <li><a href="#">Contatos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Painel de Desafios</h2>
+
+        <div class="challenge-box">
+            <h3>⭐ Desafio 1: Quem Passou de Ano? ⭐</h3>
+            
+            <h4>A História:</h4>
+            <p>O professor Carlos precisa de um programa simples para calcular a média final de seus alunos e dizer se eles foram aprovados. A regra é clara: para passar de ano, a média das duas provas do semestre precisa ser maior ou igual a 6.0.</p>
+            
+            <h4>Sua Tarefa:</h4>
+            <p>Você deve criar um programa que leia as duas notas de um aluno, calcule a média e imprima "APROVADO" ou "REPROVADO".</p>
+            
+            <h4>Exemplo Prático:</h4>
+            <pre><code>Se a entrada for:
+7.0 8.0
+A saída do seu programa deve ser:
+APROVADO</code></pre>
+        </div>
+
+        <div class="challenge-box">
+            <h3>⭐⭐ Desafio 2: O Validador de CPF ⭐⭐</h3>
+            
+            <h4>A História:</h4>
+            <p>A Receita Federal precisa de um novo sistema validador de CPF para integrar em seus terminais de autoatendimento. Para garantir a segurança, eles precisam de um programa robusto que verifique se um CPF é matematicamente válido com base em seus dígitos verificadores.</p>
+            
+            <h4>Sua Tarefa:</h4>
+            <p>Criar um programa que leia um CPF (contendo apenas os 11 dígitos) e determine se ele é válido ou não. O cálculo dos dois dígitos verificadores é a chave do problema.</p>
+
+            <h4>Como vai funcionar a Entrada:</h4>
+            <p>O programa lerá uma única linha com uma string de 11 caracteres numéricos.</p>
+            
+            <h4>O que seu programa deve fazer:</h4>
+            <p>1. <strong>Calcular o primeiro dígito verificador:</strong> Multiplique os 9 primeiros dígitos por uma contagem regressiva de 10 a 2. Some os resultados. O dígito é 0 se o resultado da soma módulo 11 for 0 ou 1; caso contrário, é 11 menos o resultado do módulo.</p>
+            <p>2. <strong>Calcular o segundo dígito verificador:</strong> Multiplique os 10 primeiros dígitos (incluindo o primeiro dígito verificador calculado) por uma contagem de 11 a 2. Use a mesma lógica do passo anterior para encontrar o segundo dígito.</p>
+            <p>3. <strong>Validar:</strong> Compare os dois dígitos calculados com os dois últimos dígitos do CPF informado. Se ambos baterem, imprima <strong>VALIDO</strong>. Caso contrário, imprima <strong>INVALIDO</strong>.</p>
+            
+            <h4>Exemplo Prático:</h4>
+            <pre><code>Se a entrada for:
+12345678909
+
+Lógica: Após os cálculos, descobre-se que o primeiro dígito verificador para "123456789" é 0 e o segundo é 9. Como os dígitos do CPF informado batem com os calculados, o CPF é válido.
+A saída do seu programa deve ser:
+VALIDO</code></pre>
+
+            <h4>Outro Exemplo:</h4>
+            <pre><code>Se a entrada for:
+11111111111
+
+Lógica: CPFs com todos os dígitos iguais são considerados inválidos, mesmo que passem no cálculo matemático (uma regra de negócio). Além disso, o CPF "12345678900" é inválido pois os dígitos verificadores corretos seriam 0 e 9.
+A saída do seu programa deve ser:
+INVALIDO</code></pre>
+            
+            <h4>Dicas (Regras do Jogo):</h4>
+            <p>Cuidado com a conversão de caracteres para inteiros (ex: em C/Java, `c - '0'`). Crie funções separadas para calcular cada dígito verificador para organizar melhor seu código.</p>
+        </div>
+
+        <div class="challenge-box">
+            <h3>⭐⭐⭐ Desafio 3: O Labirinto do Tesouro Perdido ⭐⭐⭐</h3>
+            
+            <h4>A História:</h4>
+            <p>Um explorador encontrou um mapa antigo que leva a um tesouro. O mapa é representado como uma grade (matriz), onde algumas células são paredes intransponíveis e outras são caminhos livres. Antes de arriscar sua vida, o explorador precisa saber: existe um caminho da entrada até o tesouro?</p>
+            
+            <h4>Sua Tarefa:</h4>
+            <p>Dado um mapa bidimensional, com uma entrada 'E', um tesouro 'T', caminhos '.' e paredes '#', determine se é possível ir da entrada ao tesouro movendo-se apenas para cima, baixo, esquerda ou direita.</p>
+            
+            <h4>Como vai funcionar a Entrada:</h4>
+            <p>A primeira linha conterá dois inteiros: R (linhas) e C (colunas). As R linhas seguintes conterão C caracteres cada, formando o mapa.</p>
+            
+            <h4>O que seu programa deve fazer:</h4>
+            <p>Ler a matriz e encontrar as coordenadas da 'E'. A partir da entrada, explore os caminhos adjacentes recursivamente ou iterativamente, marcando as células já visitadas para não entrar em loop. Se em algum momento a exploração alcançar a célula 'T', um caminho foi encontrado. Se toda a exploração terminar sem alcançar 'T', não há caminho.</p>
+            
+            <h4>Exemplo Prático (Caminho Existe):</h4>
+            <pre><code>Entrada:
+5 5
+E.###
+.#.#.
+.#.##
+.##.T
+.....
+
+Lógica: Partindo de 'E', é possível traçar um caminho até 'T' movendo-se pelos pontos '.'.
+Saída:
+Tesouro encontrado!</code></pre>
+            
+            <h4>Outro Exemplo (Sem Caminho):</h4>
+            <pre><code>Entrada:
+4 4
+E.#.
+.###
+##.#
+#.T#
+
+Lógica: A entrada 'E' e o tesouro 'T' estão em áreas isoladas por paredes '#', tornando impossível a travessia.
+Saída:
+Tesouro perdido!</code></pre>
+            
+            <h4>Dicas (Regras do Jogo):</h4>
+            <p>Este é um problema clássico de <strong>busca em grafos</strong>. Algoritmos como <strong>Busca em Largura (BFS)</strong> ou <strong>Busca em Profundidade (DFS)</strong> são as ferramentas ideais. Você precisará de uma estrutura para "lembrar" das células a serem visitadas (uma Fila para BFS ou uma Pilha para DFS) e uma matriz auxiliar para marcar as células já visitadas.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo">
+            <p>©2024 Desenvolvido pela equipe Codeplac.<br></p>
+            <ul class="footer-links">
+                <li><a href="#">Privacidade</a></li>
+                <li><a href="#">Termos</a></li>
+                <li><a href="#">Política de Cookies</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" sizes="16x16"  href="/./frontendatualizado/favicons/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="/css/login-media.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div id="container">
+            <div class="banner">
+                <h1>
+                    OLÁ!<br>
+                    SEJA BEM VINDO.
+                </h1>
+                <img src="./img/login.png" width="275" alt="Imagem de login que representa o acesso à plataforma">
+                <p style="color: #fff; font-weight: 400; font-family: 'Roboto', sans-serif;">
+                    Bem-vindo ao CodeplaC! Acesse e participe dos nossos eventos.
+                    <br>Estamos aqui para ajudar você a desenvolver suas habilidades
+                    <br>e se destacar no mundo da programação.
+                </p>
+            </div>
+
+            <div class="box-login">
+                <div class="logo">
+                    <img src="./img/logo_icone.png" width="100" alt="Logo do CodeplaC">
+                </div>
+
+                <div class="box">
+                    <h2>Acesse sua conta:</h2>
+                    <div class="custom-select">
+                        <div class="select-selected">TIPO DE CONTA</div>
+                        <div class="select-items select-hide">
+                            <div data-value="usuario">Usuário</div>
+                            <div data-value="adm">Administrador</div>
+                        </div>
+                    </div>
+                    <input type="text" name="username" id="username" placeholder="Matrícula">
+                    <input type="password" name="password" id="password" placeholder="Senha">
+
+                    <a href="password.html" title="Recuperar senha">
+                        <p>Esqueceu a sua senha?</p>
+                    </a>
+
+                    <button id="loginButton">LOGIN</button>
+
+                    <a href="https://www.codeplac.com.br/cadastro" title="Criar uma nova conta">
+                        <p>Criar uma conta</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Participe do CodeplaC, uma competição universitária de programação em C, com desafios emocionantes para estudantes de TI. Desenvolva suas habilidades enquanto se diverte!" />
+    <meta name="keywords" content="CodeplaC, competição de programação, programação em C, eventos de programação, estudantes de TI, desafios de programação, Uniceplac" />
+    <meta name="author" content="Equipe CodeplaC" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.codeplac.com.br/" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="theme-color" content="#ffffff" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/juntese.css" />
+    <title>Junte-se</title>
+</head>
+<body>
+    <main class="container">
+        <div id="container">
+            <div class="banner">
+                <h1>Junte-se ao CodeplaC!</h1>
+                <p>Aberto para alunos e não-alunos do Uniceplac</p>
+            </div>
+
+            <h1>Formulário de Recrutamento</h1>
+
+            <form id="recrutamentoForm" onsubmit="submitForm(event)">
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Exemplo: João da Silva" />
+                    <span class="error" id="nomeError"></span>
+                </div>
+
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="Exemplo: exemplo123@gmail.com" />
+                    <span class="error" id="emailError"></span>
+                </div>
+
+                <div>
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" name="telefone" required placeholder="Exemplo: 61999999999" />
+                    <span class="error" id="telefoneError"></span>
+                </div>
+
+                <div>
+                    <label for="curso">Curso</label>
+                    <input type="text" id="curso" name="curso" required placeholder="Exemplo: Engenharia de Software" />
+                    <span class="error" id="cursoError"></span>
+                </div>
+
+                <div>
+                    <label>Você é aluno do Uniceplac?</label>
+                    <div>
+                        <input type="radio" id="vinculoSim" name="vinculo" value="Sim" required />
+                        <label for="vinculoSim">Sim</label>
+                        <input type="radio" id="vinculoNao" name="vinculo" value="Não" />
+                        <label for="vinculoNao">Não</label>
+                    </div>
+                    <span class="error" id="vinculoError"></span>
+                </div>
+
+                <div>
+                    <label for="motivacao">Motivação</label>
+                    <textarea id="motivacao" name="motivacao" required placeholder="Descreva por que você quer participar..."></textarea>
+                    <span class="error" id="motivacaoError"></span>
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            <div>
+                <a href="https://www.codeplac.com.br">Voltar para a página principal</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo">
+            <p>©2024 Desenvolvido pela equipe Codeplac.<br>
+                <ul class="footer-links">
+                    <li><a href="https://www.codeplac.com.br/privacidade">Privacidade</a></li>
+                    <li><a href="https://www.codeplac.com.br/termos">Termos</a></li>
+                    <li><a href="https://www.codeplac.com.br/politicadecookies">Política de Cookies</a></li>
+                </ul>
+            </p>
+            <div class="social-icons">
+                <!-- Adicionar ícones sociais aqui -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+
+
+            document.querySelectorAll('.error').forEach(span => span.textContent = '');
+
+
+            const vinculoValue = document.querySelector('input[name="vinculo"]:checked')?.value;
+            const vinculo = vinculoValue === 'Sim' ? true : false;
+
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                curso: document.getElementById('curso').value,
+                vinculo: vinculo,
+                motivacao: document.getElementById('motivacao').value
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/juntese', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Erro ao enviar o formulário');
+                }
+
+                alert('Formulário enviado com sucesso!');
+                window.location.href = 'https://www.codeplac.com.br';
+            } catch (error) {
+                // Handle validation errors or other issues
+                if (error.message.includes('Nome é obrigatório')) {
+                    document.getElementById('nomeError').textContent = 'Nome é obrigatório';
+                }
+                if (error.message.includes('E-mail é obrigatório')) {
+                    document.getElementById('emailError').textContent = 'E-mail é obrigatório';
+                }
+                if (error.message.includes('Telefone é obrigatório')) {
+                    document.getElementById('telefoneError').textContent = 'Telefone é obrigatório';
+                }
+                if (error.message.includes('Curso é obrigatório')) {
+                    document.getElementById('cursoError').textContent = 'Curso é obrigatório';
+                }
+                if (error.message.includes('Vínculo é obrigatório')) {
+                    document.getElementById('vinculoError').textContent = 'Vínculo é obrigatório';
+                }
+                if (error.message.includes('Motivação é obrigatória')) {
+                    document.getElementById('motivacaoError').textContent = 'Motivação é obrigatória';
+                }
+                console.error('Erro:', error.message);
+            }
+        }
+    </script>
+
+    <script src="js/script.js"></script>
+    <script src="js/responsivocel.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/juntese.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

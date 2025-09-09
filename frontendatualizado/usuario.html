@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" href="css/style.css" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+			rel="stylesheet" />
+		<link rel="icon" type="image/png" sizes="16x16"
+			href="/favicons/favicon-16x16.png">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="theme-color" content="#ffffff">
+		<link rel="stylesheet" href="./css/usuario.css" />
+		<title>CodeplaC</title>
+	</head>
+	<body>
+		<header
+			style="background-image: url(&quot;img/basedefundositeindex.jpg&quot;)">
+			<div class="container">
+				<nav>
+					<a href="index.html">
+						<img src="img/logoprincipalparaosite.png" alt="Logo" />
+					</a>
+					<ul class="ul">
+						<li class="dropdown">
+							<a href="https://www.codeplac.com.br" class="dropdown">Home</a>
+							<ul class="dropdown-menu">
+								<li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
+							</ul>
+						</li>
+						<li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
+						<li class="dropdown">
+							<a href="" class="dropdown">Atividades</a>
+							<ul class="dropdown-menu">
+								<li><a href="https://www.codeplac.com.br/eventos">Eventos</a></li>
+								<li><a href="https://www.codeplac.com.br/historico">Histórico</a></li>
+								<li><a href="https://www.codeplac.com.br/galeria">Galeria</a></li>
+							</ul>
+						</li>
+						<li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
+						<li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
+						<li class="btndestaque hidden"><a href="https://www.codeplac.com.br/login">Login</a></li>
+						<li class="usuario-icon hidden" id="userIcon">
+							<a href="https://www.codeplac.com.br/usuario"><i class="ri-user-line"></i></a>
+						</li>
+					</ul>
+					<div class="menu-icon" onclick="openMenu()">
+						<i class="fa fa-bars"></i>
+					</div>
+					<div class="close-icon" onclick="closeMenu()">
+						<i class="fa fa-times-circle" aria-hidden="true"></i>
+					</div>
+				</nav>
+				<section class="banner"></section>
+			</div>
+		</header>
+		<main>
+			<div class="user-info">
+				<div class="profile-picture">
+					<span></span>
+				</div>
+				<div class="user-name" id="userName">Nome do Usuário</div>
+			</div>
+
+			<div class="user-profile-container">
+				<div class="additional-info">
+					<h2>Informações</h2>
+					<ul>
+						<li id="userRegistry">Matrícula: </li>
+						<li id="userEmail">E-mail: </li>
+						<li id="userPhone">Telefone: </li>
+						<li id="userCpf">CPF: </li>
+					</ul>
+				</div>
+				<div class="user-events-container">
+					<h2>Eventos Participados</h2>
+					<ul class="events-list">
+						<li>Ainda não participou de nenhum evento. :(</li>
+					</ul>
+				</div>
+			</div>
+			<div class="botoes">
+				<button class="edit-button" id="edit-button">Editar</button>
+				<button class="logout-button" id="logout-button">Sair</button>
+			</div>
+
+			<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="eventModalLabel">Alterar Informações</h5>
+						</div>
+						<div class="modal-body">
+							<p>Escolha o que deseja atualizar:</p>
+							<div class="custom-select">
+								<div class="select-selected">Selecione uma opção</div>
+								<div class="select-items select-hide">
+									<div data-value="matricula">Matrícula</div>
+									<div data-value="cpf">CPF</div>
+									<div data-value="telefone">Telefone</div>
+									<div data-value="email">Email</div>
+								</div>
+							</div>
+							<div class="mt-3">
+								<label for="newInfo">Nova informação:</label>
+								<input type="text" name="newInfo" id="newInfo" placeholder="Digite a nova informação" class="form-control">
+							</div>
+							<div class="mt-3">
+								<label for="password">Senha (para confirmação):</label>
+								<input type="password" name="password" id="password" placeholder="Digite sua senha" class="form-control">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</main>
+
+		<script src="js/user-info.js"></script>
+		<script src="js/script.js"></script>
+	</body>
+</html>

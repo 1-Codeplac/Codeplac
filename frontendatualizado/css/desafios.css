@@ -1,0 +1,82 @@
+/* Estilo geral do corpo para a página de desafios */
+body {
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Container principal da página */
+main.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 80, 158, 0.15);
+    font-family: 'Montserrat', sans-serif;
+    border: 1px solid #dbe3e9;
+}
+
+/* Título principal "Painel de Desafios" */
+main.container h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    color: #003366;
+    border-bottom: 3px solid #00ADEF;
+    padding-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+/* Caixa que envolve cada desafio */
+.challenge-box {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Título de cada desafio (h3) */
+.challenge-box h3 {
+    color: #00509E;
+    font-size: 1.6rem; /* Aumentado para dar mais destaque */
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* Mais espaço abaixo */
+    border-bottom: 1px solid #dbe3e9;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+/* === NOVO ESTILO ADICIONADO === */
+/* Subtítulos dentro do desafio (h4) */
+.challenge-box h4 {
+    color: #003366;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Parágrafos dentro do desafio */
+.challenge-box p {
+    line-height: 1.7; /* Aumentado para melhor legibilidade */
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+/* Blocos de código e exemplos de entrada/saída */
+.challenge-box pre {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem; /* Um pouco maior para facilitar a leitura */
+    border-left: 5px solid #00ADEF; /* Destaque na lateral */
+    color: #212529;
+}
+
+.challenge-box code {
+    font-family: 'Courier New', Courier, monospace;
+}

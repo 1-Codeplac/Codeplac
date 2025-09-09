@@ -1,0 +1,13 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-CodeplacApplication<codeplac>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "codeplac.codeplac.CodeplacApplication",
+			"projectName": "codeplac",
+			"args": ""
+		}
+	]
+}

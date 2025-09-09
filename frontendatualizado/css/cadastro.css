@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", serif;
+}
+
+body {
+    background-image: url('../img/fundo.png');
+    background-size: cover; /* Garante que a imagem cubra todo o fundo */
+    background-position: center; /* Centraliza a imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    max-width: 910px; /* Largura máxima reduzida */
+    width: 100%; /* Largura total disponível */
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    margin: 20px; /* Adiciona margem nas laterais */
+    height: 500px;
+}
+
+.left-panel {
+    background-color: #11303a;
+    color: #ffffff;
+    padding: 30px; /* Reduzido */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.left-panel h1 {
+    font-size: 1.5rem; /* Diminuído */
+    margin-bottom: 15px; /* Diminuído */
+}
+
+.left-panel p {
+    font-size: 1rem; /* Diminuído */
+    margin-bottom: 15px; /* Diminuído */
+}
+
+.left-panel img {
+    max-width: 80%; /* Ajusta o tamanho da imagem */
+    border-radius: 10px;
+    margin-top: 15px; /* Diminuído */
+}
+
+.right-panel {
+    padding: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo img {
+    width: 70px; /* Diminuído */
+    margin-bottom: 15px; /* Diminuído */
+}
+
+.right-panel h2 {
+    font-size: 1.5rem; /* Diminuído */
+    margin-bottom: 15px; /* Diminuído */
+    color: #265969;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px; /* Reduzido */
+}
+
+label {
+    margin-bottom: 8px; /* Diminuído */
+    font-weight: bold;
+    color: #00344D;
+}
+
+input {
+    margin-bottom: 10px; /* Diminuído */
+    padding: 10px 0; /* Reduzido */
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input.error {
+    border-color: red;
+}
+
+.erroMensagem {
+    font-size: 10px; /* Tamanho da fonte */
+    color: red; /* Cor da mensagem */
+    margin-top: 0px; /* Espaço entre o input e a mensagem */
+    max-width: 165px;
+
+}
+
+#auth-fields{
+    display: flex;
+}
+
+input:focus {
+    border-bottom: 2px solid #246277;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    margin-top: 10px; /* Diminuído */
+    padding: 10px; /* Diminuído */
+    background-color: #246277;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Diminuído */
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00709A;
+}
+
+.social-login {
+    margin-top: 15px; /* Diminuído */
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-login button {
+    padding: 8px; /* Diminuído */
+    width: 48%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem; /* Diminuído */
+    transition: background-color 0.3s ease;
+}
+
+.google-btn {
+    background-color: #DB4437;
+    color: #ffffff;
+}
+
+.github-btn {
+    background-color: #333;
+    color: #ffffff;
+}
+
+p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+p a {
+    color: #0F2A33;
+    text-decoration: none;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Muda para coluna em telas menores */
+        max-width: 100%; /* Garante que ocupa toda a largura da tela */
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%; /* Cada painel ocupa toda a largura */
+    }
+
+    .left-panel img {
+        max-width: 80%; /* Ajusta o tamanho da imagem */
+    }
+}
