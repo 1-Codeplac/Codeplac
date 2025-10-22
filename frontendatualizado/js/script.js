@@ -1,3 +1,17 @@
+function scrollToNextSection() {
+    // 1. Procura a primeira SEÇÃO com a classe 'codeplac1' em toda a página.
+    const targetSection = document.querySelector('section.codeplac1');
+
+    // 2. Se o elemento for encontrado, rola até ele.
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: 'smooth'
+        });
+    } else {
+        console.error("Erro: A seção de destino (.codeplac1) não foi encontrada.");
+    }
+}
+
 // Função da galeria
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-img");
@@ -56,3 +70,4 @@ document.getElementById("logout-button").addEventListener("click", () => {
 
 	location.replace("https://www.codeplac.com.br/index");
 });
+

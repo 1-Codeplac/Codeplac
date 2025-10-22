@@ -10,7 +10,7 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #1d283d, #020203);
+    background: linear-gradient(to bottom, #081241, #0c0c0e);
 }
 
 .container {
@@ -22,7 +22,7 @@ body {
 }
 
 .btndestaque {
-    background-color: #347ebb;
+    background-color: #e49c16;
     color: white;
     padding: 8px 8px;
     border-radius: 25px;
@@ -48,6 +48,43 @@ i.ri-user-line{
     display: none;
 }
 
+/* 1. Estilos para o Cabeçalho Contêiner */
+.video-background-header {
+    /* Define a posição relativa para que o vídeo absoluto funcione dentro */
+    position: relative;
+    width: 100%;
+    padding-bottom: 0.1%;
+    overflow: hidden;
+}
+
+#headerVideo {
+    /* Posiciona o vídeo para cobrir todo o cabeçalho */
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover; /* Garante que o vídeo cubra toda a área */
+
+    /* Coloca o vídeo *atrás* de todo o conteúdo (menu, texto, etc.) */
+    z-index: -1;
+}
+
+.video-background-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Preto com 40% de opacidade */
+    z-index: 0; 
+}
+
+.container, .banner {
+    position: relative; /* Cria um novo contexto de empilhamento */
+    z-index: 1; /* Coloca acima do vídeo e do overlay */
+}
 
 header {
     background-position: left;
@@ -155,6 +192,49 @@ nav ul li:hover .dropdown-menu {
    
 }
 
+/* Estilo para a Seta de Rolagem para Baixo */
+.scroll-down-arrow {
+    display: inline-block;
+    margin-top: 30px;
+    color: white; /* Cor da seta */
+    font-size: 40px; /* Tamanho da seta */
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Sombra sutil */
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+.scroll-down-arrow:hover {
+    color: #6fb1e8; /* Cor ao passar o mouse */
+    transform: scale(1.1);
+}
+
+/* Animação de Pulsação (Bounce) */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0); /* Posição normal */
+    }
+    40% {
+        transform: translateY(-15px); /* Move para cima */
+    }
+    60% {
+        transform: translateY(-8px); /* Move para cima um pouco menos */
+    }
+}
+
+/* Adiciona o prefixo webkit para compatibilidade com Safari/Chrome */
+@-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-15px);
+    }
+    60% {
+        -webkit-transform: translateY(-8px);
+    }
+}
+
 .banner-text h1{
 
     font-size: 96px;
@@ -217,8 +297,8 @@ nav ul li:hover .dropdown-menu {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    color: #fff;
-    background-color: #0c3846;
+    color: #081241;
+    background-color: #e49c16;
     border: none;
     text-align: center;
     text-decoration: none;
