@@ -259,3 +259,99 @@ body {
     display: none;
     /* Esconde as opções por padrão */
 }
+
+/* ========================================================= */
+/* MEDIA QUERIES - RESPONSIVIDADE          */
+/* ========================================================= */
+
+/* Tablet e Telas Médias (Largura máxima de 950px) */
+@media (max-width: 950px) {
+    /* Reduz o tamanho do container geral */
+    #container {
+        width: 90%;
+        height: auto;
+        flex-direction: column; /* Quebra o layout em coluna */
+    }
+
+    /* Redimensiona o banner para ocupar a largura total do container */
+    #container .banner {
+        width: 100%;
+        height: 250px; /* Reduz a altura para economizar espaço */
+        border-radius: 10px 10px 0 0; /* Arredonda apenas os cantos superiores */
+    }
+
+    /* Ajusta o texto do banner */
+    #container .banner h1 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    /* Redimensiona a caixa de login para ocupar a largura total do container */
+    #container .box-login {
+        width: 100%;
+        height: 480px;
+        border-radius: 0 0 10px 10px; /* Arredonda apenas os cantos inferiores */
+    }
+
+    /* Corrige o fundo do body para que ele se ajuste corretamente */
+    body {
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* Smartphone e Telas Pequenas (Largura máxima de 550px) */
+@media (max-width: 550px) {
+    /* Oculta o banner em telas muito pequenas para dar prioridade ao formulário */
+    #container .banner {
+        display: none;
+    }
+
+    /* O container deve ocupar a maior parte da tela */
+    #container {
+        width: 95%; /* Ocupa quase toda a largura */
+        height: auto;
+        min-height: 80vh; /* Garante uma altura mínima para visualização */
+        margin: 20px 0; /* Adiciona margem vertical */
+    }
+
+    /* A caixa de login ocupa 100% do novo container */
+    #container .box-login {
+        width: 100%;
+        height: auto;
+        min-height: 450px;
+        /* Reajusta a borda de raio, pois o banner foi removido */
+        border-radius: 10px;
+        padding: 20px 0;
+    }
+
+    /* Ajusta a largura dos inputs para melhor preenchimento no mobile */
+    input {
+        width: 90%;
+    }
+
+    /* Centraliza os títulos e parágrafos que antes eram justificados/alinhados à esquerda */
+    h1, h2, p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Ajuste no seletor customizado */
+    .custom-select {
+        width: 90%; /* Usa mais espaço na tela */
+    }
+    .select-items {
+        min-width: 90%; /* Ajusta o dropdown para a largura do contêiner */
+    }
+}
+
+/* Ajuste do botão de bolha (chat/ajuda) para garantir que não saia da tela */
+@media (max-width: 400px) {
+    #bubble {
+        right: 5px;
+        bottom: 5px;
+        width: 45px;
+        height: 45px;
+    }
+}

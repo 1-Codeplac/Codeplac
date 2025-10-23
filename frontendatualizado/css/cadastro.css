@@ -180,19 +180,31 @@ p a {
     text-decoration: none;
 }
 
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
+/*
+  ================================================
+  MÉDIA QUERY PARA TELAS PEQUENAS (CELULARES)
+  Máximo de 650px. O layout principal muda para 1 coluna.
+  O painel lateral (left-panel) é ocultado.
+  ================================================
+*/
+@media (max-width: 650px) {
     .container {
-        flex-direction: column; /* Muda para coluna em telas menores */
-        max-width: 100%; /* Garante que ocupa toda a largura da tela */
+        flex-direction: column; /* FORÇA A DISPOSIÇÃO EM COLUNA */
+        height: auto;
+        max-width: 90%;
+        min-width: 300px;
     }
 
-    .left-panel,
+    /* Oculta o painel esquerdo para telas de celular */
+    .left-panel {
+        display: none; /* ISTO DEVE FAZER ELE SUMIR */
+        width: 0;
+        padding: 0;
+    }
+
     .right-panel {
-        width: 100%; /* Cada painel ocupa toda a largura */
+        width: 100%; /* ISTO DEVE FAZER O FORMULÁRIO OCUPAR TUDO */
+        padding: 30px 20px;
     }
-
-    .left-panel img {
-        max-width: 80%; /* Ajusta o tamanho da imagem */
-    }
+    /* ... (restante dos ajustes) ... */
 }

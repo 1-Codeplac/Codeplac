@@ -1572,142 +1572,135 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
 .menu-icon,
 .close-icon {
     display: none;
+    color: #FFFFFF
 }
 
-/* Exibição dos ícones de menu em dispositivos móveis */
-@media (max-width: 768px) {
-    .menu-icon {
-        display: block;
+
+/* ======================================= */
+/* ESTILOS ESPECÍFICOS PARA O MENU DE NAVEGAÇÃO (nav ul) */
+/* ======================================= */
+
+/* * 1. Padrão Mobile-First: Oculta o menu e mostra o ícone de menu 
+ * em qualquer tela (Será sobrescrito para desktop)
+ */
+nav ul {
+    /* Garante que o menu principal esteja oculto por padrão no mobile */
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Garante altura total */
+    background-color: #134557;
+    z-index: 9999;
+    /* LINHA REMOVIDA: padding-top: 60px; (Para cobrir o cabeçalho) */
+    clip-path: circle(0% at 100% 0);
+    transition: clip-path 0.7s ease;
+}
+
+/* * 2. Classes de Ícones (Mobile)
+ */
+.menu-icon,
+.close-icon {
+    display: block; /* Visíveis por padrão para mobile */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Oculta o botão de fechar inicialmente */
+.close-icon {
+    display: none;
+}
+
+/* * 3. Estado ABERTO do Menu (Mobile)
+ */
+nav ul.open {
+    display: flex; /* Exibe o menu */
+    clip-path: circle(121.6% at 88% 16%);
+}
+
+/* ======================================= */
+/* REGRAS ESSENCIAIS PARA BLOQUEIO DE SCROLL (BODY) */
+/* Garante que o conteúdo de fundo "suma" ao desativar a rolagem e sobreposição total. */
+/* ======================================= */
+body.menu-open {
+    /* Impede a rolagem do conteúdo da página inteira */
+    overflow: hidden !important; 
+    
+    /* FIX: Garante que a remoção da barra de rolagem não cause deslocamento lateral */
+    position: fixed; 
+    width: 100%;
+}
+
+
+/* ======================================= */
+/* MEDIA QUERY: DESKTOP (> 768px) */
+/* ======================================= */
+@media (min-width: 769px) {
+    /* 1. Reset para o Layout Desktop */
+    nav ul {
+        all: unset; /* Remove todas as regras fixas de mobile */
+        display: flex; /* Volta ao display flex em linha */
+        align-items: center;
+        position: static;
+        height: auto;
+        width: auto;
+        padding-top: 0;
+        background-color: transparent;
+        z-index: auto;
+        clip-path: none;
+        box-shadow: none;
     }
 
+    /* 2. Oculta os ícones no Desktop */
+    .menu-icon,
     .close-icon {
         display: none;
     }
-
-    .ul {
-        display: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        clip-path: circle(0% at 100% 0);
-        transition: clip-path 0.7s ease, opacity 0.5s ease;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #134557;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        padding-top: 60px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    }
-
-  /* Estilo para o dropdown */
-.ul .dropdown {
-    position: relative;
-}
-
-/* Estilo do menu dropdown */
-.ul .dropdown-menu {
-    display: none; 
-    position: absolute;
-    left: 0; 
-    top: calc(100% + 10px); 
-    background-color: #122b36; 
-    border-radius: 10px;
-    padding: 10px 0;
-    z-index: 999;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
-    min-width: 180px; 
-    opacity: 0; 
-    visibility: hidden;
-    transform: translateY(-10px); 
-    transition: all 0.3s ease; 
-}
-
-/* Estilo de cada item do menu */
-.ul .dropdown-menu li {
-    margin: 0; 
-    padding: 8px 20px;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.ul .dropdown-menu li a {
-    color: #ffffff;
-    text-decoration: none; 
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.ul .dropdown-menu li:hover {
-    background-color: #0C1F26; 
-    transform: translateX(5px); 
-}
-
-.ul .dropdown:hover .dropdown-menu,
-.ul .dropdown:focus-within .dropdown-menu {
-    display: flex; 
-    flex-direction: column;
-    opacity: 1; 
-    visibility: visible;
-    transform: translateY(0);
-}
-
-/* Espaçamento entre os itens */
-.ul .dropdown-menu li + li {
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
-}
-
-/* Efeito suave para os botões */
-.ul .dropdown-menu li:hover a {
-    color: #b3ecff; 
-}
-
-    .ul.open {
-        display: flex;
-        clip-path: circle(121.6% at 88% 16%);
-    }
-
-    .ul a {
-        margin: 10px 0;
-        font-size: 16px;
-        text-decoration: none;
-        color: #FFFFFF;
-    }
-
-    nav .menu-icon,
-    nav .close-icon {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-        z-index: 10000;
-    }
-
-    nav .close-icon {
-        top: 46px;
-    }
-
-    .menu-icon i, .close-icon i {
-        font-size: 30px;
-        color: #FFFFFF;
-    }
-
-    .ul.open ~ .close-icon {
-        display: block;
-    }
-
-    .ul.open ~ .menu-icon {
-        display: none;
-    }
-}
-
-/* Adicione mais media queries para diferentes tamanhos de tela */
-@media (max-width: 1024px) {
     
+    /* Regras de estilo para os itens de menu de desktop */
+    nav ul li {
+        list-style: none;
+        position: relative;
+    }
+    
+    nav ul li a {
+        /* Seus estilos originais de desktop aqui... */
+        margin: 0 20px;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    /* Garante que o dropdown de desktop funcione */
+    nav ul li .dropdown-menu {
+        display: none;
+        position: absolute;
+        /* ... e todos os outros estilos de desktop para o dropdown ... */
+    }
+    nav ul li:hover .dropdown-menu {
+        display: block;
+    }
+    
+}
+
+/* Mantém as media queries de ajuste de tamanho do texto do banner */
+@media (max-width: 1024px) {
+    .banner-text h1 {
+        font-size: 28px; 
+    }
+    .banner-text p {
+        font-size: 16px; 
+    }
+    header {
+        padding: 10px; 
+    }
     .codeplac1 .container {
         flex-direction: column; 
         align-items: center; 
@@ -1717,56 +1710,29 @@ box-shadow: 0 0 25px rgba(52, 109, 167, 0.4),
         padding: 0; 
     }
 }
-/* Media Query para telas menores */
-@media (max-width: 1024px) {
-    .banner-text h1 {
-        font-size: 28px; 
-    }
-
-    .banner-text p {
-        font-size: 16px; 
-    }
-
-    header {
-        padding: 10px; 
-    }
-}
 
 @media (max-width: 768px) {
-    /* Ajusta o tamanho do texto do banner para telas menores */
     .banner .banner-text {
         margin: 50px; 
         padding: 0 20px; 
     }
-
     .banner .banner-text h1 {
         font-size: 48px; 
     }
-
     .banner .banner-text p {
         font-size: 16px; 
     }
 }
 
-/* Para dispositivos ainda menores (como smartphones muito pequenos) */
 @media (max-width: 480px) {
     .banner .banner-text {
         margin: 30px;
         padding: 0 10px;
     }
-
     .banner .banner-text h1 {
         font-size: 36px;
     }
-
     .banner .banner-text p {
         font-size: 14px;
     }
 }
-
-@media (min-width: 769px) {
-    .menu-icon, .close-icon {
-      display: none;   /* Esconde ambos os ícones no desktop */
-    }
-  }
-  
