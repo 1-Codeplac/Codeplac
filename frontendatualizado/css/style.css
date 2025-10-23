@@ -133,28 +133,41 @@ nav ul li a::after {
 }
 
 nav ul li a:hover::after{
-    
+
     width: 100%;
-    
+
 
 
 }
 
+
 nav ul li .dropdown-menu {
-    transition: 0.10s;
+    transition: 0.3s; /* Aumentei a transição para ser mais suave */
     display: none;
     position: absolute;
-    background-color: #ffffff00;
+    background-color: #ffffff05; 
     top: 100%;
-    left: -13%;
+    /* Recomendo testar 'left: 0;' ou 'left: -13%' para o alinhamento */
+    left: 0; 
     min-width: 150px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais visível */
+    /* Adicionando um pequeno padding para que o box-shadow não grude nas bordas */
+    padding: 5px 0; 
+    z-index: 1000; /* Garante que ele fique acima de outros elementos */
 }
 
 nav ul li .dropdown-menu li a {
-    color: #ffffff;
+    /* Corrigido: Mudei para preto para que o texto seja visível no fundo branco */
+    color: #ffffff; 
     padding: 10px 15px;
     display: block;
+    text-decoration: none; 
+}
+
+/* Efeito ao passar o mouse sobre os itens do dropdown para melhor acessibilidade */
+nav ul li .dropdown-menu li a:hover {
+    background-color: #f0f0f0; /* Fundo cinza claro ao passar o mouse */
+    color: #0056b3; /* Cor azul de destaque ao passar o mouse */
 }
 
 nav ul li:hover .dropdown-menu {
