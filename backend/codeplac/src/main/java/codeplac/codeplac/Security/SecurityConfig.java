@@ -102,7 +102,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(Arrays.asList(
             "https://www.codeplac.com.br",
             "https://codeplac.com.br",
-            "https://codeplac-vt59.onrender.com", // Verifique se esta é a URL correta backend no Render
+            "https://www.codeplac.com.br/users/register", // Verifique se esta é a URL correta backend no Render
             "http://127.0.0.1:5500" // Para desenvolvimento local
         ));
 

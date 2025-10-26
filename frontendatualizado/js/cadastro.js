@@ -53,7 +53,7 @@ function cadastrar() {
             } else {
                 return response.json().then((err) => {
                     // console.error para debugging caso o 403 não seja o filtro
-                    console.error("Erro do servidor:", err); 
+                    console.error("Erro do servidor:", err);
                     throw new Error(
                         err.message || "Falha no cadastro. Verifique os dados."
                     );
