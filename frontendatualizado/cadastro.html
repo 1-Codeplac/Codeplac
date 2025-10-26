@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" sizes="16x16"  href="/favicons/favicon-16x16.png">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-    rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/cadastro.css">
     <title>Cadastro</title>
 </head>
@@ -28,23 +25,51 @@
             <h2>Crie sua conta:</h2>
             <div class="form-container">
                 <form method="POST" id="registrationForm">
+
+                    <!-- DADOS PESSOAIS E MATRÍCULA -->
                     <div id="user-fields">
-                        <input type="text" id="matricula" name="matricula" placeholder="matricula" required><br><br>
-                        <input type="text" id="nome" name="nome" placeholder="Nome" required>
-                        <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
-                    </div>
-                    <div id="auth-fields">
-                        <div>
-                        <input type="email" id="email" name="email" required pattern="^[\w\.\-]+@[a-zA-Z\d\.\-]+\.[a-zA-Z]{2,}$" placeholder="E-mail" required>
-                        <span id="erroEmail" class="erroMensagem" style="color: red; display: none;">Formato de e-mail inválido.</span>
-                        <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
-                        <span id="erroCpf" class="erroMensagem" style="color: red; display: none;">CPF inválido.</span>
+                        <div class="input-group">
+                            <!-- Matrícula é o campo que o JS espera na linha 3 -->
+                            <input type="text" id="matricula" name="matricula" placeholder="Matrícula (7 dígitos)" required>
+                            <span id="erroMatricula" class="erroMensagem" style="color: red; display: none;">Matrícula inválida.</span>
                         </div>
-                        <div>
-                        <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
-                        <span id="erroTelefone" class="erroMensagem" style="color: red; display: none;">Telefone inválido.</span>
-                        <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                    </div></div>
+
+                        <div class="input-group">
+                            <input type="text" id="nome" name="nome" placeholder="Nome" required>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" required>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                            <!-- span de erro adicionado para CPF -->
+                            <span id="erroCpf" class="erroMensagem" style="color: red; display: none;">CPF inválido.</span>
+                        </div>
+                    </div>
+
+                    <!-- DADOS DE AUTENTICAÇÃO -->
+                    <div id="auth-fields">
+
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" required pattern="^[\w\.\-]+@[a-zA-Z\d\.\-]+\.[a-zA-Z]{2,}$" placeholder="E-mail" required>
+                            <!-- span de erro adicionado para E-mail -->
+                            <span id="erroEmail" class="erroMensagem" style="color: red; display: none;">Formato de e-mail inválido.</span>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+                            <!-- span de erro adicionado para Telefone -->
+                            <span id="erroTelefone" class="erroMensagem" style="color: red; display: none;">Telefone inválido.</span>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                        </div>
+
+                    </div>
+
                     <button id="cadastrarButton" type="button">Cadastrar</button>
                 </form>
             </div>
