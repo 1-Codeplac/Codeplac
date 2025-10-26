@@ -58,7 +58,7 @@ function cadastrar() {
                 // Tenta ler o corpo como texto para log, mas lança erro de segurança
                 const errorText = await response.text();
                 console.error(`Erro de Segurança ${response.status}:`, errorText.substring(0, 100) + '...');
-                throw new Error("Acesso negado. Verifique a configuração de segurança (Status 403).");
+                throw new Error("Acesso negado. Esse usuário já existe no sistema!.");
             }
 
             // 2. Trata erros que não retornam JSON (evita o SyntaxError)
