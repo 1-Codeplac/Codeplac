@@ -7,7 +7,7 @@ function login() {
 		return;
 	}
 
-	fetch("https://codeplac-c7hy.onrender.com/auth/login", {
+	fetch("https://codeplac-vh95.onrender.com/auth/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
