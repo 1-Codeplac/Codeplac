@@ -36,23 +36,26 @@ public class SecurityFilter extends OncePerRequestFilter {
                                      @NotNull FilterChain filterChain)
             throws ServletException, IOException {
 
-        // LÓGICA DE EXCLUSÃO DE ROTAS PÚBLICAS
+        // 💡 CORREÇÃO DO FILTRO: Excluir rotas públicas da validação de token
         String requestPath = request.getRequestURI();
         
-        // Rotas que não exigem token (as rotas 'permitAll' de POST)
-        if (requestPath.contains("/auth/login") ||
+        // Rotas que não exigem token (as rotas 'permitAll' de POST/GET que o filtro DEVE ignorar)
+        if (requestPath.contains("/auth/login") || 
             requestPath.contains("/users/register") ||
             requestPath.contains("/equipes/inscricao") ||
-            requestPath.contains("/juizcodigo")) {
+            requestPath.contains("/juizcodigo") ||
+            requestPath.contains("/event/list") || 
+            requestPath.contains("/ranking/")) {
 
             logger.info("Requisição para rota pública: {} - pulando validação de token.", requestPath);
             filterChain.doFilter(request, response);
             return; // Interrompe a execução do filtro e segue para o próximo na cadeia
         }
+        // FIM DA LÓGICA DE EXCLUSÃO
 
         String token = recoverToken(request);
         if (token != null) {
-            String matricula = tokenService.validateToken(token, false); // Ajuste aqui para tratar tokens de acesso
+            String matricula = tokenService.validateToken(token, false); 
 
             if (matricula != null) {
                 if (SecurityContextHolder.getContext().getAuthentication() == null) {
