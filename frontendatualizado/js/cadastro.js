@@ -1,6 +1,9 @@
+// A URL do seu backend deve ser o endpoint onde o serviço Spring Boot está rodando.
+// Eu usei o URL que estava no seu log do Render.
+const API_BASE_URL = "https://codeplac-vh95.onrender.com"; 
+
 function cadastrar() {
-    // Coleta os valores dos campos (Matrícula removida daqui)
-    // const matricula = document.getElementById("matricula").value.trim(); // REMOVIDO
+    // Coleta os valores dos campos
     const nome = document.getElementById("nome").value.trim();
     const sobrenome = document.getElementById("sobrenome").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -12,35 +15,34 @@ function cadastrar() {
     const cpf = cpfComMascara.replace(/\D/g, "");
     const telefone = telefoneComMascara.replace(/\D/g, "");
 
-    // Validação dos campos (Matrícula removida da lista)
+    // Validação dos campos
     if (
         !nome ||
         !sobrenome ||
         !email ||
-        !cpf ||
+        cpf.length !== 11 || // Garante que o CPF tem 11 dígitos (sem máscara)
         !telefone ||
         !senha
     ) {
-        alert("Por favor, preencha todos os campos!");
+        alert("Por favor, preencha todos os campos corretamente!");
         return;
     }
 
     const dadosCadastro = {
-        // matricula: String(matricula).padStart(7, "0"), // REMOVIDO do objeto de envio
         nome: nome,
         sobrenome: sobrenome,
         email: email,
         telefone: telefone, // Telefone sem máscara
         senha: senha,
         tipoUsuario: "PARTICIPANT",
-        cpf: cpf // CPF sem máscara
+        cpf: cpf // CPF sem máscara, 11 dígitos
     };
 
     // Envio ao servidor
     console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));
-    console.log("Enviando requisição para o servidor...");
+    console.log(`Enviando requisição para: ${API_BASE_URL}/users/register`);
 
-    fetch("https://www.codeplac.com.br/users/register", {
+    fetch(`${API_BASE_URL}/users/register`, { // URL CORRIGIDA
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -50,15 +52,21 @@ function cadastrar() {
         .then((response) => {
             if (response.ok) {
                 return response.json();
-            } else {
-                return response.json().then((err) => {
-                    // console.error para debugging caso o 403 não seja o filtro
-                    console.error("Erro do servidor:", err);
-                    throw new Error(
-                        err.message || "Falha no cadastro. Verifique os dados."
-                    );
-                });
             }
+
+            // CORREÇÃO: Trata a resposta 500 que retorna HTML (o SyntaxError)
+            if (response.status === 500) {
+                // Se for 500, o servidor quebrou. Não tentamos ler JSON.
+                throw new Error("Erro interno do servidor (Status 500). Verifique os logs do backend!");
+            }
+
+            // Tenta ler o corpo do erro como JSON para erros 4xx (400, 409, etc.)
+            return response.json().then((err) => {
+                console.error("Erro do servidor:", err);
+                throw new Error(
+                    err.message || err.error || "Falha no cadastro. Verifique os dados."
+                );
+            });
         })
         .then(() => {
             alert("Cadastro realizado com sucesso! Faça login.");
@@ -89,30 +97,34 @@ document.addEventListener("keydown", function (event) {
 // Função genérica para aplicar máscara no input
 function aplicarMascara(event, pattern) {
     let valor = event.target.value.replace(/\D/g, ""); // Remove todos os caracteres não numéricos
-    const partes = pattern.match(/(\d+)/g);
     let resultado = "";
-    let index = 0;
 
-    for (const parte of partes) {
-        const tamanho = parte.length;
-        resultado += valor.slice(index, index + tamanho);
-        index += tamanho;
-        if (index < valor.length) {
-            resultado += pattern.charAt(resultado.length); // Adiciona o separador
-        }
+    // Padrão do CPF (000.000.000-00)
+    if (pattern === "000.000.000-00") {
+        if (valor.length > 3) resultado += valor.substring(0, 3) + ".";
+        else resultado += valor.substring(0, 3);
+
+        if (valor.length > 6) resultado += valor.substring(3, 6) + ".";
+        else resultado += valor.substring(3, 6);
+
+        if (valor.length > 9) resultado += valor.substring(6, 9) + "-";
+        else resultado += valor.substring(6, 9);
+
+        resultado += valor.substring(9, 11);
     }
 
-    event.target.value = resultado;
+    event.target.value = resultado.substring(0, pattern.length);
 }
 
 // Validação de CPF
 document.getElementById("cpf").addEventListener("input", function (event) {
     aplicarMascara(event, "000.000.000-00");
     const cpf = event.target.value;
+    const cpfSemMascara = cpf.replace(/\D/g, "");
     const erroCpf = document.getElementById("erroCpf");
-    const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 
-    if (!cpfPattern.test(cpf)) {
+    // Verifica se tem 11 dígitos numéricos
+    if (cpfSemMascara.length !== 11) {
         event.target.classList.add("error");
         erroCpf.style.display = "block";
     } else {
@@ -125,18 +137,19 @@ document.getElementById("cpf").addEventListener("input", function (event) {
 document.getElementById("telefone").addEventListener("input", function (event) {
     let telefone = event.target.value.replace(/\D/g, ""); // Remove todos os caracteres não numéricos
 
-    if (telefone.length > 10) {
-        telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3"); // Para números com 11 dígitos
-    } else {
-        telefone = telefone.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3"); // Para números com 10 dígitos
-    }
+    // Lógica da máscara de telefone aprimorada
+    let resultado = "";
+    if (telefone.length > 0) resultado += "(" + telefone.substring(0, 2);
+    if (telefone.length > 2) resultado += ") " + telefone.substring(2, 7);
+    if (telefone.length > 7) resultado += "-" + telefone.substring(7, 11);
 
-    // Atualiza o campo com a máscara correta
-    event.target.value = telefone;
+    // Limita o tamanho máximo da string para 15 caracteres (padrão (xx) xxxxx-xxxx)
+    event.target.value = resultado.substring(0, 15);
 
     const erroTelefone = document.getElementById("erroTelefone");
     const telefonePattern = /^\(\d{2}\) \d{4,5}-\d{4}$/; // Valida 10 ou 11 dígitos
-    if (!telefonePattern.test(telefone)) {
+
+    if (!telefonePattern.test(event.target.value) && event.target.value.length >= 14) {
         event.target.classList.add("error");
         erroTelefone.style.display = "block"; // Exibe a mensagem de erro
     } else {
@@ -144,13 +157,6 @@ document.getElementById("telefone").addEventListener("input", function (event) {
         erroTelefone.style.display = "none"; // Esconde a mensagem de erro
     }
 });
-
-// Validação de matrícula (BLOCO REMOVIDO)
-// document
-//     .getElementById("matricula")
-//     .addEventListener("input", function (event) {
-//         // ... (código removido)
-//     });
 
 // Validação de email
 document.getElementById("email").addEventListener("input", function (event) {
