@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -32,7 +31,7 @@ public class JuizCodigoModel {
     @Column(name = "nome_lider", length = 100, nullable = false)
     private String nomeLider;
 
-    @Lob
+    //@Lob
     @Column(name = "codigo", nullable = false)
     private String codigo;
 
