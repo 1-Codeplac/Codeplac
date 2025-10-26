@@ -3,6 +3,7 @@ package codeplac.codeplac.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,16 +36,14 @@ public class UsersController {
 
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (Excecao e) {
-            // 1. Trata exceções LÓGICAS (como CPF já existe) lançadas pelo nosso Service
+            // 1. Trata exceções LÓGICAS (como a do Service: CPF já existe)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        } catch (DataIntegrityViolationException e) {
+             // 2. TRATAMENTO CRÍTICO: Captura a exceção de violação de restrição UNIQUE (Email ou CPF duplicado)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail ou CPF já registrados no sistema. (Violacão de Chave Única)", e);
         } catch (Exception e) {
-             // 2. Trata exceções INESPERADAS/BANCO DE DADOS (como Email duplicado) que causam o 500 e o HTML
-             // Verifica se a exceção contém a pista de violação de restrição UNIQUE
-            if (e.getMessage() != null && e.getMessage().contains("Duplicate entry")) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail ou CPF já registrados no sistema.", e);
-            }
-            // Para outras falhas inesperadas (como problema de conexão com o DB, etc.)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno: Não foi possível processar o registro.", e);
+             // 3. Tratamento de fallback para qualquer outro erro inesperado
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno: Falha de processamento no servidor.", e);
         }
     }
 
