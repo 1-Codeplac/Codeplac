@@ -1,22 +1,19 @@
-// user-info.js CORRIGIDO
+// user-info.js FINAL CORRIGIDO
 const API_BASE_URL = "https://codeplac-vh95.onrender.com"; // Definindo a URL base
 
 window.addEventListener("DOMContentLoaded", getUserData);
 
 function getUserData() {
-    //  ALTERADO: Pega o CPF do localStorage no lugar da matrícula
     const userIdentifier = localStorage.getItem("cpf");
     const userToken = localStorage.getItem("token");
 
-    // Verifica se o CPF foi encontrado antes de fazer a requisição
     if (!userIdentifier) {
         console.error("CPF do usuário não encontrado. Certifique-se de que o usuário está logado.");
-        // Opcional: Redirecionar para a página de login
+        // Redirecionamento de segurança opcional:
         // window.location.href = "https://www.codeplac.com.br/login";
         return;
     }
 
-    //  CORRIGIDO: Adicionado o endpoint '/users/' e usando o CPF
     fetch(`${API_BASE_URL}/users/${userIdentifier}`, {
         method: "GET",
         headers: {
@@ -24,33 +21,38 @@ function getUserData() {
             Authorization: `Bearer ${userToken}`,
         },
     })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                // Tenta ler o erro do servidor se for um erro comum (4xx)
-                return response.text().then(text => {
-                    console.error(`Falha ao buscar dados (Status ${response.status}):`, text);
-                    throw new Error("Falha na busca de informações do usuário. Acesso negado ou usuário não encontrado.");
-                });
-            }
-        })
-        .then((data) => {
-            renderUserData(data);
-        })
-        .catch((error) => {
-            console.error("Erro na requisição GET:", error);
-            alert(error.message);
-        });
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            return response.text().then(text => {
+                console.error(`Falha ao buscar dados (Status ${response.status}):`, text);
+                throw new Error("Falha na busca de informações do usuário. Acesso negado ou usuário não encontrado.");
+            });
+        }
+    })
+    .then((data) => {
+        renderUserData(data);
+    })
+    .catch((error) => {
+        console.error("Erro na requisição GET:", error);
+        alert(error.message);
+    });
 }
 
 function renderUserData({ nome, sobrenome, matricula, email, telefone, cpf }) {
-    // Estes IDs foram verificados e estão corretos no HTML
-    document.getElementById("userName").textContent = `${nome} ${sobrenome}`;
-    document.getElementById("userRegistry").textContent = matricula ? `Matrícula: ${matricula}` : "Matrícula: N/A"; 
-    document.getElementById("userEmail").textContent = `E-mail: ${email}`;
-    document.getElementById("userPhone").textContent = `Telefone: ${telefone}`;
-    document.getElementById("userCpf").textContent = `CPF: ${cpf}`;
+    //  Adicionando verificação de segurança para cada elemento para evitar "Cannot set properties of null"
+    const userNameEl = document.getElementById("userName");
+    const userRegistryEl = document.getElementById("userRegistry");
+    const userEmailEl = document.getElementById("userEmail");
+    const userPhoneEl = document.getElementById("userPhone");
+    const userCpfEl = document.getElementById("userCpf");
+
+    if (userNameEl) userNameEl.textContent = `${nome} ${sobrenome}`;
+    if (userRegistryEl) userRegistryEl.textContent = matricula ? `Matrícula: ${matricula}` : "Matrícula: N/A";
+    if (userEmailEl) userEmailEl.textContent = `E-mail: ${email}`;
+    if (userPhoneEl) userPhoneEl.textContent = `Telefone: ${telefone}`;
+    if (userCpfEl) userCpfEl.textContent = `CPF: ${cpf}`;
 }
 
 // ---------------------------------------------------------------------------------
@@ -58,7 +60,7 @@ function renderUserData({ nome, sobrenome, matricula, email, telefone, cpf }) {
 document.getElementById('edit-button').addEventListener('click', function () {
     const modal = new bootstrap.Modal(document.getElementById('eventModal'));
     modal.show();
-    // Lógica do dropdown (select)
+
     const selectItems = document.querySelector('.select-items');
     const selectSelected = document.querySelector('.select-selected');
 
@@ -81,8 +83,8 @@ document.getElementById('edit-button').addEventListener('click', function () {
 
 function toggleFormFields(selectedValue) {
     const newInfoInput = document.getElementById('newInfo');
-    if (!newInfoInput) return; // Segurança caso o input não exista
-    
+    if (!newInfoInput) return;
+
     newInfoInput.value = "";
 
     switch (selectedValue) {
@@ -117,6 +119,7 @@ document.addEventListener("click", function (event) {
 
 // ---------------------------------------------------------------------------------
 
+// ⚠️ Este listener depende que você adicione id="save-button" ao botão CONFIRMAR no HTML!
 document.getElementById('save-button').addEventListener('click', function () {
     const userIdentifier = localStorage.getItem("cpf");
     const userToken = localStorage.getItem("token");
@@ -130,7 +133,7 @@ document.getElementById('save-button').addEventListener('click', function () {
     const selectedField = selectElement.getAttribute('data-value');
     const newInfo = document.getElementById('newInfo').value;
 
-    // CORREÇÃO APLICADA: Usando o ID 'password' do HTML
+    //  CORREÇÃO FINAL: Usando o ID 'password' do HTML
     const currentPassword = document.getElementById('password').value;
 
     if (!newInfo || !currentPassword || !selectedField || selectedField === 'Selecione uma opção') {
@@ -138,15 +141,13 @@ document.getElementById('save-button').addEventListener('click', function () {
         return;
     }
 
-    // Se o campo selecionado for 'cpf', removemos a máscara antes de enviar
     const infoToSend = (selectedField === 'cpf') ? newInfo.replace(/\D/g, "") : newInfo;
 
     const requestBody = {
-        [selectedField]: infoToSend, // Usa o valor sem máscara se for CPF
+        [selectedField]: infoToSend,
         senha: currentPassword,
     };
 
-    // CORRIGIDO: Usando a nova URL base e o CPF
     fetch(`${API_BASE_URL}/modify/${userIdentifier}?field=${selectedField}&password=${currentPassword}`, {
         method: "PUT",
         headers: {
@@ -169,9 +170,8 @@ document.getElementById('save-button').addEventListener('click', function () {
         })
         .then((data) => {
             alert("Informação atualizada com sucesso! A página será recarregada.");
-            // Recarrega os dados do usuário para refletir a mudança
             getUserData();
-            // Fecha o modal
+
             const modal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
             if (modal) {
                 modal.hide();
