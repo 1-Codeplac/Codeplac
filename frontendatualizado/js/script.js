@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.getElementById("logout-button").addEventListener("click", () => {
-	localStorage.removeItem("matricula");
+	localStorage.removeItem("cpf");
 	localStorage.removeItem("token");
 
 	location.replace("https://www.codeplac.com.br/index");
