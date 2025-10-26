@@ -40,8 +40,7 @@ function cadastrar() {
     console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));
     console.log("Enviando requisição para o servidor...");
 
-    // Lembrete: A URL abaixo deve ser atualizada para a URL ATUAL do Render (ex: codeplac-vh95)
-    fetch("https://codeplac-vt59.onrender.com/users/register", {
+    fetch("https://www.codeplac.com.br/users/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
