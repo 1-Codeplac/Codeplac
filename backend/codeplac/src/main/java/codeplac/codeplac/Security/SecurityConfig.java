@@ -33,9 +33,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        logger.info("Configuring security filter chain...");
+        logger.info("A configurar a cadeia de filtros de segurança..."); // Configuring security filter chain...
 
         http
+            // Desativa CSRF (comum para APIs stateless)
+            .csrf(csrf -> csrf.disable())
+
+            // ***** ATIVA O CORS AQUI *****
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // **ATIVE O CORS AQUI** usando a sua fonte personalizada
+
             // Define sessão como stateless (JWT)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
@@ -46,7 +52,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/juizcodigo").permitAll()
                 .requestMatchers(HttpMethod.GET, "/teste").permitAll()
-                .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
+                .requestMatchers(HttpMethod.POST, "/users/register").permitAll() // Garante que /users/register está permitido
                 .requestMatchers(HttpMethod.POST, "/equipes/inscricao").permitAll()
                 .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/registration/create").hasAnyRole("ADMIN", "PARTICIPANT")
@@ -85,7 +91,7 @@ public class SecurityConfig {
             // Adiciona o filtro JWT customizado
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
-        logger.info("Security filter chain configured successfully.");
+        logger.info("Cadeia de filtros de segurança configurada com sucesso."); // Security filter chain configured successfully.
         return http.build();
     }
 
@@ -96,32 +102,32 @@ public class SecurityConfig {
         config.setAllowedOrigins(Arrays.asList(
             "https://www.codeplac.com.br",
             "https://codeplac.com.br",
-            "https://codeplac-vt59.onrender.com",
-            "http://127.0.0.1:5500"
+            "https://codeplac-vt59.onrender.com", // Verifique se esta é a URL correta backend no Render
+            "http://127.0.0.1:5500" // Para desenvolvimento local
         ));
 
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
-        config.setAllowCredentials(true);
-        config.setMaxAge(3600L); // cache de preflight por 1h
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Cabeçalhos permitidos
+        config.setAllowCredentials(true); // Permite credenciais (cookies, etc.)
+        config.setMaxAge(3600L); // Cache da resposta preflight por 1 hora
 
-        logger.info("CORS configurado para origens: {}", config.getAllowedOrigins());
+        logger.info("CORS configurado para origens: {}", config.getAllowedOrigins()); // CORS configured for origins...
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+        source.registerCorsConfiguration("/**", config); // Aplica a configuração a todos os endpoints ("/**")
         return source;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        logger.info("Creating PasswordEncoder bean");
+        logger.info("A criar o bean PasswordEncoder"); // Creating PasswordEncoder bean
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
-        logger.info("Creating AuthenticationManager bean");
+        logger.info("A criar o bean AuthenticationManager"); // Creating AuthenticationManager bean
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
