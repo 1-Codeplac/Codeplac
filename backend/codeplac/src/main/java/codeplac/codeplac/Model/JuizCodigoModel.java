@@ -32,9 +32,8 @@ public class JuizCodigoModel {
     @Column(name = "nome_lider", length = 100, nullable = false)
     private String nomeLider;
 
-    //@Lob
-@Lob
-    @Column(name = "codigo", nullable = false, columnDefinition = "LONGTEXT")
+    @Lob
+    @Column(name = "codigo", nullable = false, columnDefinition = "LONGTEXT") // <<< CORREÇÃO CRÍTICA AQUI
     private String codigo;
 
     @Column(name = "data_envio", nullable = false, updatable = false)
