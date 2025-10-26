@@ -1,6 +1,5 @@
-// A URL do seu backend deve ser o endpoint onde o serviço Spring Boot está rodando.
-// Eu usei o URL que estava no seu log do Render.
-const API_BASE_URL = "https://codeplac-vh95.onrender.com"; 
+// A URL do backend no Render
+const API_BASE_URL = "https://codeplac-vh95.onrender.com";
 
 function cadastrar() {
     // Coleta os valores dos campos
@@ -42,31 +41,47 @@ function cadastrar() {
     console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));
     console.log(`Enviando requisição para: ${API_BASE_URL}/users/register`);
 
-    fetch(`${API_BASE_URL}/users/register`, { // URL CORRIGIDA
+    fetch(`${API_BASE_URL}/users/register`, { // URL CORRIGIDA PARA O RENDER
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(dadosCadastro),
     })
-        .then((response) => {
+        .then(async (response) => {
             if (response.ok) {
                 return response.json();
             }
 
-            // CORREÇÃO: Trata a resposta 500 que retorna HTML (o SyntaxError)
-            if (response.status === 500) {
-                // Se for 500, o servidor quebrou. Não tentamos ler JSON.
-                throw new Error("Erro interno do servidor (Status 500). Verifique os logs do backend!");
+            // 1. Trata erros de Segurança (401, 403) que frequentemente têm corpo vazio ou não JSON
+            if (response.status === 403 || response.status === 401) {
+                // Tenta ler o corpo como texto para log, mas lança erro de segurança
+                const errorText = await response.text();
+                console.error(`Erro de Segurança ${response.status}:`, errorText.substring(0, 100) + '...');
+                throw new Error("Acesso negado. Verifique a configuração de segurança (Status 403).");
             }
 
-            // Tenta ler o corpo do erro como JSON para erros 4xx (400, 409, etc.)
-            return response.json().then((err) => {
-                console.error("Erro do servidor:", err);
-                throw new Error(
-                    err.message || err.error || "Falha no cadastro. Verifique os dados."
-                );
-            });
+            // 2. Trata erros que não retornam JSON (evita o SyntaxError)
+            const contentType = response.headers.get("Content-Type");
+            if (!contentType || !contentType.includes("application/json")) {
+                // Se não for JSON (provavelmente HTML ou vazio)
+                const errorText = await response.text();
+                console.error(`Erro do Servidor (Status ${response.status}) - Não é JSON. Conteúdo:`, errorText.substring(0, 100) + '...');
+
+                if (response.status === 500) {
+                    throw new Error("Erro interno do servidor. Tente novamente mais tarde.");
+                }
+                throw new Error(`Falha no cadastro: Status ${response.status}`);
+            }
+
+            // 3. Tenta ler o JSON para erros 4xx (400, 409 - Duplicidade, etc.)
+            const err = await response.json();
+            console.error("Erro do servidor (JSON):", err);
+
+            // A mensagem do erro customizado do backend (como o que trata CPF duplicado)
+            throw new Error(
+                err.message || err.error || "Falha no cadastro. Verifique os dados."
+            );
         })
         .then(() => {
             alert("Cadastro realizado com sucesso! Faça login.");
