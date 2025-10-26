@@ -41,7 +41,7 @@ function cadastrar() {
 	console.log("Dados de cadastro:", JSON.stringify(dadosCadastro));
 	console.log("Enviando requisição para o servidor...");
 
-	fetch("https://codeplac-c7hy.onrender.com/users/register", {
+	fetch("https://codeplac-vt59.onrender.com/users/register", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
