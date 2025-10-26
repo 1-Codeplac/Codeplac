@@ -4,7 +4,7 @@ const API_BASE_URL = "https://codeplac-vh95.onrender.com"; // Definindo a URL ba
 window.addEventListener("DOMContentLoaded", getUserData);
 
 function getUserData() {
-    // ⚠️ ALTERADO: Pega o CPF do localStorage no lugar da matrícula
+    //  ALTERADO: Pega o CPF do localStorage no lugar da matrícula
     const userIdentifier = localStorage.getItem("cpf");
     const userToken = localStorage.getItem("token");
 
@@ -16,7 +16,7 @@ function getUserData() {
         return;
     }
 
-    // ⚠️ CORRIGIDO: Adicionado o endpoint '/users/' e usando o CPF
+    //  CORRIGIDO: Adicionado o endpoint '/users/' e usando o CPF
     fetch(`${API_BASE_URL}/users/${userIdentifier}`, {
         method: "GET",
         headers: {
@@ -45,8 +45,8 @@ function getUserData() {
 }
 
 function renderUserData({ nome, sobrenome, matricula, email, telefone, cpf }) {
+    // Estes IDs foram verificados e estão corretos no HTML
     document.getElementById("userName").textContent = `${nome} ${sobrenome}`;
-    // Mantido, mas provavelmente deve ser removido ou alterado no HTML se a matrícula não for mais usada
     document.getElementById("userRegistry").textContent = matricula ? `Matrícula: ${matricula}` : "Matrícula: N/A"; 
     document.getElementById("userEmail").textContent = `E-mail: ${email}`;
     document.getElementById("userPhone").textContent = `Telefone: ${telefone}`;
@@ -62,23 +62,27 @@ document.getElementById('edit-button').addEventListener('click', function () {
     const selectItems = document.querySelector('.select-items');
     const selectSelected = document.querySelector('.select-selected');
 
-    selectSelected.addEventListener('click', function () {
-        selectItems.classList.toggle('select-hide');
-    });
-
-    selectItems.querySelectorAll('div').forEach(function (item) {
-        item.addEventListener('click', function () {
-            const selectedValue = item.getAttribute('data-value');
-            selectSelected.textContent = item.textContent;
-            selectSelected.setAttribute('data-value', selectedValue);
-            selectItems.classList.add('select-hide');
-            toggleFormFields(selectedValue);
+    if (selectSelected && selectItems) {
+        selectSelected.addEventListener('click', function () {
+            selectItems.classList.toggle('select-hide');
         });
-    });
+
+        selectItems.querySelectorAll('div').forEach(function (item) {
+            item.addEventListener('click', function () {
+                const selectedValue = item.getAttribute('data-value');
+                selectSelected.textContent = item.textContent;
+                selectSelected.setAttribute('data-value', selectedValue);
+                selectItems.classList.add('select-hide');
+                toggleFormFields(selectedValue);
+            });
+        });
+    }
 });
 
 function toggleFormFields(selectedValue) {
     const newInfoInput = document.getElementById('newInfo');
+    if (!newInfoInput) return; // Segurança caso o input não exista
+    
     newInfoInput.value = "";
 
     switch (selectedValue) {
@@ -114,14 +118,22 @@ document.addEventListener("click", function (event) {
 // ---------------------------------------------------------------------------------
 
 document.getElementById('save-button').addEventListener('click', function () {
-    // ⚠️ ALTERADO: Pega o CPF do localStorage
     const userIdentifier = localStorage.getItem("cpf");
     const userToken = localStorage.getItem("token");
-    const selectedField = document.querySelector('.select-selected').getAttribute('data-value');
-    const newInfo = document.getElementById('newInfo').value;
-    const currentPassword = document.getElementById('passwordInput').value;
+    const selectElement = document.querySelector('.select-selected');
 
-    if (!newInfo || !currentPassword || !selectedField) {
+    if (!selectElement) {
+        alert("Erro: Elemento de seleção não encontrado.");
+        return;
+    }
+
+    const selectedField = selectElement.getAttribute('data-value');
+    const newInfo = document.getElementById('newInfo').value;
+
+    // CORREÇÃO APLICADA: Usando o ID 'password' do HTML
+    const currentPassword = document.getElementById('password').value;
+
+    if (!newInfo || !currentPassword || !selectedField || selectedField === 'Selecione uma opção') {
         alert("Preencha todos os campos e selecione o campo a ser alterado!");
         return;
     }
