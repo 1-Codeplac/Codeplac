@@ -1,51 +1,297 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+/* ------------------- VARIÁVEIS DE TEMA ------------------- */
+:root {
+    /* Paleta Principal */
+    --color-primary: #00eaff; /* Neon principal */
+    --color-secondary: #00bfff; /* Tom intermediário */
+    --color-tertiary: #007bff; /* Acento mais escuro */
+
+    /* Fundo e contraste */
+    --color-bg-main: #050b1a;
+    --color-bg-alt1: #0c1633;
+    --color-bg-alt2: #141f47;
+    --color-bg-box: #111b3b;
+
+    /* Texto e efeitos */
+    --color-text-light: #e9f6ff;
+    --color-text-dim: #a3bddc;
+    --color-glow: rgba(0, 234, 255, 0.35);
+    --color-shadow: rgba(0, 0, 0, 0.85);
+
+    /* Bordas e gradientes */
+    --border-accent: 2px solid var(--color-primary);
+    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-tertiary) 60%);
+    --gradient-bg: radial-gradient(circle at top, #021029 0%, #050505 100%);
+}
+
+/* ------------------- BASE GLOBAL ------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Orbitron:wght@400;600;800&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to bottom, #1d283d, #020203);
-    color: #FFFFFF;
-    line-height: 1.6;
+    background: var(--gradient-bg);
+    color: var(--color-text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
-
+/* ------------------- SEÇÃO PRINCIPAL ------------------- */
 .codeplac-section {
-    padding: 50px 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: #143844;
+    justify-content: center;
+    gap: 45px;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-.codeplac-section:nth-child(even) {
-    background-color: #365C68;
+/* Efeito de luz de fundo suave */
+.codeplac-section::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(0, 195, 255, 0.08) 0%, transparent 70%);
+    z-index: 0;
 }
 
-/* Estilo das caixas de conteúdo */
+/* ------------------- CONTENT BOX ------------------- */
 .content-box {
-    max-width: 800px;
-    background-color: #1e2f47;
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    width: 90%;
+    max-width: 900px;
+    background: rgba(10, 20, 50, 0.7);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 16px;
+    padding: 50px 60px;
+    box-shadow: 0 10px 35px rgba(0, 229, 255, 0.1), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    color: var(--color-text-light);
+    text-align: justify;
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
 }
 
-/* Estilo dos títulos */
+/* Glow no hover */
+.content-box:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 50px rgba(0, 229, 255, 0.25),
+        inset 0 0 30px rgba(0, 229, 255, 0.1);
+    border-left-color: var(--color-secondary);
+}
+
+/* Efeito decorativo no topo das caixas */
+.content-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+/* ------------------- TÍTULOS ------------------- */
 .content-box h3 {
-    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    color: var(--color-primary);
     margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid rgba(0, 234, 255, 0.3);
+    padding-bottom: 12px;
+    position: relative;
 }
 
-/* Estilo dos parágrafos */
+/* Adiciona um pequeno brilho ao título */
+.content-box h3::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: var(--color-secondary);
+    box-shadow: 0 0 10px var(--color-glow);
+}
+
+/* ------------------- PARÁGRAFOS ------------------- */
 .content-box p {
     font-size: 1.1rem;
-    margin-bottom: 15px;
-    text-align: justify;
+    line-height: 1.9;
+    color: var(--color-text-dim);
+    margin-bottom: 18px;
+    letter-spacing: 0.3px;
+}
+
+/* Último parágrafo com menos margem */
+.content-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* ------------------- EFEITOS ANIMADOS ------------------- */
+@keyframes neon-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px var(--color-glow), 0 0 20px var(--color-glow);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
+    }
+}
+
+/* Aplicar brilho dinâmico a cada 3 caixas (efeito alternado) */
+.content-box:nth-child(3n):hover {
+    animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* ------------------- SETA "V" PARA BAIXO APRIMORADA ------------------- */
+.scroll-indicator {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 5;
+    
+    /* Adiciona o cursor de clique para indicação visual */
+    cursor: pointer; 
+}
+
+/* ... o resto do seu CSS da seta ... */
+
+/* O elemento da seta (agora é um <span> vazio, sem o 'V' literal) */
+.arrow-down {
+    /* Forma da Seta (Chevron) - CORREÇÃO e AUMENTO DE TAMANHO */
+    display: inline-block;
+    width: 80px; /* Seta maior */
+    height: 80px; /* Seta maior */
+    border-top: 4px solid var(--color-primary); /* Borda mais grossa */
+    border-right: 4px solid var(--color-primary); /* Borda mais grossa */
+    /* Configuração da animação (agora usa 'arrowFloat' e 'pulseGlow') */
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+
+    /* Rotação CORRETA para formar o 'V' de ponta-cabeça */
+    transform: rotate(135deg);
+
+    /* Configurações de brilho */
+    filter: drop-shadow(0 0 10px var(--color-primary)); /* Sombra para o efeito glow */
+
+    /* Aplica a nova animação de flutuação e o tempo mais lento */
+    animation:
+        arrowFloat 1.8s ease-in-out infinite,
+        pulseGlow 1.8s infinite ease-in-out;
+}
+
+/* Animação de movimento vertical (Flutuação) - AGORA SÓ DESCE E SOBE */
+@keyframes arrowFloat {
+    0%, 100% {
+        /* Rotação de 135deg (o V) + translação Y de 0 */
+        transform: rotate(135deg) translateY(0);
+    }
+    50% {
+        /* Rotação de 135deg (o V) + translação Y de 10px (movimento suave para baixo) */
+        transform: rotate(135deg) translateY(12px);
+    }
+}
+
+/* Adicionando um segundo elemento para o efeito pulsante */
+.arrow-down::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--color-primary); /* Borda fina pulsante */
+    opacity: 0;
+
+    /* Animação de expansão lenta para o efeito de pulso */
+    animation: pulseRing 1.8s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* Responsividade Aprimorada */
+@media (max-width: 768px) {
+    .arrow-down {
+        width: 30px;
+        height: 30px;
+        border-width: 3px;
+    }
+    .arrow-down::after, .arrow-down::before {
+        width: 40px;
+        height: 40px;
+        top: -3px;
+        left: -3px;
+    }
+}
+/* ------------------- RESPONSIVIDADE ------------------- */
+@media (max-width: 992px) {
+    .codeplac-section {
+        gap: 30px;
+        padding: 60px 15px;
+    }
+
+    .content-box {
+        padding: 40px 35px;
+    }
+
+    .content-box h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-box {
+        width: 95%;
+        padding: 30px 25px;
+    }
+
+    .content-box h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .content-box p {
+        font-size: 1rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .codeplac-section {
+        padding: 40px 10px;
+    }
+
+    .content-box {
+        padding: 25px 20px;
+        border-left-width: 4px;
+    }
+
+    .content-box h3 {
+        font-size: 1.3rem;
+    }
 }
