@@ -32,20 +32,21 @@ public class SecurityFilter extends OncePerRequestFilter {
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request,
-                                     @NotNull HttpServletResponse response,
-                                     @NotNull FilterChain filterChain)
+            @NotNull HttpServletResponse response,
+            @NotNull FilterChain filterChain)
             throws ServletException, IOException {
 
         // 💡 CORREÇÃO DO FILTRO: Excluir rotas públicas da validação de token
         String requestPath = request.getRequestURI();
-        
-        // Rotas que não exigem token (as rotas 'permitAll' de POST/GET que o filtro DEVE ignorar)
-        if (requestPath.contains("/auth/login") || 
-            requestPath.contains("/users/register") ||
-            requestPath.contains("/equipes/inscricao") ||
-            requestPath.contains("/juizcodigo") ||
-            requestPath.contains("/event/list") || 
-            requestPath.contains("/ranking/")) {
+
+        // Rotas que não exigem token (as rotas 'permitAll' de POST/GET que o filtro
+        // DEVE ignorar)
+        if (requestPath.contains("/auth/login") ||
+                requestPath.contains("/users/register") ||
+                requestPath.contains("/equipes/inscricao") ||
+                requestPath.contains("/juizcodigo") ||
+                requestPath.contains("/event/list") ||
+                requestPath.contains("/ranking/")) {
 
             logger.info("Requisição para rota pública: {} - pulando validação de token.", requestPath);
             filterChain.doFilter(request, response);
@@ -55,7 +56,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         String token = recoverToken(request);
         if (token != null) {
-            String matricula = tokenService.validateToken(token, false); 
+            String matricula = tokenService.validateToken(token, false);
 
             if (matricula != null) {
                 if (SecurityContextHolder.getContext().getAuthentication() == null) {
