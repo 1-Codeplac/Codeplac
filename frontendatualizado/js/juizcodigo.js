@@ -8,44 +8,46 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        console.log("Evento de envio do formulário 'Juiz Código' disparado.");
+    form.addEventListener("submit", async(event) => {
+            event.preventDefault();
+            console.log("Evento de envio do formulário 'Juiz Código' disparado.");
 
-        // Limpa mensagens de erro anteriores
-        document.querySelectorAll('.error').forEach(span => span.textContent = '');
 
-        const nomeEquipe = document.getElementById('nomeEquipe')?.value.trim();
-        const numeroCodigo = document.getElementById('numeroCodigo')?.value.trim();
-        const nomeLider = document.getElementById('nomeLider')?.value.trim();
-        const codigo = document.getElementById('codigo')?.value.trim();
+            document.querySelectorAll('.error').forEach(span => span.textContent = '');
 
-        let hasError = false;
+            const nomeEquipe = document.getElementById('nomeEquipe') ? .value.trim();
+            const numeroCodigo = document.getElementById('numeroCodigo') ? .value.trim();
+            const nomeLider = document.getElementById('nomeLider') ? .value.trim();
+            const codigo = document.getElementById('codigo') ? .value.trim();
 
-        const showError = (fieldId, message) => {
-            let errorSpan = document.getElementById(fieldId + 'Error');
-            if (!errorSpan) {
-                errorSpan = document.createElement('span');
-                errorSpan.id = fieldId + 'Error';
-                errorSpan.className = 'error';
-                const field = document.getElementById(fieldId);
-                if (field && field.parentNode) {
-                    field.parentNode.insertBefore(errorSpan, field.nextSibling);
+            let hasError = false;
+
+            const showError = (fieldId, message) => {
+                let errorSpan = document.getElementById(fieldId + 'Error');
+                if (!errorSpan) {
+                    errorSpan = document.createElement('span');
+                    errorSpan.id = fieldId + 'Error';
+                    errorSpan.className = 'error';
+                    const field = document.getElementById(fieldId);
+                    if (field && field.parentNode) {
+                        field.parentNode.insertBefore(errorSpan, field.nextSibling);
+                    }
                 }
-            }
-            errorSpan.textContent = message;
-        };
+                errorSpan.textContent = message;
+            };
 
-        if (!nomeEquipe) {
-            showError('nomeEquipe', 'Nome da equipe é obrigatório');
-            hasError = true;
-        }
-        if (!numeroCodigo) {
-            showError('numeroCodigo', 'Número do código é obrigatório');
-            hasError = true;
-        } else if (isNaN(numeroCodigo) || parseInt(numeroCodigo) <= 0) {
-            showError('numeroCodigo', 'Número do código deve ser um número válido');
-            hasError = true;
+            if (!nomeEquipe) {
+                showError('nomeEquipe', 'Nome da equipe é obrigatório');
+                hasError = true;
+            }
+            if (!numeroCodigo) {
+                showError('numeroCodigo', 'Número do código é obrigatório');
+                hasError = true;
+            } else if (isNaN(numeroCodigo) || parseInt(numeroCodigo) < 0) {
+                showError('numeroCodigo', 'Número do código deve ser um número válido e não negativo');
+                hasError = true;
+            }
+
         }
         if (!nomeLider) {
             showError('nomeLider', 'Nome do líder é obrigatório');
@@ -63,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dados = {
             nomeEquipe,
-            numeroCodigo: parseInt(numeroCodigo),
+            numeroCodigo: Math.max(0, parseInt(numeroCodigo)),
             nomeLider,
             codigo
         };
@@ -72,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const response = await fetch("https://codeplac-vt5q.onrender.com/juizcodigo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dados)
-});
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
 
 
             console.log("Resposta recebida:", response.status);
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const erro = await response.json();
                 console.error("Erro ao enviar código:", erro);
-                alert(`Erro ao enviar: ${erro.message || 'Erro inesperado.'}`);
+                alert(`Erro ao enviar: ${erro.message  'Erro inesperado.'}`);
             }
         } catch (err) {
             console.error("Erro na requisição:", err);
