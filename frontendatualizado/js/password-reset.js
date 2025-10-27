@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://codeplac-vh95.onrender.com/auth/login";
+const API_BASE_URL = "https://codeplac-vh95.onrender.com";
 
 // ---------------------------------------------
 // 1. Lógica para Solicitar o Link (página password.html)
