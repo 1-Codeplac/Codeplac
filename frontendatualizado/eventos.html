@@ -1,139 +1,164 @@
 <!doctype html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-		/>
-		<link rel="stylesheet" href="css/style.css" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-			rel="stylesheet"
-		/>
-		<title>Eventos - Codeplac</title>
-	</head>
-	<body>
-		<!-- header -->
-		<header style="background-image: url(&quot;img/fundoeventos.jpg&quot;)">
-			<div class="container">
-				<nav>
-					<a href="https://www.codeplac.com.br/index">
-						<img src="img/logoprincipalparaosite.png" alt="Logo" />
-					</a>
-					<!-- Ícone do menu (barras) -->
-					<div class="menu-icon" onclick="openMenu()">
-						<i class="fa fa-bars"></i>
-					</div>
 
-					<!-- Ícone do menu (fechar) -->
-					<div class="close-icon" onclick="closeMenu()" style="display: none">
-						<i class="fa fa-times-circle" aria-hidden="true"></i>
-					</div>
-					<ul class="ul">
-						<li class="dropdown">
-							<a href="https://www.codeplac.com.br" class="dropdown">Home</a>
-							<ul class="dropdown-menu">
-								<li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
-							</ul>
-						</li>
-						<li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
-						<li class="dropdown">
-							<a href="" class="dropdown">Atividades</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="https://www.codeplac.com.br/eventos">Eventos</a>
-								</li>
-								<li>
-									<a href="https://www.codeplac.com.br/historico">Histórico</a>
-								</li>
-								<li>
-									<a href="https://www.codeplac.com.br/galeria">Galeria</a>
-								</li>
-							</ul>
-						</li>
-						<li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
-						<li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
-						<li class="btndestaque hidden">
-							<a href="https://www.codeplac.com.br/login">Login</a>
-						</li>
-						<li class="usuario-icon hidden" id="userIcon">
-							<a href="https://www.codeplac.com.br/usuario"
-								><i class="ri-user-line"></i
-							></a>
-						</li>
-					</ul>
-					<div class="menu-icon" onclick="openMenu()">
-						<i class="fa fa-bars"></i>
-					</div>
-					<div class="close-icon" onclick="closeMenu()">
-						<i class="fa fa-times-circle" aria-hidden="true"></i>
-					</div>
-				</nav>
-				<section class="banner">
-					<div class="banner-text">
-						<h1>Eventos</h1>
-						<p>Descubra nossos eventos de programação</p>
-						<P>Toda a eventualidade irá ocorrer pela manhã!!</P>
-					</div>
-				</section>
-			</div>
-			<!-- end container-->
-		</header>
-		<div class="evento-card unico">
-    <h2>Cronograma da Semana Acadêmica</h2>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+	<title>Eventos - Codeplac</title>
+</head>
 
-<h3>Quarta-Feira, 29 de Outubro</h3><br>
+<body>
+	<!-- header -->
+	<header class="video-background-header">
+		<video autoplay muted loop id="headerVideo">
+			<source src="img/13495-248644905.mp4" type="video/mp4">
+		</video>
+		<div class="container">
+			<nav>
+				<a href="https://www.codeplac.com.br/index">
+					<img src="img/logoprincipalparaosite.png" alt="Logo" />
+				</a>
+				<!-- Ícone do menu (barras) -->
+				<div class="menu-icon" onclick="openMenu()">
+					<i class="fa fa-bars"></i>
+				</div>
+
+				<!-- Ícone do menu (fechar) -->
+				<div class="close-icon" onclick="closeMenu()" style="display: none">
+					<i class="fa fa-times-circle" aria-hidden="true"></i>
+				</div>
+				<ul class="ul">
+					<li class="dropdown">
+						<a href="https://www.codeplac.com.br" class="dropdown">Home</a>
+						<ul class="dropdown-menu">
+							<li><a href="https://www.codeplac.com.br/sobre">Sobre</a></li>
+						</ul>
+					</li>
+					<li><a href="https://www.codeplac.com.br/media">Ranking</a></li>
+					<li class="dropdown">
+						<a href="" class="dropdown">Atividades</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="https://www.codeplac.com.br/eventos">Eventos</a>
+							</li>
+							<li>
+								<a href="https://www.codeplac.com.br/historico">Histórico</a>
+							</li>
+							<li>
+								<a href="https://www.codeplac.com.br/galeria">Galeria</a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="https://www.codeplac.com.br/equipe">Equipe</a></li>
+					<li><a href="https://www.codeplac.com.br/contatos">Contatos</a></li>
+					<li class="btndestaque hidden">
+						<a href="https://www.codeplac.com.br/login">Login</a>
+					</li>
+					<li class="usuario-icon hidden" id="userIcon">
+						<a href="https://www.codeplac.com.br/usuario"><i class="ri-user-line"></i></a>
+					</li>
+				</ul>
+				<div class="menu-icon" onclick="openMenu()">
+					<i class="fa fa-bars"></i>
+				</div>
+				<div class="close-icon" onclick="closeMenu()">
+					<i class="fa fa-times-circle" aria-hidden="true"></i>
+				</div>
+			</nav>
+			<section class="banner">
+				<div class="banner-text">
+					<h1>Eventos</h1>
+					<p>Descubra nossos eventos de programação</p>
+					<p>Fique ligado na semana acadêmica na Uniceplac!!</p>
+				</div>
+			</section>
+		</div>
+		<!-- end container-->
+	</header>
+<section class="evento-card unico">
+    <h2>Cronograma Oficial da Semana Acadêmica</h2>
+
+    <h3>Quarta-Feira, 29 de Outubro</h3>
     <ul>
-        <li><span class="periodo">Manhã (08h30 às 10h00):</span> Palestra sebrae - Sucesso na era da ia.</li>
-        <li><span class="periodo">Manhã (10h30 às 11h00):</span> Atividade codeplac (palestra geovanne - assinatura de livros - guardião cibernético).</li>
-        <li><span class="periodo">Manhã (11h00 às 11h40):</span> Hackathon (formação de equipes - romes) - auditório vermelho | competição de games - laboratórios 12 e 9.</li>
-        <li><span class="periodo">Tarde (14h00 às 17h00):</span> Atividade codeplac (bingo personalizado e jogatina de clash royale).</li>
-        <li><span class="periodo">Noite (19h00 às 20h55):</span> Palestra sebrae - Palestra design thinking.</li>
-        <li><span class="periodo">Noite (21h10 às 22h00):</span> Atividade codeplac (encerramento de assinatura de livros).</li>
+        <li>
+            <span class="periodo">Manhã (08h30 – 10h00):</span> Palestra SEBRAE: Sucesso na Era da Inteligência Artificial no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Manhã (10h30 – 11h00):</span> Atividade Codeplac: Palestra com Geovanne sobre "Guardião Cibernético" e Sessão de Autógrafos no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Manhã (11h00 – 11h40):</span> Hackathon (Formação de Equipes - Prof. Romes) no Auditório Vermelho | Competição de Games nos Laboratórios 12 e 9.
+        </li>
+        <li>
+            <span class="periodo">Tarde (14h00 – 17h00):</span> Atividade Codeplac: Bingo Personalizado e Jogatina de Clash Royale no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Noite (19h00 – 20h55):</span> Palestra SEBRAE: Design Thinking para Inovação no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Noite (21h10 – 22h00):</span> Atividade Codeplac: Encerramento da Sessão de Autógrafos no auditório vermelho.
+        </li>
     </ul>
 
-    <h3>Quinta-feira, 30 de Outubro</h3><br>
+    <h3>Quinta-feira, 30 de Outubro</h3>
     <ul>
-        <li><span class="periodo">Manhã (08h00 às 10h00):</span> Palestra sebrae - Canvas modelo de negócio.</li>
-        <li><span class="periodo">Manhã (10h00 às 12h00):</span> Atividade codeplac - Competição codeplac lab 2/3, 4 e 5.</li>
-        <li><span class="periodo">Tarde (14h00 às 17h00):</span> Hackathon (encerramento - romes) laboratórios 12 e 9.</li>
+        <li>
+            <span class="periodo">Manhã (08h00 – 10h00):</span> Palestra SEBRAE: Canvas Modelo de Negócio no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Manhã (10h00 – 12h00):</span> Atividade Codeplac: Competição Codeplac nos Laboratórios 2/3, 4 e 5.
+        </li>
+        <li>
+            <span class="periodo">Tarde (14h00 – 17h00):</span> Hackathon: Encerramento e Apresentação de Projetos (Prof. Romes) nos Laboratórios 12 e 9.
+        </li>
+        <li>
+            <span class="periodo">Noite (19:00 – 20:55):</span> Palestra com a G4F (Primeira Parte) no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Noite (21:10 – 22:00):</span> Palestra com a G4F (Segunda Parte) no auditório vermelho.
+        </li>
     </ul>
 
-    <h3>Sexta-feira, 31 de Outubro</h3><br>
+    <h3>Sexta-feira, 31 de Outubro</h3>
     <ul>
-        <li><span class="periodo">Manhã (08h30 às 10h00):</span> Palestra - sebrae - Faça uma apresentação rápida do seu produto ou serviço (pitch).</li>
-        <li><span class="periodo">Manhã (10h30 às 11h00):</span> Atividade codeplac - Apresentação dos Banners - Prof. Romulo - Em frente aos Auditórios. </li>
-        <li><span class="periodo">Manhã (11h00 às 11h40):</span> Atividade codeplac - Apresentação dos Banners do prof. sebastião - Em frente aos Auditórios.</li>
-        <li><span class="periodo">Noite (19h00 às 20h55):</span> Palestra - Iot.</li>
-        <li><span class="periodo">Noite (21h10 às 22h00):</span> Atividade codeplac - Encerramento de atividades da semana acadêmica.</li>
-    </ul>
-</div>
+        <li>
+            <span class="periodo">Manhã (08h30 – 10h00):</span> Palestra SEBRAE: Pitch - Aprenda a apresentar seu produto ou serviço rapidamente no auditório vermelho.
+        </li>
+        <li>
+            <span class="periodo">Manhã (10h30 – 11h00):</span> Atividade Codeplac: Apresentação de Banners (Prof. Rômulo) – Em frente aos Auditórios.
+        </li>
+        <li>
+            <span class="periodo">Manhã (11:00 – 11h40):</span> Atividade Codeplac: Apresentação de Banners (Prof. Sebastião) – Em frente aos Auditórios.
+        </li>
+        <li>
+            <span class="periodo">Noite (19h00 – 20h55):</span> Palestra: Internet das Coisas (IoT).
+        </li>
+        <li>
+            <span class="periodo">Noite (21h10 – 22h00):</span> Encerramento da Semana Acadêmica (Auditório Vermelho).
+</section>
+	<!-- end header -->
 
-		<!-- end header -->
-
-		<!-- Descrição dos Eventos -->
-		<section class="eventos">
-			<div class="container">
-				<div class="eventos-lista" id="eventos-lista"></div>
-			</div>
-<!--	<a href="https://www.codeplac.com.br/juizcodigo" class="btn btn-primary">Envie seu código aqui!</a><br/>
+	<!-- Descrição dos Eventos -->
+	<section class="eventos">
+		<div class="container">
+			<div class="eventos-lista" id="eventos-lista"></div>
+		</div>
+		<!--	<a href="https://www.codeplac.com.br/juizcodigo" class="btn btn-primary">Envie seu código aqui!</a><br/>
 			<a href="https://www.codeplac.com.br/desafios" class="btn btn-primary">Veja os desafios aqui!</a>
 		</section>-->
 
 		<!-- Footer -->
+	</div>
+		</section>
+		<!-- end eventos-->
 		<footer>
 			<div class="footer-content">
-				<img
-					src="img/uniceplacsimboloAzul.png"
-					alt="simbolo"
-					class="footer-logo"
-				/>
+				<img src="img/uniceplacsimboloAzul.png" alt="simbolo" class="footer-logo" />
 				<p>&copy;2024 Desenvolvido pela equipe Codeplac.<br /></p>
 				<ul class="footer-links">
 					<li><a href="privacidade.html">Privacidade</a></li>
@@ -148,5 +173,5 @@
 		<script src="js/responsivocel.js"></script>
 		<script src="js/eventos.js"></script>
 		<script src="js/script.js"></script>
-	</body>
+</body>
 </html>
