@@ -1,5 +1,6 @@
 package codeplac.codeplac.Model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import codeplac.codeplac.Enum.UserTipo;
@@ -34,6 +35,7 @@ public class UsersModel {
     private String sobrenome;
 
     @Column(name = "email", length = 100, nullable = false, unique = true)
+    @SuppressWarnings("unused")
     private String email;
 
     @Column(name = "telefone", length = 19)
@@ -48,10 +50,20 @@ public class UsersModel {
     @Column(name = "access_token", length = 1124)
     private String accessToken;
 
+    @Column(name = "reset_token", length = 36)
+    private String resetToken; // Novo campo para o token de redefinição
+
+    @Column(name = "reset_token_expiry_date")
+    private LocalDateTime resetTokenExpiryDate; // Novo campo para a validade do token
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario", columnDefinition = "ENUM('ADMIN', 'PARTICIPANT')")
     private UserTipo tipoUsuario;
 
     @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
+
+    public String getEmail() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
