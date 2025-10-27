@@ -50,6 +50,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(HttpMethod.HEAD, "/teste").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/forgot-password").permitAll()
+                .requestMatchers(HttpMethod.POST, "/auth/reset-password").permitAll()
                 .requestMatchers(HttpMethod.POST, "/juizcodigo").permitAll()
                 .requestMatchers(HttpMethod.GET, "/teste").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users/register").permitAll() // Garante que /users/register está permitido
