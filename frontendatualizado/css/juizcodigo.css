@@ -1,78 +1,150 @@
-main.container {
-    max-width: 600px;
-    margin: 10 auto;
-    padding: 2rem;
-    background-color: #f4f4f4;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 80, 158, 0.15);
+body {
+    background-image: url('../img/fundo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
     font-family: 'Montserrat', sans-serif;
-    border: 2px solid #00509E;
-}
-
-main.container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    color: #003366;
-    border-bottom: 2px solid #00ADEF;
-    padding-bottom: 0.5rem;
-}
-
-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #003366;
-}
-
-form input,
-form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #00509E;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    background-color: #ffffff;
-    color: #003366;
-}
-
-form input:focus,
-form textarea:focus {
-    border-color: #00ADEF;
-    box-shadow: 0 0 8px rgba(0, 173, 239, 0.5);
-    outline: none;
-}
-
-form button {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #00509E;
     color: #ffffff;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-form button:hover {
-    background-color: #003366;
+
+/*CONTAINER PRINCIPAL*/
+
+.juiz-container {
+    max-width: 900px;
+    width: 90%;
+    margin: 3rem auto;
+    background: rgba(0, 59, 92, 0.9);
+    color: #fff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.juiz-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+
+/*QUESTÃO */
+
+.questao-box {
+    width: 100%;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    color: #003b5c;
+    text-align: left;
+}
+
+.questao-box h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #003b5c;
+}
+
+.questao-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+/*FORM*/
+
+.form-header {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-header input {
+    flex: 1 1 30%;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    color: #003b5c;
+}
+
+.form-header input::placeholder {
+    color: #666;
+}
+
+
+/*CÓDIGO */
+
+#codigo {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border-radius: 12px;
+    border: none;
+    resize: vertical;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    color: #003b5c;
+    background-color: #f7f7f7;
+}
+
+
+/*BOTÕES*/
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.9rem;
+    background: #00adef;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #0099d4;
     transform: translateY(-2px);
 }
 
-.error {
-    color: #FF4C4C;
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    display: block;
+button:disabled {
+    background: #0079a3;
+    cursor: not-allowed;
 }
 
+
+/*MENSAGEM*/
+
 #message {
+    margin-top: 1.5rem;
     text-align: center;
+    font-weight: bold;
     font-size: 1rem;
-    color: #00ADEF;
-    margin-top: 1rem;
+}
+
+.hidden {
+    display: none;
 }
