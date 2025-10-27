@@ -62,8 +62,5 @@ public class UsersModel {
 
     @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
-
-    public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
-}
+
