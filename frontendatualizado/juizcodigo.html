@@ -66,12 +66,48 @@
 
         <!-- BLOCO DA QUESTÃO (EXIBIDO PELO SISTEMA) -->
         <section id="questaoAtual" class="questao-box">
-            <h2 id="tituloQuestao">Título da Questão</h2>
-            <p id="descricaoQuestao">A descrição da questão aparecerá aqui.</p>
+            <h2 id="tituloQuestao">Instruções para Envio de Código e participação</h2>
+            <p id="descricaoQuestao"> 1. Cada código deve ser enviado <strong>separadamente!</strong> em caso de envio dos 2 códigos no mesmo campo, não irá valer.<br>
+            2. Cada código irá valer até 1000 pontos, quanto mais próximo e mais otimizado maior a pontuação porém cada erro ou parte desnecessária no código irá descontar até 150 pontos totais<br>
+            3. O uso de IA é proibido, no entanto se for visto pelos monitores da competição os mesmos terão a equipe <strong>desclassificada</strong>.<br>
+            4. Não devem conter membros além dos da sua equipe para ajudar no código caso contrário, serão desclassificados ou a pessoa será retirada do laboratório.</p><br>
+            <h2 id="tituloQuestao">Nível fácil - Questão nº1 </h2>
+            <p id="descricaoQuestao">Considere as seguintes variáveis inteiras, inicializadas com os valores:<br>
+
+int P = 10;<br>
+int Q = 7;<br>
+int R = 3;<br><br>
+
+Tarefa:<br>
+Escreva um programa (em C ou Java) que realize os seguintes cálculos e imprima os resultados em duas linhas separadas, na ordem especificada:<br>
+Cálculo A: Calcule a soma de P, Q e R, e subtraia 9 do resultado.<br>
+Cálculo B: Calcule o resto da divisão inteira da variável Q pela variável R.<br><br>
+
+O código deve ter a seguinte saída exata:<br>
+
+11<br>
+1</p><br>
+            <h2 id="tituloQuestao">Nível Intermediário - Questão nº2</h2>
+            <p id="descricaoQuestao">Considere o seguinte array/vetor de números inteiros e a variável de ponto flutuante, inicializados com os valores:<br>
+
+int[] numeros = {5, 2, 8, 4, 2};<br>
+double divisor = 6.0;<br><br>
+
+Tarefa:<br>
+Escreva um programa (em C ou Java) que realize as seguintes operações e imprima os resultados em duas linhas separadas, na ordem especificada:<br>
+
+Cálculo A (Inteiro): Calcule a soma total de todos os elementos do array numeros.<br>
+
+Cálculo B (Ponto Flutuante): Calcule a soma do primeiro elemento (índice 0) e do quarto elemento (índice 3) do array. Em seguida, divida essa soma pelo valor da variável divisor. O resultado deve ser um número real (com casas decimais).<br><br>
+
+O código deve ter a seguinte saída exata:<br>
+
+21<br>
+1.5</p>
         </section>
 
         <!-- FORMULÁRIO DE ENVIO -->
-        <form id="juizForm">
+        <form id="formJuizCodigo">
             <div class="form-header">
                 <input type="text" id="nomeEquipe" name="nomeEquipe" placeholder="Equipe" required />
                 <input type="text" id="nomeLider" name="nomeLider" placeholder="Líder" required />
@@ -102,6 +138,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/juizcodigo.js"></script>
 </body>
 
 </html>

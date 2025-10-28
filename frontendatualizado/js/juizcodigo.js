@@ -1,54 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM completamente carregado e analisado.");
 
+
     const form = document.getElementById("formJuizCodigo");
 
     if (!form) {
-        console.error("Formulário 'formJuizCodigo' não encontrado!");
+        console.error("Formulário 'formJuizCodigo' não encontrado! Verifique o ID no HTML.");
         return;
     }
 
-    form.addEventListener("submit", async(event) => {
-            event.preventDefault();
-            console.log("Evento de envio do formulário 'Juiz Código' disparado.");
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        console.log("Evento de envio do formulário 'Juiz Código' disparado.");
+
+        // Limpa mensagens de erro antigas
+        document.querySelectorAll('.error').forEach(span => span.textContent = '');
 
 
-            document.querySelectorAll('.error').forEach(span => span.textContent = '');
+        const nomeEquipe = document.getElementById('nomeEquipe')?.value.trim();
+        const numeroCodigo = document.getElementById('numeroCodigo')?.value.trim();
+        const nomeLider = document.getElementById('nomeLider')?.value.trim();
+        const codigo = document.getElementById('codigo')?.value.trim();
 
-            const nomeEquipe = document.getElementById('nomeEquipe') ? .value.trim();
-            const numeroCodigo = document.getElementById('numeroCodigo') ? .value.trim();
-            const nomeLider = document.getElementById('nomeLider') ? .value.trim();
-            const codigo = document.getElementById('codigo') ? .value.trim();
+        let hasError = false;
 
-            let hasError = false;
-
-            const showError = (fieldId, message) => {
-                let errorSpan = document.getElementById(fieldId + 'Error');
-                if (!errorSpan) {
-                    errorSpan = document.createElement('span');
-                    errorSpan.id = fieldId + 'Error';
-                    errorSpan.className = 'error';
-                    const field = document.getElementById(fieldId);
-                    if (field && field.parentNode) {
-                        field.parentNode.insertBefore(errorSpan, field.nextSibling);
-                    }
+        const showError = (fieldId, message) => {
+            let errorSpan = document.getElementById(fieldId + 'Error');
+            if (!errorSpan) {
+                errorSpan = document.createElement('span');
+                errorSpan.id = fieldId + 'Error';
+                errorSpan.className = 'error';
+                const field = document.getElementById(fieldId);
+                if (field && field.parentNode) {
+                    field.parentNode.insertBefore(errorSpan, field.nextSibling);
                 }
-                errorSpan.textContent = message;
-            };
-
-            if (!nomeEquipe) {
-                showError('nomeEquipe', 'Nome da equipe é obrigatório');
-                hasError = true;
             }
-            if (!numeroCodigo) {
-                showError('numeroCodigo', 'Número do código é obrigatório');
-                hasError = true;
-            } else if (isNaN(numeroCodigo) || parseInt(numeroCodigo) < 0) {
-                showError('numeroCodigo', 'Número do código deve ser um número válido e não negativo');
-                hasError = true;
-            }
+            errorSpan.textContent = message;
+        };
 
+        // --- INÍCIO DA VALIDAÇÃO DE CAMPOS ---
+        if (!nomeEquipe) {
+            showError('nomeEquipe', 'Nome da equipe é obrigatório');
+            hasError = true;
         }
+        if (!numeroCodigo) {
+            showError('numeroCodigo', 'Número do código é obrigatório');
+            hasError = true;
+        } else if (isNaN(numeroCodigo) || parseInt(numeroCodigo) < 0) {
+            showError('numeroCodigo', 'Número do código deve ser um número válido e não negativo');
+            hasError = true;
+        }
+
         if (!nomeLider) {
             showError('nomeLider', 'Nome do líder é obrigatório');
             hasError = true;
@@ -57,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showError('codigo', 'O código é obrigatório');
             hasError = true;
         }
+        // --- FIM DA VALIDAÇÃO DE CAMPOS ---
 
         if (hasError) {
             console.warn("Formulário contém erros. Envio cancelado.");
@@ -73,12 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Dados formatados para envio:", dados);
 
         try {
-            const response = await fetch("https://codeplac-vt5q.onrender.com/juizcodigo", {
+            const response = await fetch("https://codeplac-vh95.onrender.com/juizcodigo", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dados)
             });
-
 
             console.log("Resposta recebida:", response.status);
 
@@ -90,11 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const erro = await response.json();
                 console.error("Erro ao enviar código:", erro);
-                alert(`Erro ao enviar: ${erro.message  'Erro inesperado.'}`);
+
+                alert(`Erro ao enviar: ${erro.message ?? 'Erro inesperado.'}`);
             }
         } catch (err) {
             console.error("Erro na requisição:", err);
             alert("Erro de conexão. Tente novamente mais tarde.");
         }
     });
+
 });
