@@ -22,6 +22,7 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+
 /* Faz o main crescer e centralizar o conteúdo */
 main.container {
     flex: 1; /* ocupa espaço restante */
@@ -37,6 +38,37 @@ main.container {
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
+main.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 50px;
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    background: rgba(30, 33, 40, 0.6);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(67,179,255,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+}
+/*========= Animação de entrada =========*/
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main.container {
+    animation: fadeInUp 0.8s ease-out;
+}
 
 /* ================== Banner ================== */
 .banner {
@@ -158,23 +190,22 @@ input[type="radio"] + label {
 
 /* ================== Botão ================== */
 button[type="submit"] {
-    background-color: #43B3FF;
-    color: #121317;
+    background: linear-gradient(135deg, #43B3FF, #2C91D9);
+    color: #fff;
     border: none;
     border-radius: 30px;
     padding: 14px 0;
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 5px 15px rgba(67,179,255,0.6);
-    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px rgba(67,179,255,0.4);
 }
 
 button[type="submit"]:hover {
-    background-color: #2C91D9;
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(44,145,217,0.8);
+    background: linear-gradient(135deg, #2C91D9, #43B3FF);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(67,179,255,0.8);
 }
 
 /* ================== Link "Voltar" ================== */
@@ -209,8 +240,6 @@ a[href="https://www.codeplac.com.br"] {
 a[href="https://www.codeplac.com.br"]:hover {
     background-color: #43B3FF; /* azul ciano */
 }
-
-
 
 /* ================== Responsivo ================== */
 @media (max-width: 600px) {
