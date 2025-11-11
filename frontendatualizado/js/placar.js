@@ -42,6 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
             spot.style.transition = "all 0.8s ease";
             spot.style.opacity = "1";
             spot.style.transform = "translateY(0)";
-        }, index * 300); 
+        }, index * 300);
     });
 });
