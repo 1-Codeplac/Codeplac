@@ -1,0 +1,173 @@
+/* WRAPPER E ESTRUTURA GERAL */
+.enroll-page-wrapper {
+    background-color: #000b17;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.enroll-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* CARD DE INSCRIÇÃO */
+.enroll-card-box {
+    background: rgba(13, 25, 33, 0.4);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 234, 255, 0.3);
+    border-radius: 25px;
+    width: 95%;
+    max-width: 1100px;
+    margin: 8% auto 50px auto;
+    padding: 40px;
+    z-index: 10;
+}
+
+.enroll-flex-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* LADO DO MASCOTE */
+.enroll-mascot-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 20px;
+}
+
+.enroll-mascot-img {
+    width: 100%;
+    max-width: 350px;
+    padding-top: 30%;
+    filter: drop-shadow(0 0 20px rgba(0, 234, 255, 0.2));
+}
+
+/* LADO DO FORMULÁRIO */
+.enroll-form-side {
+    flex: 1.5;
+}
+
+.enroll-main-title {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.enroll-title-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    margin-bottom: 10px;
+}
+
+.enroll-text-info {
+    color: #fff;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* ELEMENTOS DE INPUT */
+.enroll-form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.enroll-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.enroll-label {
+    color: #00EAFF;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.enroll-members-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.enroll-input {
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid #1a4a5a;
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: #fff;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.enroll-input:focus {
+    border-color: #00EAFF;
+}
+
+/* BOTÃO SUBMIT */
+.enroll-btn-submit {
+    background: #00EAFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 40px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 10px;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+    transition: 0.3s;
+}
+
+.enroll-btn-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+}
+
+/* DECORAÇÃO DE FUNDO */
+.enroll-circle-l {
+    position: absolute;
+    top: 15%;
+    left: -280px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.enroll-circle-r {
+    position: absolute;
+    bottom: 20%;
+    right: -300px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .enroll-flex-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .enroll-mascot-side {
+        display: none;
+    }
+
+    .enroll-members-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .enroll-btn-submit {
+        width: 100%;
+    }
+}

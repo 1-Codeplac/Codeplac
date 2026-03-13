@@ -1,0 +1,164 @@
+/* CONFIGURAÇÕES GERAIS E LAYOUT */
+.equipe-page-wrapper {
+    background-color: #000B17;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 5%;
+}
+
+.equipe-content {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    font-family: "Sora", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* CABEÇALHO */
+.equipe-header-text {
+    margin-top: 0;
+    margin-bottom: 0px;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+.equipe-header-text h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.equipe-header-text p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* SEÇÕES E GRIDS */
+.equipe-secao {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 12%;
+}
+
+.equipe-secao h2 {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.equipe-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+}
+
+/* CARDS DE MEMBROS */
+.card-membro {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px 20px;
+    width: 260px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInSlide 0.8s ease-out forwards;
+}
+
+.card-membro:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* TEMAS DE CORES */
+.titulo-ciano {
+    color: #2bc4d9;
+    text-shadow: 0 0 15px rgba(43, 196, 217, 0.3);
+}
+
+.titulo-roxo {
+    color: #a45ee5;
+    text-shadow: 0 0 15px rgba(164, 94, 229, 0.3);
+}
+
+/* ELEMENTOS VISUAIS E FUNDO */
+.equipe-page-wrapper .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.2;
+    mix-blend-mode: screen;
+}
+
+.equipe-page-wrapper .glow.purple {
+    background: #a855f7;
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: -200px;
+}
+
+.equipe-page-wrapper .glow.cyan {
+    background: #00eaff;
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    right: -150px;
+}
+
+.equipe-circle {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.equipe-circle-1 { top: 10%; left: -150px; }
+.equipe-circle-2 { top: 25%; right: -180px; }
+.equipe-circle-3 { bottom: 10%; right: -180px;  }
+.equipe-circle-4 { bottom: 25%; left: -150px; }
+
+/* ANIMAÇÕES */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .equipe-page-wrapper {
+        padding-top: 140px;
+    }
+    .equipe-header-text h1 {
+        font-size: 2.2rem;
+    }
+}

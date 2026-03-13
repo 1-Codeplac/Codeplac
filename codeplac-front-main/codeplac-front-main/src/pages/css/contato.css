@@ -1,0 +1,341 @@
+/* CONTAINER PRINCIPAL */
+.contato-main-container {
+    z-index: 5;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 10%;
+    font-family: 'Inter', sans-serif;
+}
+
+/* CARD SUPERIOR */
+.info-card-contato {
+    display: flex;
+    background: rgba(13, 25, 33, 0.4);
+    border: 3px solid rgba(43, 196, 217, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 1200px;
+    backdrop-filter: blur(10px);
+}
+
+.card-sidebar-contato {
+    width: 129px;
+    flex-shrink: 0;
+    display: flex;
+    padding-left: 10px;
+}
+
+.card-ornament-contato {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content-contato {
+    padding: 30px;
+    flex: 1;
+}
+
+.card-title-contato {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* DESTAQUE CIANO */
+.highlight-cyan {
+    background: linear-gradient(90deg, #2bc4d9, #7de7f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-text-contato p {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.card-text-contato strong {
+    color: #fff;
+}
+
+/* CARD DO FORMULÁRIO */
+.form-card {
+    background: rgba(13, 25, 33, 0.3);
+    border: 1px solid rgba(43, 196, 217, 0.5);
+    border-radius: 40px;
+    padding: 40px 60px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    color: #00d4ff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.form-subtitle {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: 5px;
+}
+
+.input-group input, 
+.input-group textarea {
+    background: rgba(0, 30, 40, 0.5);
+    border: 1px solid #1a4a5a;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: #2bc4d9;
+}
+
+/* BOTÃO ENVIAR */
+.btn-enviar {
+    background: rgba(164, 94, 229, 0.15); 
+    border: 2px solid #a45ee5;
+    color: #fff;
+    padding: 12px 0;
+    width: 100%; 
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    backdrop-filter: blur(4px);
+}
+
+.btn-enviar:hover {
+    background: rgba(164, 94, 229, 0.3); 
+    border-color: #c184f9; 
+    box-shadow: 0 0 25px rgba(164, 94, 229, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-enviar:active {
+    transform: translateY(0);
+}
+
+/* TÍTULO DE INFORMAÇÃO */
+.info-contato-title {
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* CONTAINER DE CARDS */
+.cards-contato-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+}
+
+/* CARD DE CONTATO */
+.contato-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 100px;
+    min-height: 200px;
+    max-height: 250px;
+    background: rgba(27, 27, 27, 0.432);
+    backdrop-filter: blur(20px);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 24px 0px 24px 24px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+/* CARD ROXO */
+.card-purple {
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* CARD CIANO */
+.card-cyan {
+    border-color: rgba(0, 234, 255, 0.4);
+}
+
+/* EFEITOS DE HOVER */
+.contato-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.card-purple:hover { 
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3), inset 0 0 15px rgba(168, 85, 247, 0.2);
+    border-color: rgba(168, 85, 247, 0.8);
+}
+
+.card-cyan:hover { 
+    box-shadow: 0 0 30px rgba(0, 234, 255, 0.3), inset 0 0 15px rgba(0, 234, 255, 0.2);
+    border-color: rgba(0, 234, 255, 0.8);
+}
+
+/* ÍCONE DO CARD */
+.card-icon {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-width: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+}
+
+.contato-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* TIPOGRAFIA DO CARD */
+.contato-card h3 {
+    color: #ffffff;
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Sora', sans-serif;
+}
+
+.contato-card p {
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* TÍTULO DO MAPA */
+.mapa-title {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* SEÇÃO DO MAPA */
+.mapa-section {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000B17;
+    overflow: hidden;
+}
+
+/* CONTAINER INVERTIDO */
+.box-container-invertido {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform: scaleY(-1);
+    pointer-events: none;
+}
+
+.box-invertido, 
+.box-container-invertido > div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* CONTEÚDO DO MAPA */
+.mapa-content {
+    position: relative; 
+    z-index: 2;
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+/* FRAME DO MAPA */
+.mapa-wrapper-frame {
+    border-radius: 40px;
+    overflow: hidden;
+    border: 4px solid rgba(0, 234, 255, 0.4);
+    box-shadow: 0 0 50px rgba(0, 234, 255, 0.2);
+}
+
+.mapa-wrapper-frame iframe {
+    display: block;
+    vertical-align: bottom;
+}
+
+/* CÍRCULOS DECORATIVOS */
+.contato-circle {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.circle-1 { top: 10%; left: -150px; }
+.circle-2 { top: 80%; right: -180px; }
+.circle-3 { top: 150%; left: -180px;  }

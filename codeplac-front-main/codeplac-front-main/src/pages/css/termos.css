@@ -1,0 +1,82 @@
+.termos-page {
+    background-color: #000B17;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+}
+
+.termos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 60px 20px;
+}
+
+/* Card Estilo CodeplaC */
+.termos-card-principal {
+    background: rgba(13, 22, 36, 0.85);
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.termos-titulo-neon {
+    color: #00EAFF;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.termos-data {
+    text-align: center;
+    color: #a855f7;
+    /* Roxo para a data */
+    font-size: 13px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.termos-divisor {
+    border: none;
+    border-top: 1px solid rgba(0, 234, 255, 0.5);
+    width: 80%;
+    margin: 0 auto 30px auto;
+}
+
+/* Corpo do texto */
+.termos-texto-puro h2 {
+    color: #00EAFF;
+    font-size: 18px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-left: 4px solid #a855f7;
+    padding-left: 15px;
+}
+
+.termos-texto-puro p {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.termos-texto-puro strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .termos-card-principal {
+        padding: 25px;
+    }
+
+    .termos-titulo-neon {
+        font-size: 20px;
+    }
+}

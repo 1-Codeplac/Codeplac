@@ -1,0 +1,179 @@
+/* Container Principal */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #000b17;
+    /* Fundo escuro profundo */
+    overflow: hidden;
+    position: relative;
+}
+
+.login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    padding: 20px;
+}
+
+/* Card de Login */
+.login-card {
+    background: rgba(13, 25, 33, 0.4);
+    backdrop-filter: blur(15px);
+    border: 2px solid #00EAFF;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 950px;
+    margin-top: 10%;
+    padding: 50px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.login-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Mascote */
+.login-mascot-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.mascot-img {
+    width: 100%;
+    max-width: 320px;
+    filter: drop-shadow(0 0 20px rgba(0, 234, 255, 0.2));
+}
+
+/* Formulário */
+.login-form-container {
+    flex: 1.2;
+}
+
+.login-title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.title-underline {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.login-input-group label {
+    color: #00d4ff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.login-input-group input,
+.login-input-group select {
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid #1a4a5a;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: #fff;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* Estilização específica do Select */
+.login-input-group select option {
+    background: #000b17;
+}
+
+.forgot-password {
+    color: #00d4ff;
+    font-size: 0.7rem;
+    text-align: right;
+    text-decoration: none;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.forgot-password:hover {
+    text-shadow: 0 0 8px #00d4ff;
+}
+
+/* Botão de Login */
+.btn-login {
+    background: #00d4ff;
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 40px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 10px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.create-account a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Círculos de fundo */
+.login-circle-left {
+    position: absolute;
+    top: 5%;
+    left: -200px;
+
+}
+
+.login-circle-right {
+    position: absolute;
+    top: 30%;
+    right: -150px;
+}
+
+@media (max-width: 850px) {
+    .login-content {
+        flex-direction: column;
+    }
+
+    .login-mascot-container {
+        display: none;
+        /* Esconde o sapo em telas muito pequenas para focar no form */
+    }
+}

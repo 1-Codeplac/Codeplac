@@ -1,0 +1,125 @@
+/* ESTRUTURA GERAL */
+.cookies-page {
+    background-color: #000B17;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+}
+
+.cookies-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 60px 20px;
+}
+
+/* CARD PRINCIPAL */
+.cookies-card-principal {
+    background: rgba(13, 22, 36, 0.85);
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cookies-titulo-neon {
+    color: #00EAFF;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.cookies-data {
+    text-align: center;
+    color: #a855f7;
+    font-size: 13px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.cookies-divisor {
+    border: none;
+    border-top: 1px solid rgba(0, 234, 255, 0.5);
+    width: 80%;
+    margin: 0 auto 30px auto;
+}
+
+/* TIPOGRAFIA E TEXTO */
+.cookies-texto-puro h2 {
+    color: #00EAFF;
+    font-size: 18px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-left: 4px solid #a855f7;
+    padding-left: 15px;
+}
+
+.cookies-texto-puro p {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* LISTAGEM */
+.cookies-lista {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+}
+
+.cookies-lista li {
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+.cookies-lista strong {
+    color: #00EAFF;
+}
+
+/* LINKS E NAVEGADORES */
+.cookies-links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.cookies-links-grid a {
+    background: #1a3a4a;
+    color: #00EAFF;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid #00EAFF;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.cookies-links-grid a:hover {
+    background: #00EAFF;
+    color: #000;
+}
+
+/* SEÇÃO DE CONTATO */
+.cookies-contato {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .cookies-card-principal { padding: 25px; }
+    .cookies-titulo-neon { font-size: 20px; }
+    .cookies-links-grid { justify-content: center; }
+}

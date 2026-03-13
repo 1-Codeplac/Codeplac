@@ -1,0 +1,223 @@
+/* ================================
+   PAGE WRAPPER
+================================ */
+.gal-page-wrapper {
+    background-color: #000B17;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 80px; /* Reduzido para evitar buracos no mobile */
+}
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+.gal-main {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px 120px;
+    box-sizing: border-box;
+}
+
+/* ================================
+   HERO
+================================ */
+.gal-hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.gal-title {
+    font-size: clamp(32px, 8vw, 60px); /* Fonte fluida */
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.gal-subtitle {
+    color: #cad1e9;
+    font-family: "Sora", sans-serif;
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1.7;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* ================================
+   GLASS BOX
+=============================== */
+.gal-glass-box {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    border-radius: 40px;
+    background: rgba(13, 25, 33, 0.45);
+    border: 1px solid rgba(164, 94, 229, 0.3);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 60px rgba(164, 94, 229, 0.15);
+    overflow: hidden;
+}
+
+.gal-content {
+    padding: 60px 5%; /* Padding em % ajuda na responsividade */
+}
+
+.gal-event-title {
+    color: #00fff2;
+    font-family: "Sora", sans-serif;
+    font-size: clamp(18px, 4vw, 26px);
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ================================
+   MODAL / SWIPER
+================================ */
+.gal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 13, 0.98);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.gal-modal-x {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1010;
+}
+
+.gal-modal-x:hover {
+    color: #00eaff;
+    transform: rotate(90deg);
+}
+
+.gal-modal-view {
+    position: relative;
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+}
+
+.gal-slide-item img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(164, 94, 229, 0.3);
+}
+
+/* NAVEGAÇÃO */
+.gal-modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1010;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gal-modal-arrow:hover {
+    background: #a45ee5;
+    color: #fff;
+    box-shadow: 0 0 15px #a45ee5;
+}
+
+.gal-modal-arrow.prev { left: -60px; }
+.gal-modal-arrow.next { right: -60px; }
+
+/* ================================
+   ELEMENTOS DECORATIVOS
+================================ */
+.galeria-circle, .galeria-circle-2 {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+.galeria-circle { top: 10%; left: -150px; }
+.galeria-circle-2 { bottom: 10%; right: -150px; }
+
+/* ================================
+   RESPONSIVIDADE GERAL
+================================ */
+
+@media (max-width: 1200px) {
+    .gal-modal-arrow.prev { left: 15px; }
+    .gal-modal-arrow.next { right: 15px; }
+    .gal-modal-arrow { background: rgba(0,0,0,0.6); }
+}
+
+@media (max-width: 768px) {
+    .gal-page-wrapper { padding-top: 60px; }
+    
+    .gal-glass-box {
+        border-radius: 24px;
+        margin: 0;
+    }
+
+    .gal-content {
+        padding: 40px 20px;
+    }
+
+    .gal-modal-view { width: 95%; }
+
+    .gal-slide-item img {
+        max-height: 65vh;
+    }
+
+    /* Esconder círculos para melhorar performance e visual no mobile */
+    .galeria-circle, .galeria-circle-2 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .gal-hero { padding: 40px 15px; }
+    
+    .gal-title { font-size: 28px; }
+    
+    .gal-subtitle { 
+        font-size: 11px; 
+        line-height: 1.5;
+    }
+
+    .gal-modal-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .gal-modal-x {
+        top: 15px;
+        right: 15px;
+    }
+}

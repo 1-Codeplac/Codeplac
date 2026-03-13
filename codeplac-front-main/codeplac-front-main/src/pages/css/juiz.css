@@ -1,0 +1,464 @@
+/* ================= RESET E BASE ================= */
+.juiz-page-wrapper {
+    background-color: #000B17;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+}
+
+.juiz-container {
+    max-width: 1300px;
+    /* Aumentado ligeiramente para acomodar as imagens maiores nas laterais */
+    margin: 0 auto;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.juiz-main-title {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+/* ================= CARD DE INSTRUÇÕES (TOPO) ================= */
+.juiz-card {
+    display: flex;
+    margin: 0 auto 90px;
+    background: rgba(0, 11, 23, 0.8);
+    border: 1px solid #00EAFF;
+    border-radius: 20px;
+    padding: 25px;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    max-width: 80%;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.juiz-card-sidebar {
+    width: 129px;
+    flex-shrink: 0;
+    display: flex;
+    padding-left: 10px;
+}
+
+.juiz-card-ornament {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.juiz-card-content {
+    padding: 30px 40px;
+    flex: 1;
+}
+
+.juiz-card-title {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 120%;
+    text-transform: uppercase;
+}
+
+.juiz-highlight-alt {
+    background: linear-gradient(88deg, #00EAFF 57.87%, #0B7079 102.06%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.juiz-card-text p {
+    color: #D7FBFE;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 140%;
+    text-align: justify;
+}
+
+/* ================= SEÇÃO DE QUESTÕES E LAYOUT ================= */
+.juiz-question-section {
+    margin-bottom: 120px;
+    /* Aumentado para dar espaço ao brilho das imagens */
+    text-align: center;
+}
+
+.juiz-question-level {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.juiz-question-level.easy {
+    color: #a855f7;
+}
+
+.juiz-question-level.medium {
+    color: #00eaff;
+}
+
+.juiz-question-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    text-align: justify;
+    max-width: 850px;
+    margin: 0 auto 30px;
+}
+
+/* Layout centralizado com laterais equilibradas */
+.juiz-question-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    /* Aumentado para dar respiro entre imagem e cards */
+}
+
+.juiz-side-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+    /* Aumentado para acomodar imagem maior */
+    position: relative;
+    /* Necessário para o pseudo-elemento de brilho */
+}
+
+/* ================= DICAS (ESTILO HOMEPAGE) ================= */
+.juiz-hints-container {
+    display: flex;
+    gap: 20px;
+    flex: 0 1 auto;
+    /* Ocupa apenas o espaço necessário pelos cards */
+}
+
+.juiz-hint-card {
+    background: rgba(27, 27, 27, 0.4);
+    backdrop-filter: blur(20px);
+    padding: 25px 20px;
+    border-radius: 24px 0px 24px 24px;
+    /* Canto superior direito reto */
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    width: 260px;
+    text-align: left;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.juiz-hint-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.juiz-hint-card.juiz-purple-theme {
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.juiz-hint-card.juiz-cyan-theme {
+    border-color: rgba(0, 234, 255, 0.4);
+}
+
+.juiz-hint-card.juiz-purple-theme:hover {
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+}
+
+.juiz-hint-card.juiz-cyan-theme:hover {
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+}
+
+.juiz-icon-box {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.juiz-hint-card h3 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.juiz-hint-card p {
+    color: #94a3b8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ================= IMAGENS E ANIMAÇÕES (ATUALIZADO COM BRILHO) ================= */
+.juiz-floating-img {
+    width: 220px;
+    /* Aumentado o tamanho da imagem */
+    height: auto;
+    position: relative;
+    z-index: 2;
+    /* Fica acima do brilho */
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+    /* Brilho sutil na própria imagem */
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Pseudo-elemento para o brilho intenso atrás da imagem */
+.juiz-side-container::before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    /* Área do brilho maior que a imagem */
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+    filter: blur(30px);
+    /* Suaviza as bordas do brilho */
+    z-index: 1;
+    /* Fica atrás da imagem */
+    pointer-events: none;
+    /* Não interfere nos cliques */
+}
+
+/* Ajuste de cor do brilho para a imagem da direita na questão 2 (caso queira ciano) */
+.juiz-question-section:nth-of-type(3) .juiz-side-container::before {
+    background: radial-gradient(circle, rgba(0, 234, 255, 0.25) 0%, transparent 70%);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ================= SEÇÃO DE ENVIO (FORMULÁRIO) ================= */
+.juiz-submission-section {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+}
+
+.juiz-form-card {
+    background: rgba(10, 20, 35, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid #00EAFF;
+    border-radius: 30px;
+    padding: 50px 60px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.juiz-form-title {
+    color: #00EAFF;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* Divisores com triângulos */
+.juiz-form-divider-top,
+.juiz-form-divider-bottom {
+    height: 2px;
+    background: #00EAFF;
+    position: relative;
+    margin: 25px 0 40px;
+}
+
+.juiz-arrow-right {
+    position: absolute;
+    left: -2px;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 12px solid #00EAFF;
+}
+
+.juiz-arrow-left {
+    position: absolute;
+    right: -2px;
+    bottom: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 12px solid #00EAFF;
+}
+
+.juiz-submission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.juiz-input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.juiz-input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+.juiz-input-group label {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.juiz-input-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+.juiz-input-group input:focus {
+    border-color: #00EAFF;
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.juiz-form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.juiz-attach-btn {
+    border: 1.5px solid #a855f7;
+    border-radius: 25px;
+    padding: 10px 30px;
+    color: #a855f7;
+    font-size: 14px;
+    cursor: pointer;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.juiz-attach-btn:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.juiz-submit-btn {
+    background: transparent;
+    border: 2px solid #a855f7;
+    color: #fff;
+    padding: 15px 120px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.juiz-submit-btn:hover {
+    background: #a855f7;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+/* ================= EFEITOS DE FUNDO (GLOWS GERAIS) ================= */
+.juiz-glow-purple {
+    position: absolute;
+    top: 5%;
+    right: -5%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+    /* Opacidade reduzida para não brigar com o brilho das imagens */
+}
+
+.juiz-glow-cyan {
+    position: absolute;
+    bottom: 10%;
+    left: -5%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0, 234, 255, 0.06) 0%, transparent 70%);
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 1024px) {
+    .juiz-question-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .juiz-side-container {
+        order: 2;
+        min-width: unset;
+    }
+
+    .juiz-side-container::before {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* Brilho menor no mobile */
+}
+
+@media (max-width: 650px) {
+    .juiz-input-row {
+        flex-direction: column;
+    }
+
+    .juiz-hints-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .juiz-form-card {
+        padding: 40px 20px;
+    }
+
+    .juiz-submit-btn {
+        padding: 15px 60px;
+        width: 100%;
+    }
+}
+
+.juiz-circles-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.juiz-circle-left {
+    position: absolute;
+    top: 10%;
+    left: -200px;
+}
+
+.juiz-circle-right {
+    position: absolute;
+    bottom: 30%;
+    right: -200px;
+}
