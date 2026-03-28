@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -66,11 +65,9 @@ public class UsersController {
     @PutMapping("/modify/{cpf}")
     public ResponseEntity<UserResponse> modificarUsuario(
             @PathVariable String cpf,
-            @RequestParam String field,
-            @RequestParam String password,
             @RequestBody UsersModel user) {
         try {
-            UserResponse updatedUser = usersService.updateUser(cpf, user, field, password);
+            UserResponse updatedUser = usersService.updateUser(cpf, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);

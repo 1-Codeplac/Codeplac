@@ -83,39 +83,27 @@ public class UsersService {
         }
     }
 
-    public UserResponse updateUser(String cpf, UsersModel user, String field, String password)
+    public UserResponse updateUser(String cpf, UsersModel user)
             throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
 
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
 
-            if (!passwordEncoder.matches(password, existingUser.getSenha())) {
-                throw new Excecao("Senha incorreta.");
+            if (user.getTipoUsuario() != null) {
+                existingUser.setTipoUsuario(user.getTipoUsuario());
             }
 
-            switch (field) {
-                case "email" -> {
-                    if (user.getEmail() != null)
-                        existingUser.setEmail(user.getEmail());
-                }
-                case "nome" -> {
-                    if (user.getNome() != null)
-                        existingUser.setNome(user.getNome());
-                }
-                case "sobrenome" -> {
-                    if (user.getSobrenome() != null)
-                        existingUser.setSobrenome(user.getSobrenome());
-                }
-                case "telefone" -> {
-                    if (user.getTelefone() != null)
-                        existingUser.setTelefone(user.getTelefone());
-                }
-                case "senha" -> {
-                    if (user.getSenha() != null)
-                        existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
-                }
-                default -> throw new Excecao("Campo inválido: " + field);
+            if (isValid(user.getNome())) {
+                existingUser.setNome(user.getNome());
+            }
+
+            if (isValid(user.getEmail())) {
+                existingUser.setEmail(user.getEmail());
+            }
+
+            if (isValid(user.getTelefone())) {
+                existingUser.setTelefone(user.getTelefone());
             }
 
             usersRepository.save(existingUser);
@@ -141,4 +129,7 @@ public class UsersService {
         return userResponse;
     }
 
+    private boolean isValid(String value) {
+        return value != null && !value.isBlank();
+    }
 }

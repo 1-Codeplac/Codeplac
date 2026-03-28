@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { formatDate } from "../../utils/formatDate";
 import "../css/eventos.css";
 
 // COMPONENTES
@@ -10,56 +11,27 @@ import Circle from "../../Components/jsx/circle";
 // IMAGEM
 import eventoBanner from "../../assets/img/eventobanner.png";
 
-const events = [
-  {
-    id: 1,
-    day: "quarta-feira, 29 de outubro",
-    title: "palestra sebrae",
-    subtitle: "sucesso na era da inteligência artificial",
-    date: "29/10",
-    time: "08h30 - 10h00",
-    local: "auditório vermelho",
-    variant: "cyan",
-  },
-  {
-    id: 2,
-    day: "quarta-feira, 29 de outubro",
-    title: "palestra sebrae",
-    subtitle: "sucesso na era da inteligência artificial",
-    date: "29/10",
-    time: "10h30 - 12h00",
-    local: "auditório vermelho",
-    variant: "cyan",
-  },
-  {
-    id: 3,
-    day: "quinta-feira, 30 de outubro",
-    title: "palestra sebrae",
-    subtitle: "sucesso na era da inteligência artificial",
-    date: "30/10",
-    time: "08h30 - 10h00",
-    local: "auditório vermelho",
-    variant: "purple",
-  },
-  {
-    id: 4,
-    day: "sexta-feira, 31 de outubro",
-    title: "palestra sebrae",
-    subtitle: "sucesso na era da inteligência artificial",
-    date: "31/10",
-    time: "08h30 - 10h00",
-    local: "auditório vermelho",
-    variant: "cyan",
-  },
-];
+// API
+import { getAllEvents } from "../../services/eventService"
 
 export default function Eventos() {
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [events, setEvents] = useState([])
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      const events = await getAllEvents()
+
+      setEvents(events)
+    }
+
+    loadEvents()
+  }, [])
 
   // 🔹 AGRUPAR EVENTOS POR DIA
   const groupedEvents = events.reduce((acc, event) => {
-    if (!acc[event.day]) acc[event.day] = [];
-    acc[event.day].push(event);
+    if (!acc[event.dataEvento]) acc[event.dataEvento] = [];
+    acc[event.dataEvento].push(event);
     return acc;
   }, {});
 
@@ -118,18 +90,18 @@ export default function Eventos() {
         <section className="events">
           {Object.entries(groupedEvents).map(([day, dayEvents]) => (
             <section key={day} className="events-day">
-              <h2 className={`event-day ${dayEvents[0].variant}`}>{day}</h2>
+              <h2 className={`event-day ${dayEvents[0].variant}`}>{formatDate(day)}</h2>
 
               <div className="events-grid">
                 {dayEvents.map((event) => (
                   <EventCard
-                    key={event.id}
-                    variant={event.variant} // Aqui ele pega "cyan" ou "purple" do seu array
-                    title={event.title}
-                    subtitle={event.subtitle}
-                    date={event.date}
-                    time={event.time}
-                    location={event.local}
+                    key={event.idEvento}
+                    variant={"cyan"} // Aqui ele pega "cyan" ou "purple" do seu array
+                    title={event.nome}
+                    subtitle={event.descricao}
+                    date={event.dataEvento}
+                    time={event.horario}
+                    location={event.lugar}
                   />
                 ))}
               </div>
@@ -142,7 +114,7 @@ export default function Eventos() {
       {selectedEvent && (
         <div className="modal-overlay" onClick={() => setSelectedEvent(null)}>
           <div
-            className={`modal ${selectedEvent.variant}`}
+            className={`modal cyan`}
             onClick={(e) => e.stopPropagation()}
           >
             <h2>{selectedEvent.title}</h2>

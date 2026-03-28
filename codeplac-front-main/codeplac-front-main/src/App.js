@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import AdminRoute from "./Components/jsx/AdminRoute";
 // páginas
 import Homepage from "./pages/js/homepage";
 import Sobre from "./pages/js/sobre";
@@ -33,7 +33,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Homepage />} />
+                 <Route path="/" element={<Homepage />} />
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/ranking" element={<Ranking />} />
                 <Route path="/eventos" element={<Eventos />} />
@@ -49,7 +49,11 @@ function App() {
                 <Route path="/recrutamento" element={<Recrutamento />} />
                 <Route path="/formulario" element={<Formulario />} />
                 <Route path="/perfil" element={<Perfil />} />
-                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin" element={
+                    <AdminRoute>
+                        <Admin />
+                    </AdminRoute>
+                } />
                 <Route path="/privacidade" element={<Privacidade />} />
                 <Route path="/termos" element={<Termos />} />
                 <Route path="/cookies" element={<Cookies />} />

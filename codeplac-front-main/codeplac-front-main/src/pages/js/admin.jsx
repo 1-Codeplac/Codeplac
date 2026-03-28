@@ -1,30 +1,68 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/admin.css";
 import Header from "../../Components/jsx/header";
 import Footer from "../../Components/jsx/footer";
+import { getAllUsers, modifyUserFunction } from "../../services/userService";
+import { getAllEvents } from "../../services/eventService";
 
 export default function Admin() {
   // Estados para controlar a visibilidade de cada formulário
   const [showAddUserForm, setShowAddUserForm] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showGalleryForm, setShowGalleryForm] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [changedFunction, setChangedFunctions] = useState({})
+  const [loading, setLoading] = useState(false)
+  const savedUser = JSON.parse(localStorage.getItem("user"))
+  const navigate = useNavigate()
 
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      nome: "Exemplo",
-      cpf: "000.000.000-00",
-      status: "Membro",
-      role: "Membro",
-    },
-    {
-      id: 2,
-      nome: "Exemplo",
-      cpf: "000.000.000-00",
-      status: "Admin",
-      role: "Admin",
-    },
-  ]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [usersData, eventsData] = await Promise.allSettled([
+          getAllUsers(savedUser.token),
+          getAllEvents()
+        ])
+        
+        setUsers(usersData.value)
+        setEvents(eventsData.value)
+      } catch (error) {
+        alert("Algo deu errado!")
+        navigate("/")
+      }
+    }
+
+    fetchData()
+  }, [navigate, savedUser.token])
+
+  const handleSaveNewUserFunction = async (user) => {
+    const newUserFunction = changedFunction[user.cpf]
+
+    if(!newUserFunction || newUserFunction === user.tipoUsuario) {
+      alert("Não há mudanças!")
+      return
+    }
+
+    try {
+      setLoading(true)
+
+      const data = await modifyUserFunction(user.cpf, savedUser.token, newUserFunction)
+
+      setUsers((prev) => 
+        prev.map((user) => 
+          user.cpf === data.cpf 
+            ? {...user, tipoUsuario: data.tipoUsuario} 
+            : user
+        )
+      )
+    } catch (error) {
+      alert("Erro ao alterar a função do usuário!")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="admin-page">
@@ -49,27 +87,34 @@ export default function Admin() {
               </thead>
               <tbody>
                 {users.map((user) => (
-                  <tr key={user.id}>
+                  <tr key={user.cpf}>
                     <td>{user.nome}</td>
                     <td>{user.cpf}</td>
                     <td>
                       <span
-                        className={`badge-status ${user.status.toLowerCase()}`}
+                        className={`badge-status ${user.tipoUsuario.toLowerCase()}`}
                       >
-                        {user.status}
+                        {user.tipoUsuario}
                       </span>
                     </td>
                     <td>
                       <select
                         className="select-funcao"
-                        defaultValue={user.role}
+                        value={changedFunction[user.cpf] || user.tipoUsuario}
+                        onChange={(e) => setChangedFunctions((prev) => ({ ...prev, [user.cpf]: e.target.value }))}
                       >
-                        <option value="Membro">Membro</option>
-                        <option value="Admin">Admin</option>
+                        <option value="PARTICIPANT">Participante</option>
+                        <option value="ADMIN">Admin</option>
                       </select>
                     </td>
                     <td className="actions-cell">
-                      <button className="btn-salvar">Salvar</button>
+                      <button 
+                        className="btn-salvar" 
+                        onClick={() => handleSaveNewUserFunction(user)} 
+                        disabled={loading}
+                      >
+                        Salvar
+                      </button>
                       <button className="btn-remover">Remover</button>
                     </td>
                   </tr>
