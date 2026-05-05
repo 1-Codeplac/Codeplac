@@ -41,9 +41,12 @@ public class UsersService {
         newUser.setSenha(passwordEncoder.encode(user.getSenha()));
         newUser.setTipoUsuario(user.getTipoUsuario());
 
+<<<<<<< HEAD
         // Gera um hash_id único
         newUser.setHashId(UUID.randomUUID().toString());
 
+=======
+>>>>>>> upstream/main
         String refreshToken = UUID.randomUUID().toString();
         newUser.setRefreshToken(refreshToken);
 
@@ -86,13 +89,18 @@ public class UsersService {
         }
     }
 
+<<<<<<< HEAD
     public UserResponse updateUser(String cpf, UsersModel user, String field, String password)
+=======
+    public UserResponse updateUser(String cpf, UsersModel user)
+>>>>>>> upstream/main
             throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
 
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
 
+<<<<<<< HEAD
             if (!passwordEncoder.matches(password, existingUser.getSenha())) {
                 throw new Excecao("Senha incorreta.");
             }
@@ -125,6 +133,22 @@ public class UsersService {
                 }
                 default ->
                     throw new Excecao("Campo inválido: " + field);
+=======
+            if (user.getTipoUsuario() != null) {
+                existingUser.setTipoUsuario(user.getTipoUsuario());
+            }
+
+            if (isValid(user.getNome())) {
+                existingUser.setNome(user.getNome());
+            }
+
+            if (isValid(user.getEmail())) {
+                existingUser.setEmail(user.getEmail());
+            }
+
+            if (isValid(user.getTelefone())) {
+                existingUser.setTelefone(user.getTelefone());
+>>>>>>> upstream/main
             }
 
             usersRepository.save(existingUser);
@@ -150,4 +174,11 @@ public class UsersService {
         return userResponse;
     }
 
+<<<<<<< HEAD
 }
+=======
+    private boolean isValid(String value) {
+        return value != null && !value.isBlank();
+    }
+}
+>>>>>>> upstream/main

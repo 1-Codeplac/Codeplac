@@ -1,0 +1,84 @@
+.politica-page {
+    background-color: #000B17;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Sora', sans-serif;
+}
+
+.politica-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 60px 20px;
+}
+
+/* Estilo do Card principal seguindo o padrão das imagens anteriores */
+.politica-card-principal {
+    background: rgba(13, 22, 36, 0.85);
+    border: 1px solid rgba(0, 234, 255, 0.4);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.politica-titulo-neon {
+    color: #00EAFF;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.politica-divisor {
+    border: none;
+    border-top: 1px solid rgba(0, 234, 255, 0.5);
+    width: 80%;
+    margin: 0 auto 30px auto;
+}
+
+/* Estilização do corpo do texto */
+.politica-texto-puro h2 {
+    color: #00EAFF;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-left: 4px solid #a855f7;
+    /* Detalhe em roxo */
+    padding-left: 15px;
+}
+
+.politica-texto-puro p {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.politica-contato {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(0, 234, 255, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(0, 234, 255, 0.3);
+}
+
+.politica-contato p {
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .politica-card-principal {
+        padding: 20px;
+    }
+
+    .politica-titulo-neon {
+        font-size: 20px;
+    }
+}

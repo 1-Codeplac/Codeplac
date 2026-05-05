@@ -1,0 +1,162 @@
+/* HERO */
+.historico-hero {
+    text-align: center;
+    padding: 160px 20px 60px;
+}
+
+.historico-title {
+    font-family: "Sora", sans-serif;
+    font-size: clamp(48px, 8vw, 70px);
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.historico-subtitle {
+    margin-top: 10px;
+    font-family: "Sora", sans-serif;
+    font-size: 20px;
+    color: #cbd5e1;
+    opacity: 0.8;
+}
+
+/* SECTION E CARD PRINCIPAL */
+.historico-section {
+    position: relative;
+    margin-top: -5%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px 120px;
+    z-index: 3;
+}
+
+.historico-card {
+    width: 100%;
+    max-width: 1050px;
+    background: rgba(8, 15, 30, 0.85);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
+    padding: 50px;
+    border: 2px solid #00eaff;
+    position: relative;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* ITENS DA TIMELINE */
+.historico-item {
+    display: flex;
+    gap: 40px;
+    font-family: "Sora", sans-serif;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.historico-item:last-child {
+    border-bottom: none;
+}
+
+.year {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+}
+
+.year h3 {
+    color: #ffffff;
+    font-size: 26px;
+}
+
+.star {
+    color: #a855f7;
+    font-size: 20px;
+    animation: starGlow 3s ease-in-out infinite;
+}
+
+.year-content p {
+    color: #cbd5e1;
+    font-size: 18px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* BOTÕES */
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-purple, .btn-outline {
+    padding: 6px 18px;
+    font-family: "Sora", sans-serif;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-purple {
+    background: linear-gradient(90deg, #a855f7, #9333ea);
+    border: none;
+    color: white;
+}
+
+.btn-purple:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #a855f7;
+    color: #a855f7;
+}
+
+.btn-outline:hover {
+    background: rgba(168, 85, 247, 0.1);
+    transform: translateY(-3px);
+}
+
+/* ELEMENTOS DE FUNDO */
+.historico-circle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.circle-1 { top: 10%; left: -150px; }
+.circle-2 { top: 25%; right: -180px; }
+.circle-3 { bottom: 10%; right: -180px; }
+.circle-4 { bottom: 25%; left: -150px; }
+
+/* ANIMAÇÕES */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(0, 234, 255, 0.6), 0 0 25px rgba(0, 234, 255, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(0, 234, 255, 0.8), 0 0 40px rgba(0, 234, 255, 0.6); }
+}
+
+@keyframes starGlow {
+    0%, 100% { text-shadow: 0 0 5px rgba(168, 85, 247, 0.6); }
+    50% { text-shadow: 0 0 15px rgba(168, 85, 247, 1); }
+}
+
+/* DELAYS DA TIMELINE */
+.historico-item:nth-child(1) { animation-delay: 0.2s; }
+.historico-item:nth-child(2) { animation-delay: 0.4s; }
+.historico-item:nth-child(3) { animation-delay: 0.6s; }
+.historico-item:nth-child(4) { animation-delay: 0.8s; }
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .historico-card { padding: 30px 20px; }
+    .historico-item { flex-direction: column; gap: 15px; }
+    .year { min-width: auto; }
+}

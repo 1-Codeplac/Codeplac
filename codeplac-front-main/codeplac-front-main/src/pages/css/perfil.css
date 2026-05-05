@@ -1,0 +1,225 @@
+.profile-page-wrapper {
+    background-color: #000b17;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Card Principal de Vidro */
+.profile-card-box {
+    background: rgba(13, 25, 33, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 234, 255, 0.2);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 10% auto 50px auto;
+    padding: 40px;
+    z-index: 10;
+}
+
+/* Seção do Usuário */
+.profile-user-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    background: #1a4a5a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar-placeholder span {
+    font-size: 60px;
+    color: #00EAFF;
+}
+
+.profile-user-info {
+    flex: 1;
+}
+
+.profile-info-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-username {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.profile-btn-edit {
+    background: #00EAFF;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px;
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #000b17 !important;
+}
+
+.profile-details-grid {
+    display: flex;
+    gap: 40px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #00EAFF;
+    margin: 40px 0;
+}
+
+/* Cards de Eventos */
+.profile-events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.profile-event-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #00EAFF;
+    border-radius: 20px 0 20px 20px;
+    padding: 25px;
+    min-height: 250px;
+    position: relative;
+}
+
+.profile-event-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00EAFF;
+    margin-bottom: 15px;
+}
+
+.profile-event-title h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.profile-event-content p {
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Círculos de fundo */
+.profile-circle-top-l {
+    position: absolute;
+    top: -100px;
+    left: -150px;
+}
+
+.profile-circle-mid-r {
+    position: absolute;
+    top: 20%;
+    right: -200px;
+}
+
+@media (max-width: 850px) {
+    .profile-events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-details-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .profile-user-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Avatar e Upload */
+.profile-avatar-placeholder {
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-upload-label {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #00EAFF;
+    transition: 0.3s;
+}
+
+.profile-upload-label:hover {
+    background: rgba(0, 234, 255, 0.4);
+    color: #fff;
+}
+
+/* Inputs de Edição */
+.profile-input-name {
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid #00EAFF;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.profile-detail-item input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #00EAFF;
+    color: #fff;
+    margin-left: 5px;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+/* Botão Salvar */
+.profile-btn-edit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-btn-edit.save {
+    background: #2ecc71;
+    /* Verde para salvar */
+    color: #fff !important;
+}
+
+.profile-details-grid {
+    display: flex;
+    flex-wrap: wrap;
+    /* Melhora em telas menores */
+}

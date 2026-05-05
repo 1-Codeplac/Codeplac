@@ -33,6 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+<<<<<<< HEAD
         logger.info("Configurando a cadeia de filtros de segurança...");
 
         http
@@ -87,18 +88,96 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         logger.info("Cadeia de filtros de segurança configurada com sucesso."); // Security filter chain configured successfully.
+=======
+        logger.info("A configurar a cadeia de filtros de segurança..."); // Configuring security filter chain...
+
+        http
+                // Desativa CSRF (comum para APIs stateless)
+                .csrf(csrf -> csrf.disable())
+
+                // ***** ATIVA O CORS AQUI *****
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // **ATIVE O CORS AQUI** usando a sua
+                                                                                   // fonte personalizada
+
+                // Define sessão como stateless (JWT)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                // Regras de autorização
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers(HttpMethod.HEAD, "/teste").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/forgot-password").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/reset-password").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/juizcodigo").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/teste").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users/register").permitAll() // Garante que /users/register
+                                                                                         // está permitido
+                        .requestMatchers(HttpMethod.POST, "/equipes/inscricao").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/registration/create").hasAnyRole("ADMIN", "PARTICIPANT")
+                        .requestMatchers(HttpMethod.GET, "/users/list").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/users/{cpf}").hasAnyRole("ADMIN", "PARTICIPANT")
+                        .requestMatchers(HttpMethod.PUT, "/users/modify/{cpf}").hasAnyRole("ADMIN", "PARTICIPANT")
+                        .requestMatchers(HttpMethod.DELETE, "/users/destroy/{cpf}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/event/list").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/event/{id}").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/event/modify/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/event/destroy/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/group/list").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/group/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/group/modify/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/group/destroy/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/ranking/create").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/ranking/list").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/ranking/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/juntese").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/recrutamento").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/ranking/modify/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/ranking/destroy/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/registration/list").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/registration/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/registration/modify/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/registration/destroy/{id}").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/auth/hash").permitAll()
+                        .anyRequest().authenticated())
+
+                // Define tratamento para erros de autenticação
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(new Http403ForbiddenEntryPoint()))
+
+                // Adiciona o filtro JWT customizado
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+
+        logger.info("Cadeia de filtros de segurança configurada com sucesso."); // Security filter chain configured
+                                                                                // successfully.
+>>>>>>> upstream/main
         return http.build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
+<<<<<<< HEAD
         config.setAllowedOrigins(Arrays.asList(
                 "http://127.0.0.1:5500",
                 "https://www.codeplac.com.br",
                 "https://codeplac.com.br",
                 "https://codeplac-vh95.onrender.com"
         ));
+=======
+
+        config.setAllowedOrigins(Arrays.asList(
+                "https://www.codeplac.com.br",
+                "https://codeplac.com.br",
+                "https://www.codeplac.com.br/users/register",
+                "https://codeplac-vh95.onrender.com", // Verifique se esta é a URL correta backend no Render
+                "http://127.0.0.1:5500", // Para desenvolvimento local
+                "http://localhost:3000"
+        ));
+
+>>>>>>> upstream/main
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Cabeçalhos permitidos
         config.setAllowCredentials(true); // Permite credenciais (cookies, etc.)

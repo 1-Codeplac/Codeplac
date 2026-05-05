@@ -1,19 +1,28 @@
 package codeplac.codeplac.Security;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.List;
+=======
+>>>>>>> upstream/main
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.HttpMethod;
+=======
+>>>>>>> upstream/main
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+<<<<<<< HEAD
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+=======
+>>>>>>> upstream/main
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -34,6 +43,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+<<<<<<< HEAD
     // Lista de endpoints públicos que NÃO exigem token.
     // Incluímos tanto a versão sem barra quanto com barra final para evitar falhas.
     private static final List<RequestMatcher> PUBLIC_ENDPOINTS = Arrays.asList(
@@ -65,6 +75,8 @@ public class SecurityFilter extends OncePerRequestFilter {
             new AntPathRequestMatcher("/ranking/{id}", HttpMethod.GET.name())
     );
 
+=======
+>>>>>>> upstream/main
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request,
@@ -72,6 +84,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             @NotNull FilterChain filterChain)
             throws ServletException, IOException {
 
+<<<<<<< HEAD
         // Log detalhado para depuração
         String requestUri = request.getRequestURI();
         String method = request.getMethod();
@@ -87,6 +100,26 @@ public class SecurityFilter extends OncePerRequestFilter {
         }
 
         // Para rotas protegidas, valida o token
+=======
+        // 💡 CORREÇÃO DO FILTRO: Excluir rotas públicas da validação de token
+        String requestPath = request.getRequestURI();
+
+        // Rotas que não exigem token (as rotas 'permitAll' de POST/GET que o filtro
+        // DEVE ignorar)
+        if (requestPath.contains("/auth/login") ||
+                requestPath.contains("/users/register") ||
+                requestPath.contains("/equipes/inscricao") ||
+                requestPath.contains("/juizcodigo") ||
+                requestPath.contains("/event/list") ||
+                requestPath.contains("/ranking/")) {
+
+            logger.info("Requisição para rota pública: {} - pulando validação de token.", requestPath);
+            filterChain.doFilter(request, response);
+            return; // Interrompe a execução do filtro e segue para o próximo na cadeia
+        }
+        // FIM DA LÓGICA DE EXCLUSÃO
+
+>>>>>>> upstream/main
         String token = recoverToken(request);
         if (token != null) {
             String matricula = tokenService.validateToken(token, false);
@@ -117,8 +150,16 @@ public class SecurityFilter extends OncePerRequestFilter {
     private String recoverToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
+<<<<<<< HEAD
             return header.substring(7);
         }
         return null;
     }
 }
+=======
+            return header.substring(7); // Remove "Bearer " do cabeçalho
+        }
+        return null;
+    }
+}
+>>>>>>> upstream/main

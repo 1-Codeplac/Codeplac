@@ -43,9 +43,14 @@ public class PasswordResetService {
      */
     @Transactional
     public void createPasswordResetToken(String cpf, String appUrl) throws Excecao {
+<<<<<<< HEAD
         String normalizedCpf = cpf.replaceAll("[^0-9]", "");
         // Busca o usuário pelo CPF
         UsersModel user = usersRepository.findByCpf(normalizedCpf)
+=======
+        // Busca o usuário pelo CPF
+        UsersModel user = usersRepository.findByCpf(cpf)
+>>>>>>> upstream/main
                 .orElseThrow(() -> new Excecao("Usuário não encontrado."));
 
         // 1. Gera um token único

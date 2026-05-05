@@ -1,0 +1,62 @@
+/* Configuração Base do Anel */
+.glow-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.2px);
+  z-index: 1;
+}
+
+/* ================= CIANO ================= */
+.glow-ring.cyan {
+  background: radial-gradient(
+    circle,
+    rgba(0, 234, 255, 0.15) 0%,
+    rgba(0, 234, 255, 0.05) 40%,
+    transparent 45%,
+    #00EAFF 45%
+  );
+  box-shadow:
+    /* Brilho Interno */
+    inset 0 0 40px rgba(0, 234, 255, 0.6),
+    inset 0 0 80px rgba(0, 234, 255, 0.35),
+    /* Brilho Externo */
+    0 0 40px rgba(0, 234, 255, 0.4),
+    0 0 80px rgba(0, 234, 255, 0.3),
+    0 0 140px rgba(0, 234, 255, 0.25);
+}
+
+/* ================= ROXO ================= */
+.glow-ring.purple {
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.15) 0%,
+    rgba(168, 85, 247, 0.05) 40%,
+    transparent 45%,
+    #D4A2FF 46%
+  );
+  box-shadow:
+    /* Brilho Interno */
+    inset 0 0 80px rgba(168, 85, 247, 0.6),
+    inset 0 0 80px rgba(168, 85, 247, 0.35),
+    /* Brilho Externo */
+    0 0 40px rgba(119, 0, 255, 0.45),
+    0 0 80px rgba(119, 0, 255, 0.35),
+    0 0 140px rgba(119, 0, 255, 0.3);
+}
+
+/* ================= RESPONSIVIDADE (Telas Grandes) ================= */
+@media (min-width: 1920px) {
+  .glow-ring {
+    filter: blur(1px); 
+  }
+  
+  .glow-ring.cyan, 
+  .glow-ring.purple {
+    box-shadow:
+      inset 0 0 100px rgba(0, 234, 255, 0.4),
+      0 0 60px rgba(0, 234, 255, 0.4),
+      0 0 120px rgba(0, 234, 255, 0.3),
+      0 0 200px rgba(0, 234, 255, 0.2);
+  }
+}

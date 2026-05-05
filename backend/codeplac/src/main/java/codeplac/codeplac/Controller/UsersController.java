@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import codeplac.codeplac.DTO.RequestsDTO.User.UserCreateRequest;
+=======
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+>>>>>>> upstream/main
 import codeplac.codeplac.DTO.ResponsesDTO.User.UserResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Model.UsersModel;
@@ -31,6 +37,7 @@ public class UsersController {
     private UsersService usersService;
 
     @PostMapping("/register")
+<<<<<<< HEAD
     public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserCreateRequest request) {
         try {
             // Mapeia os dados do DTO para a entidade
@@ -51,6 +58,21 @@ public class UsersController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail ou CPF já registrados no sistema.", e);
         } catch (Exception e) {
             e.printStackTrace();
+=======
+    public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UsersModel user) {
+        try {
+            UserResponse savedUser = usersService.createUser(user);
+
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        } catch (Excecao e) {
+            // 1. Trata exceções LÓGICAS (como a do Service: CPF já existe)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        } catch (DataIntegrityViolationException e) {
+             // 2. TRATAMENTO CRÍTICO: Captura a exceção de violação de restrição UNIQUE (Email ou CPF duplicado)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail ou CPF já registrados no sistema. (Violacão de Chave Única)", e);
+        } catch (Exception e) {
+             // 3. Tratamento de fallback para qualquer outro erro inesperado
+>>>>>>> upstream/main
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno: Falha de processamento no servidor.", e);
         }
     }
@@ -74,11 +96,17 @@ public class UsersController {
     @PutMapping("/modify/{cpf}")
     public ResponseEntity<UserResponse> modificarUsuario(
             @PathVariable String cpf,
+<<<<<<< HEAD
             @RequestParam String field,
             @RequestParam String password,
             @RequestBody UsersModel user) {
         try {
             UserResponse updatedUser = usersService.updateUser(cpf, user, field, password);
+=======
+            @RequestBody UsersModel user) {
+        try {
+            UserResponse updatedUser = usersService.updateUser(cpf, user);
+>>>>>>> upstream/main
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
@@ -98,4 +126,8 @@ public class UsersController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

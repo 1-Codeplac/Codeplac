@@ -1,0 +1,77 @@
+/* PROFILE CARD CONTAINER */
+.profile-card {
+    --primary: #2bc4d9;
+    --bg-grad: rgba(0, 234, 255, 0.3);
+    --bg-grad-deep: rgba(0, 140, 153, 0.7);
+    --glow: rgba(43, 196, 217, 0.6); 
+
+    background: linear-gradient(180deg, var(--bg-grad) 0%, var(--bg-grad-deep) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 30px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+    color: white;
+    font-family: sans-serif;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* VARIATION PURPLE */
+.profile-card.purple {
+    --primary: #a45ee5;
+    --bg-grad: rgba(164, 94, 229, 0.3);
+    --bg-grad-deep: rgba(88, 28, 135, 0.7);
+    --glow: rgba(164, 94, 229, 0.6);
+}
+
+/* HOVER EFFECTS */
+.profile-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary); 
+    box-shadow: 0 0 25px var(--glow), inset 0 0 10px var(--bg-grad);
+    background: linear-gradient(180deg, var(--bg-grad) 0%, var(--bg-grad-deep) 100%);
+}
+
+/* PROFILE IMAGE */
+.profile-image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-image {
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+/* TEXT CONTENT */
+.profile-name { margin: 0 0 5px 0; font-size: 1.25rem; font-weight: 600; }
+.profile-role { margin: 0 0 25px 0; font-size: 1rem; color: #cccccc; font-weight: 300; }
+
+/* PROFILE LINK */
+.profile-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+    color: var(--primary); 
+    text-shadow: 0 0 8px var(--primary);
+}
