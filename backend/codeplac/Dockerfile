@@ -11,7 +11,11 @@ COPY . .
 RUN apt-get install maven -y
 RUN mvn clean install -DskipTests
 
+<<<<<<< HEAD
+FROM openjdk:27-ea-jdk-slim
+=======
 FROM openjdk:17-jdk-slim
+>>>>>>> upstream/main
 
 EXPOSE 8080
 

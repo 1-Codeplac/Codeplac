@@ -41,6 +41,12 @@ public class UsersService {
         newUser.setSenha(passwordEncoder.encode(user.getSenha()));
         newUser.setTipoUsuario(user.getTipoUsuario());
 
+<<<<<<< HEAD
+        // Gera um hash_id único
+        newUser.setHashId(UUID.randomUUID().toString());
+
+=======
+>>>>>>> upstream/main
         String refreshToken = UUID.randomUUID().toString();
         newUser.setRefreshToken(refreshToken);
 
@@ -83,13 +89,51 @@ public class UsersService {
         }
     }
 
+<<<<<<< HEAD
+    public UserResponse updateUser(String cpf, UsersModel user, String field, String password)
+=======
     public UserResponse updateUser(String cpf, UsersModel user)
+>>>>>>> upstream/main
             throws Excecao {
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
 
         if (optionalUser.isPresent()) {
             UsersModel existingUser = optionalUser.get();
 
+<<<<<<< HEAD
+            if (!passwordEncoder.matches(password, existingUser.getSenha())) {
+                throw new Excecao("Senha incorreta.");
+            }
+
+            switch (field) {
+                case "email" -> {
+                    if (user.getEmail() != null) {
+                        existingUser.setEmail(user.getEmail());
+                    }
+                }
+                case "nome" -> {
+                    if (user.getNome() != null) {
+                        existingUser.setNome(user.getNome());
+                    }
+                }
+                case "sobrenome" -> {
+                    if (user.getSobrenome() != null) {
+                        existingUser.setSobrenome(user.getSobrenome());
+                    }
+                }
+                case "telefone" -> {
+                    if (user.getTelefone() != null) {
+                        existingUser.setTelefone(user.getTelefone());
+                    }
+                }
+                case "senha" -> {
+                    if (user.getSenha() != null) {
+                        existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
+                    }
+                }
+                default ->
+                    throw new Excecao("Campo inválido: " + field);
+=======
             if (user.getTipoUsuario() != null) {
                 existingUser.setTipoUsuario(user.getTipoUsuario());
             }
@@ -104,6 +148,7 @@ public class UsersService {
 
             if (isValid(user.getTelefone())) {
                 existingUser.setTelefone(user.getTelefone());
+>>>>>>> upstream/main
             }
 
             usersRepository.save(existingUser);
@@ -129,7 +174,11 @@ public class UsersService {
         return userResponse;
     }
 
+<<<<<<< HEAD
+}
+=======
     private boolean isValid(String value) {
         return value != null && !value.isBlank();
     }
 }
+>>>>>>> upstream/main

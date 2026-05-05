@@ -35,7 +35,10 @@ public class UsersModel {
     private String sobrenome;
 
     @Column(name = "email", length = 100, nullable = false, unique = true)
+<<<<<<< HEAD
+=======
     @SuppressWarnings("unused")
+>>>>>>> upstream/main
     private String email;
 
     @Column(name = "telefone", length = 19)
@@ -51,10 +54,20 @@ public class UsersModel {
     private String accessToken;
 
     @Column(name = "reset_token", length = 36)
+<<<<<<< HEAD
+    private String resetToken;
+
+    @Column(name = "reset_token_expiry_date")
+    private LocalDateTime resetTokenExpiryDate;
+
+    @Column(name = "hash_id", length = 255)   // NOVO CAMPO
+    private String hashId;
+=======
     private String resetToken; // Novo campo para o token de redefinição
 
     @Column(name = "reset_token_expiry_date")
     private LocalDateTime resetTokenExpiryDate; // Novo campo para a validade do token
+>>>>>>> upstream/main
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario", columnDefinition = "ENUM('ADMIN', 'PARTICIPANT')")
@@ -62,5 +75,9 @@ public class UsersModel {
 
     @OneToMany(mappedBy = "usuario")
     private List<RegistrationModel> inscricoes;
+<<<<<<< HEAD
+}
+=======
     }
 
+>>>>>>> upstream/main
