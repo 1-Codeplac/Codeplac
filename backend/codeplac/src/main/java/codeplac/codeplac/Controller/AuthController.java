@@ -34,9 +34,9 @@ public class AuthController {
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
     try {
 
-      String token = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword()); // Retorna uma
+      Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword()); // Retorna uma
 
-      return ResponseEntity.ok(new LoginResponse(loginRequest.getCpf(), token));
+      return ResponseEntity.ok(new LoginResponse(loginRequest.getCpf(), userData.get("token"), userData.get("tipoUsuario")));
     } catch (Excecao e) {
       // Se ocorrer uma exceção de autenticação, retorna erro 401 UNAUTHORIZED com a
       // mensagem da exceção

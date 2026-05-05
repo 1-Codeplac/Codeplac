@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/senha.css";
 import Header from "../../Components/jsx/header";
 import Footer from "../../Components/jsx/footer";
 import Circle from "../../Components/jsx/circle";
 import sapoImg from "../../assets/img/sapobone.png";
+import { forgotPassword } from "../../services/authService";
 
 function Senha() {
+  const [cpf, setCpf] = useState("")
+  const [emailSent, setEmailSent] = useState(false)
+
+  const handleCpfChange = (e) => {
+    const digit = e.target.value
+
+    setCpf(digit)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if(!cpf) {
+      alert("Informe o seu CPF!")
+      return
+    }
+
+    try {
+      setEmailSent(true)
+
+      await forgotPassword(cpf)
+
+      alert("Email de recuperação enviado!")
+    } catch (error) {
+      alert("Erro na recuperação da senha. Tente novamente!")
+      
+      setEmailSent(false)
+    }
+  }
+
   return (
     <div className="PageWrapper">
       <div className="App login-container">
@@ -39,14 +70,20 @@ function Senha() {
                   DE REDEFINIÇÃO POR E-MAIL.
                 </p>
 
-                <form className="login-form">
+                <form className="login-form" onSubmit={handleSubmit}>
                   <div className="login-input-group">
                     <label>CPF</label>
-                    <input type="text" placeholder="000.000.000-00" />
+                    <input 
+                      type="text" 
+                      name="cpf"
+                      placeholder="000.000.000-00"
+                      value={cpf}
+                      onChange={handleCpfChange}
+                    />
                   </div>
 
-                  <button type="submit" className="btn-login btn-send">
-                    ENVIAR LINK
+                  <button type="submit" className="btn-login btn-send" disabled={emailSent}>
+                    {emailSent ? "ENVIADO" : "ENVIAR LINK"}
                   </button>
                 </form>
 

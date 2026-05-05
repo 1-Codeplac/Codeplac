@@ -1,5 +1,8 @@
 package codeplac.codeplac.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +25,7 @@ public class AuthService {
     @Autowired
     private TokenService tokenService;
 
-    public String authenticate(String cpf, String password) throws Excecao {
+    public Map<String, String> authenticate(String cpf, String password) throws Excecao {
         System.out.println("cpf: " + cpf); // Log da matrícula
         UsersModel user = usersRepository.findByCpf(cpf).get();
 
@@ -36,7 +39,11 @@ public class AuthService {
             throw new Excecao("Usuário ou senha inválidos");
         }
 
-        return tokenService.generateToken(user);
+        Map<String, String> response = new HashMap<>();
+        response.put("tipoUsuario", user.getTipoUsuario().name());
+        response.put("token", tokenService.generateToken(user));
+
+        return response;
     }
 
 }

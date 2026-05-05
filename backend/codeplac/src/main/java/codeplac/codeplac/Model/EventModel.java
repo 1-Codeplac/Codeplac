@@ -3,6 +3,8 @@ package codeplac.codeplac.Model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import codeplac.codeplac.Enum.EventPeriodo;
 import codeplac.codeplac.Enum.EventTipo;
 import jakarta.persistence.Column;
@@ -61,8 +63,10 @@ public class EventModel {
   private EventTipo tipoEvento;
 
   @OneToMany(mappedBy = "evento")
+  @JsonIgnore
   private List<RegistrationModel> inscricoes;
 
   @OneToMany(mappedBy = "evento")
+  @JsonIgnore
   private List<RankingModel> classificacoes;
 }

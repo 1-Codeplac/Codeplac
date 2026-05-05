@@ -1,25 +1,56 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { User, Edit3, Save, Camera, History, FileText } from "lucide-react";
 import "../css/perfil.css";
 import Header from "../../Components/jsx/header";
 import Footer from "../../Components/jsx/footer";
 import Circle from "../../Components/jsx/circle";
+import { useNavigate } from "react-router-dom";
+import { getUserByCpf, updateUser } from "../../services/userService";
+import { capitalize } from "../../utils/capitalize";
+import { getChangedFields } from "../../utils/getChangedFields"
 
 function Perfil() {
   // Estados para controlar os dados do usuário
   const [isEditing, setIsEditing] = useState(false);
+  const [originalData, setOriginalData] = useState({})
   const [userData, setUserData] = useState({
-    nome: "Usuário",
-    email: "usuario@gmail.com",
-    cpf: "xxx.xxx.xxx-xx",
-    telefone: "(xx) xxxxx-xxxx",
-    avatar: null,
+    nome: "",
+    email: "",
+    cpf: "",
+    telefone: "",
   });
+  const [userAvatar, setUserAvatar] = useState(null)
+  const navigate = useNavigate()
+  const savedUser = JSON.parse(localStorage.getItem("user"))
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      const cpf = savedUser.cpf
+      const token = savedUser.token
+
+      if(!cpf || !token) {
+        return navigate("/login")
+      }
+
+      try {
+        const data = await getUserByCpf(cpf, token)
+
+        setUserData(data)
+        setOriginalData({...data })
+      } catch (error) {
+        alert("Erro ao carregar informações do usuário. Faça o login novamente!")
+        navigate("/login")
+      }
+    }
+
+    loadUserData()
+  }, [savedUser.token, savedUser.cpf, navigate])
 
   // Função para lidar com a troca de textos
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+
+    setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
   // Função para o upload de imagem
@@ -28,11 +59,33 @@ function Perfil() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setUserData({ ...userData, avatar: reader.result });
+        setUserAvatar(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
+
+  const handleSave = async () => {
+    const changedFields = getChangedFields(originalData, userData)
+
+    if (Object.keys(changedFields).length === 0) {
+      alert("Não há mudanças!")
+
+      setIsEditing(false)
+      return
+    }
+
+    try {
+      const data = await updateUser(savedUser.cpf, savedUser.token, changedFields)
+      setOriginalData(data)
+
+      setIsEditing(false)
+
+      alert("Salvo com sucesso!")
+    } catch (error) {
+      alert("Erro ao atualizar o usuário!")
+    }
+  }
 
   return (
     <div className="profile-page-wrapper">
@@ -54,9 +107,9 @@ function Perfil() {
               {/* Avatar com Upload */}
               <div className="profile-avatar-container">
                 <div className="profile-avatar-placeholder">
-                  {userData.avatar ? (
+                  {userAvatar ? (
                     <img
-                      src={userData.avatar}
+                      src={userAvatar}
                       alt="Avatar"
                       className="profile-avatar-img"
                     />
@@ -83,17 +136,17 @@ function Perfil() {
                     <input
                       type="text"
                       name="nome"
-                      value={userData.nome}
-                      onChange={handleChange}
+                      value={capitalize(userData.nome)}
+                      onChange={handleInputChange}
                       className="profile-input-name"
                     />
                   ) : (
-                    <h1 className="profile-username">{userData.nome}</h1>
+                    <h1 className="profile-username">{capitalize(userData.nome)}</h1>
                   )}
 
                   <button
                     className={`profile-btn-edit ${isEditing ? "save" : ""}`}
-                    onClick={() => setIsEditing(!isEditing)}
+                    onClick={isEditing ? handleSave : () => setIsEditing(true)}
                   >
                     {isEditing ? (
                       <>
@@ -109,39 +162,39 @@ function Perfil() {
 
                 <div className="profile-details-grid">
                   <div className="profile-detail-item">
-                    <strong>E-MAIL:</strong>
+                    <strong>E-MAIL: </strong>
                     {isEditing ? (
                       <input
-                        type="text"
+                        type="email"
                         name="email"
                         value={userData.email}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                       />
                     ) : (
                       <span>{userData.email}</span>
                     )}
                   </div>
                   <div className="profile-detail-item">
-                    <strong>CPF:</strong>
+                    <strong>CPF: </strong>
                     {isEditing ? (
                       <input
                         type="text"
                         name="cpf"
                         value={userData.cpf}
-                        onChange={handleChange}
+                        readOnly
                       />
                     ) : (
                       <span>{userData.cpf}</span>
                     )}
                   </div>
                   <div className="profile-detail-item">
-                    <strong>TELEFONE:</strong>
+                    <strong>TELEFONE: </strong>
                     {isEditing ? (
                       <input
-                        type="text"
+                        type="tel"
                         name="telefone"
                         value={userData.telefone}
-                        onChange={handleChange}
+                        onChange={handleInputChange}
                       />
                     ) : (
                       <span>{userData.telefone}</span>
