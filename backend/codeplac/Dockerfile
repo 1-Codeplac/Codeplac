@@ -1,24 +1,16 @@
-# Estágio 1: Build 
+# Estágio 1: Build (Pode manter o maven com openjdk, ele costuma funcionar ainda)
 FROM maven:3.8.4-openjdk-17 AS build
-
-# Definindo argumentos 
-ARG DB_USERNAME=mockUser
-ARG DB_PASSWORD=mockPassword
-ARG DB_URL=jdbc:mysql://mockUrl:3306/mockDb
-
 WORKDIR /app
 COPY . .
-
-# Compila o projeto
 RUN mvn clean install -DskipTests
 
-# Estágio 2: Runtime (Execução) 
-FROM openjdk:17-jdk-slim
+# Estágio 2: Runtime (Onde estava o erro)
+# Trocamos 'openjdk:17-jdk-slim' por 'eclipse-temurin:17-jre-alpine' ou 'slim'
+FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 EXPOSE 8080
 
-# Copia o jar do estágio de build para a imagem final
 COPY --from=build /app/target/codeplac-0.0.1-SNAPSHOT.jar app.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
