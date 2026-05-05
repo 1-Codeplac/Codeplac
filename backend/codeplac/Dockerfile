@@ -1,24 +1,24 @@
-FROM ubuntu:latest AS build
+# Estágio 1: Build 
+FROM maven:3.8.4-openjdk-17 AS build
 
+# Definindo argumentos 
 ARG DB_USERNAME=mockUser
 ARG DB_PASSWORD=mockPassword
 ARG DB_URL=jdbc:mysql://mockUrl:3306/mockDb
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
+WORKDIR /app
 COPY . .
 
-RUN apt-get install maven -y
+# Compila o projeto
 RUN mvn clean install -DskipTests
 
-<<<<<<< HEAD
-FROM openjdk:27-ea-jdk-slim
-=======
+# Estágio 2: Runtime (Execução) 
 FROM openjdk:17-jdk-slim
->>>>>>> upstream/main
 
+WORKDIR /app
 EXPOSE 8080
 
-COPY --from=build target/codeplac-0.0.1-SNAPSHOT.jar app.jar
+# Copia o jar do estágio de build para a imagem final
+COPY --from=build /app/target/codeplac-0.0.1-SNAPSHOT.jar app.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
