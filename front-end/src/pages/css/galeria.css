@@ -1,6 +1,5 @@
 /* ================================
    PAGE WRAPPER
-================================ */
 .gal-page-wrapper {
     background-color: #000B17;
     min-height: 100vh;
@@ -12,7 +11,6 @@
 
 /* ================================
    MAIN CONTAINER
-================================ */
 .gal-main {
     position: relative;
     z-index: 5;
@@ -25,7 +23,6 @@
 
 /* ================================
    HERO
-================================ */
 .gal-hero {
     text-align: center;
     padding: 60px 20px 40px;
@@ -53,7 +50,6 @@
 
 /* ================================
    GLASS BOX
-=============================== */
 .gal-glass-box {
     width: 100%;
     max-width: 1150px;
@@ -82,7 +78,6 @@
 
 /* ================================
    MODAL / SWIPER
-================================ */
 .gal-overlay {
     position: fixed;
     inset: 0;
@@ -157,7 +152,6 @@
 
 /* ================================
    ELEMENTOS DECORATIVOS
-================================ */
 .galeria-circle, .galeria-circle-2 {
     position: absolute;
     pointer-events: none;
@@ -169,7 +163,6 @@
 
 /* ================================
    RESPONSIVIDADE GERAL
-================================ */
 
 @media (max-width: 1200px) {
     .gal-modal-arrow.prev { left: 15px; }

@@ -3,11 +3,8 @@ package codeplac.codeplac.Model;
 import java.time.LocalDate;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
->>>>>>> upstream/main
 import codeplac.codeplac.Enum.EventPeriodo;
 import codeplac.codeplac.Enum.EventTipo;
 import jakarta.persistence.Column;
@@ -31,6 +28,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventModel {
+
   @Id
   @Column(name = "id_evento")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,17 +63,12 @@ public class EventModel {
   @Column(name = "tipo_evento")
   private EventTipo tipoEvento;
 
+  // Removida a duplicata de 'inscricoes' que estava causando erro de compilação
   @OneToMany(mappedBy = "evento")
-<<<<<<< HEAD
-  private List<RegistrationModel> inscricoes;
-
-  @OneToMany(mappedBy = "evento")
-=======
-  @JsonIgnore
+  @JsonIgnore // Mantido para evitar ciclos no JSON (recursividade)
   private List<RegistrationModel> inscricoes;
 
   @OneToMany(mappedBy = "evento")
   @JsonIgnore
->>>>>>> upstream/main
   private List<RankingModel> classificacoes;
 }

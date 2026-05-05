@@ -18,6 +18,7 @@ public class JuizCodigoController {
     @Autowired
     private JuizCodigoRepository repository;
 
+    @SuppressWarnings("null")
     @PostMapping
     public JuizCodigoModel receberCodigo(@RequestBody JuizCodigoModel dados) {
         return repository.save(dados);

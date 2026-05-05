@@ -33,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
+
         logger.info("Configurando a cadeia de filtros de segurança...");
 
         http
@@ -88,7 +88,7 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         logger.info("Cadeia de filtros de segurança configurada com sucesso."); // Security filter chain configured successfully.
-=======
+
         logger.info("A configurar a cadeia de filtros de segurança..."); // Configuring security filter chain...
 
         http
@@ -152,21 +152,20 @@ public class SecurityConfig {
 
         logger.info("Cadeia de filtros de segurança configurada com sucesso."); // Security filter chain configured
                                                                                 // successfully.
->>>>>>> upstream/main
+
         return http.build();
     }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-<<<<<<< HEAD
+
         config.setAllowedOrigins(Arrays.asList(
                 "http://127.0.0.1:5500",
                 "https://www.codeplac.com.br",
                 "https://codeplac.com.br",
                 "https://codeplac-vh95.onrender.com"
         ));
-=======
 
         config.setAllowedOrigins(Arrays.asList(
                 "https://www.codeplac.com.br",
@@ -177,7 +176,7 @@ public class SecurityConfig {
                 "http://localhost:3000"
         ));
 
->>>>>>> upstream/main
+
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // Cabeçalhos permitidos
         config.setAllowCredentials(true); // Permite credenciais (cookies, etc.)

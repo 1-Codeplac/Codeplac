@@ -6,10 +6,13 @@ import codeplac.codeplac.Enum.EventPeriodo;
 import codeplac.codeplac.Enum.EventTipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class EventResponse {
+  @SuppressWarnings("FieldMayBeFinal")
   private int idEvento;
   private String nome;
   private String descricao;

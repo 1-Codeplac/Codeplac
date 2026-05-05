@@ -1,26 +1,26 @@
 package codeplac.codeplac.Controller; // Define o pacote onde esta classe está localizada
 
-import java.util.Map; // Importa a anotação @Autowired para injeção automática de dependências do Spring
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired; // Importa a classe HttpStatus que contém os códigos de status HTTP (ex: 200 OK, 401 UNAUTHORIZED)
-import org.springframework.http.HttpStatus; // Importa a classe ResponseEntity, que representa a resposta HTTP completa (corpo, status, headers)
-import org.springframework.http.ResponseEntity; // Importa a anotação @PostMapping, usada para mapear requisições HTTP POST a um método específico
-import org.springframework.mail.MailException; // Importa a anotação @RequestBody, usada para indicar que um parâmetro do método deve ser preenchido com o corpo da requisição
-import org.springframework.web.bind.annotation.PostMapping; // Importa a anotação @RequestMapping, usada para definir o prefixo de rota para todos os endpoints da classe
-import org.springframework.web.bind.annotation.RequestBody; // Importa a anotação @RestController, que marca a classe como um controlador REST (respostas JSON)
-import org.springframework.web.bind.annotation.RequestMapping; // Importa a exceção ResponseStatusException, que permite lançar erros HTTP personalizados com código e mensagem
-import org.springframework.web.bind.annotation.RequestParam; // NOVA LINHA
-import org.springframework.web.bind.annotation.RestController; // NOVA LINHA
-import org.springframework.web.server.ResponseStatusException; // NOVA LINHA
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-import codeplac.codeplac.DTO.RequestsDTO.Auth.LoginRequest; // Importa a classe LoginRequest, que representa os dados enviados pelo usuário na requisição de login
-import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse; // Importa a classe LoginResponse, que representa os dados retornados ao usuário após o login
-import codeplac.codeplac.Exception.Excecao; // Importa a exceção personalizada Excecao, que pode ser usada para sinalizar falhas de autenticação
-import codeplac.codeplac.Service.AuthService; // Importa o serviço AuthService, responsável por realizar a lógica de autenticação
-import codeplac.codeplac.Service.PasswordResetService; // NOVA LINHA
+import codeplac.codeplac.DTO.RequestsDTO.Auth.LoginRequest;
+import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse;
+import codeplac.codeplac.Exception.Excecao;
+import codeplac.codeplac.Service.AuthService;
+import codeplac.codeplac.Service.PasswordResetService;
 
-@RestController // Indica que essa classe é um controlador REST, e que os métodos retornam
-
+@RestController // Indica que essa classe é um controlador REST, e que os métodos retornam dados
+                // (JSON)
 @RequestMapping("/auth") // Define o prefixo "/auth" para todas as rotas desta classe
 public class AuthController {
 
@@ -33,16 +33,20 @@ public class AuthController {
   @PostMapping("/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
     try {
+      // Chama o serviço de autenticação que retorna um Map contendo token e tipo de
+      // usuário
+      Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword());
 
-<<<<<<< HEAD
-      String token = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword()); // Retorna uma
+      // Cria a resposta de login utilizando os dados retornados pelo serviço
+      // Nota: Certifique-se que sua classe LoginResponse aceite (String, String,
+      // String) no construtor
+      LoginResponse response = new LoginResponse(
+          loginRequest.getCpf(),
+          userData.get("token"),
+          userData.get("tipoUsuario"));
 
-      return ResponseEntity.ok(new LoginResponse(loginRequest.getCpf(), token));
-=======
-      Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword()); // Retorna uma
+      return ResponseEntity.ok(response);
 
-      return ResponseEntity.ok(new LoginResponse(loginRequest.getCpf(), userData.get("token"), userData.get("tipoUsuario")));
->>>>>>> upstream/main
     } catch (Excecao e) {
       // Se ocorrer uma exceção de autenticação, retorna erro 401 UNAUTHORIZED com a
       // mensagem da exceção
