@@ -1,0 +1,156 @@
+/* Container de Fundo */
+.recovery-page-wrapper {
+    background-color: #000b17;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.recovery-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Card Principal */
+.recovery-card-box {
+    background: rgba(13, 25, 33, 0.4);
+    backdrop-filter: blur(15px);
+    border: 2px solid #00EAFF;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 900px;
+    color: #ffffff;
+    margin: 10% auto;
+    padding: 50px;
+    z-index: 10;
+}
+
+.recovery-flex-layout {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Texto e Títulos */
+.recovery-main-title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.recovery-title-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    margin: 10px 0 25px 0;
+    color: #ffffff;
+}
+
+.recovery-text-info {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Formulário e Inputs */
+.recovery-form-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    gap: 20px;
+}
+
+.recovery-input-field {
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recovery-label {
+    color: #00d4ff;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.recovery-input {
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid #1a4a5a;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: #ffffff;
+    color: #fff;
+    outline: none;
+}
+
+.recovery-instruction {
+    color: rgba(255, 255, 255, 0.60);
+    text-align: center;
+    font-family: Arial;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Botão Único */
+
+.recovery-btn-submit {
+    background: #00EAFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 45px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.4);
+}
+
+.recovery-btn-submit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+}
+
+.recovery-link-back {
+    color: #00EAFF;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Efeitos de Círculo */
+.recovery-circle-left {
+    position: absolute;
+    top: 10%;
+    left: -300px;
+}
+
+.recovery-circle-right {
+    position: absolute;
+    bottom: 10%;
+    right: -300px;
+}
+
+@media (max-width: 800px) {
+    .recovery-flex-layout {
+        flex-direction: column;
+    }
+
+    .recovery-mascot-side {
+        display: none;
+    }
+}

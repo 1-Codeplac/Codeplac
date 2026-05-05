@@ -1,0 +1,199 @@
+/* ESTRUTURA E BASE */
+.desafios-page-wrapper {
+    background-color: #000B17;
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.desafios-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.desafios-intro {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.desafios-main-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.desafios-description {
+    color: #cbd5e1;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* CARDS DE DESAFIO */
+.desafio-card {
+    background: rgba(10, 20, 35, 0.4);
+    backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(0, 212, 255, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.desafio-header {
+    color: #00EAFF;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+}
+
+.sub-header-cyan {
+    color: #00EAFF;
+    font-size: 18px;
+    margin: 25px 0 10px;
+    font-weight: 600;
+}
+
+.desafio-content p {
+    color: #d1d5db;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* BOX DE EXEMPLO */
+.exemplo-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+}
+
+/* LAYOUT DE DICAS */
+.juiz-question-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.juiz-side-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-width: 280px;
+}
+
+/* CARDS DE DICA */
+.juiz-hints-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.juiz-hint-card {
+    background: rgba(27, 27, 27, 0.6);
+    backdrop-filter: blur(20px);
+    padding: 25px;
+    border-radius: 24px 0px 24px 24px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 250px;
+    transition: 0.4s ease;
+}
+
+.juiz-hint-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.juiz-purple-theme { border-color: rgba(168, 85, 247, 0.4); }
+.juiz-cyan-theme { border-color: rgba(0, 234, 255, 0.4); }
+
+.juiz-icon-box {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* IMAGENS E ANIMAÇÃO */
+.juiz-floating-img {
+    width: 240px;
+    height: auto;
+    z-index: 5;
+    animation: float 4s ease-in-out infinite;
+}
+
+.juiz-side-container::after {
+    content: '';
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.5;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.glow-purple::after { background: radial-gradient(circle, #a855f7, transparent 70%); }
+.glow-cyan::after { background: radial-gradient(circle, #00eaff, transparent 70%); }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+/* EFEITOS DE BRILHO AO FUNDO */
+.desafios-glow-purple {
+    position: absolute;
+    top: 10%; right: -5%;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.desafios-glow-cyan {
+    position: absolute;
+    bottom: 5%; left: -5%;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0, 234, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+    .juiz-question-layout { flex-direction: column; }
+    .juiz-hints-container { flex-direction: column; align-items: center; }
+}
+
+/* CÍRCULOS DECORATIVOS */
+.desafio-circle {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.circle-1 { top: 10%; left: -150px; }
+.circle-2 { top: 50%; right: -180px; }

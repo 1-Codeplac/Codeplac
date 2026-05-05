@@ -1,0 +1,380 @@
+/* PÁGINA DE EVENTOS */
+.events-page {
+  min-height: 100vh;
+  background-color: #000b17;
+  font-family: "Sora", sans-serif;
+  color: #ffffff;
+}
+
+/* CONTAINER PRINCIPAL */
+.events-container {
+  width: 70%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 140px 24px 80px;
+}
+
+/* HERO */
+.events-hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.events-hero h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.events-hero p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* BANNER DO EVENTO */
+.events-highlight {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+/* CONTAINER DO CRONOGRAMA */
+.event-schedule-container {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  padding: 32px;
+  margin-bottom: 90px;
+  border-radius: 16px;
+  background: linear-gradient(
+    128deg,
+    #0e0c15 1.49%,
+    rgba(14, 12, 21, 0) 103.04%
+  );
+  backdrop-filter: blur(1px);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* BORDA GRADIENTE */
+.event-schedule-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #a64af9,
+    #d3a2ff
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* IMAGEM DO BANNER */
+.event-schedule-container img {
+  width: 300px;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+/* TEXTO DO BANNER */
+.event-info {
+  flex: 1;
+}
+
+.event-info h2 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.event-info h2 span {
+  color: #b96cff;
+}
+
+.event-description {
+  font-size: 18px;
+  text-align: justify;
+  line-height: 1.6;
+  color: #d0d0e0;
+  margin-bottom: 24px;
+}
+
+.event-dates {
+  list-style: none;
+  padding: 0;
+}
+
+.event-dates li {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #d0d0e0;
+}
+
+/* CRONOGRAMA E GRIDS */
+.events-schedule {
+  margin-bottom: 48px;
+}
+
+.events-schedule h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #6ce3ff;
+  letter-spacing: 1px;
+}
+
+/* GRID DE CARDS */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* CARD INDIVIDUAL */
+.event-card {
+  background: rgba(5, 15, 30, 0.8);
+  border: 1px solid rgba(0, 220, 255, 0.25);
+  padding: 18px;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+}
+
+.event-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #6ce3ff;
+}
+
+.event-card p {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1024px) {
+  .events-highlight {
+    grid-template-columns: 1fr;
+  }
+
+  .event-schedule-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .event-schedule-container img {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-hero h1 {
+    font-size: 32px;
+  }
+
+  .event-info h2 {
+    font-size: 22px;
+  }
+}
+
+/* DATAS COM LINHA LATERAL */
+.event-dates-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.event-dates-line {
+  width: 3px;
+  height: 100%;
+  min-height: 72px;
+  background: linear-gradient(
+    180deg,
+    #a64af9,
+    #d3a2ff
+  );
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.event-dates {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-dates li {
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.events {
+  display: grid;
+  gap: 48px;
+}
+
+/* TÍTULO DO DIA */
+.event-day {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.event-day::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  border-radius: 4px;
+}
+
+.event-day.cyan::before {
+  background: #00eaff;
+}
+
+.event-day.purple::before {
+  background: #a64af9;
+}
+
+/* CARD DE EVENTO ESTILIZADO */
+.event-card {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(
+    128deg,
+    #0e0c15 1.49%,
+    rgba(14, 12, 21, 0) 103.04%
+  );
+  backdrop-filter: blur(1px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card.cyan {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 2px #00eaff;
+}
+
+.event-card.purple {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 2px #a64af9;
+}
+
+.event-card.cyan:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.45);
+}
+
+.event-card.purple:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(166, 74, 249, 0.45);
+}
+
+.event-card h3 {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.divider {
+  margin: 12px 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ffffff55, transparent);
+}
+
+.info,
+.local {
+  font-size: 13px;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  padding: 32px;
+  border-radius: 20px;
+  background: #0e0c15;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.modal.cyan {
+  box-shadow: 0 0 40px rgba(0, 234, 255, 0.5);
+}
+
+.modal.purple {
+  box-shadow: 0 0 40px rgba(166, 74, 249, 0.5);
+}
+
+.modal button {
+  margin-top: 24px;
+  padding: 10px 24px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00eaff, #a64af9);
+  color: #000;
+  font-weight: 600;
+}
+
+/* FUNDO DECORATIVO */
+.eventos-circles-bg { 
+    position: absolute; 
+    inset: 0; 
+    pointer-events: none; 
+    z-index: 1;
+}
+
+.eventos-circle-left { position: absolute; top: 10%; left: -200px; }
+.eventos-circle-right { position: absolute; top: 90%; right: -200px; }

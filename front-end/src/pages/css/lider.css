@@ -1,0 +1,251 @@
+/* --- CONTAINER PRINCIPAL --- */
+.lider-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: #050505; /* Fundo escuro padrão */
+  overflow: hidden;
+}
+
+.lider-bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lider-circle-left { position: absolute; top: 10%; left: -150px; }
+.lider-circle-right { position: absolute; bottom: 20%; right: -100px; }
+
+.lider-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 100px 20px 40px; /* Espaço para o header */
+  z-index: 1;
+}
+
+/* --- CARD DO PAINEL --- */
+.lider-card {
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px; /* Um pouco mais largo que o login */
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(0, 234, 255, 0.05);
+}
+
+.lider-header-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.lider-header-title h1 {
+  color: #fff;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.lider-header-title p {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* --- SESSÃO DE CONVITE --- */
+.lider-invite-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(0, 234, 255, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.lider-invite-section h3 {
+  color: #00EAFF;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.invite-form {
+  display: flex;
+  gap: 15px;
+}
+
+.invite-input-group {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.invite-input-group .input-icon {
+  position: absolute;
+  left: 15px;
+}
+
+.invite-input-group input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  color: #fff;
+  padding: 12px 15px 12px 45px; /* Espaço para o ícone */
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.invite-input-group input:focus {
+  border-color: #00EAFF;
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+}
+
+.btn-invite {
+  background: #00EAFF;
+  color: #000;
+  border: none;
+  padding: 0 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-invite:hover {
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.6);
+}
+
+.lider-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 234, 255, 0.2), transparent);
+  margin: 30px 0;
+}
+
+/* --- LISTA DA EQUIPE --- */
+.lider-team-list h3 {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.team-member-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.team-member-row:hover {
+  border-color: rgba(0, 234, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Destaque para o líder */
+.team-member-row.is-leader {
+  border-color: #00e6f7;
+  background: #164b4e;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.member-avatar {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-leader .member-avatar {
+  background: rgba(50, 170, 179, 0.1);
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.member-email {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.leader-badge {
+  background: rgba(72, 128, 136, 0.2);
+  color: #00e6f7;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-remove-member {
+  background: transparent;
+  color: #E53E3E;
+  border: 1px solid transparent;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-member:hover {
+  background: rgba(229, 62, 62, 0.1);
+  border-color: #E53E3E;
+}
+
+/* Responsividade Básica */
+@media (max-width: 600px) {
+  .invite-form {
+    flex-direction: column;
+  }
+  .btn-invite {
+    padding: 12px;
+  }
+}

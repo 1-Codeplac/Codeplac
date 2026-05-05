@@ -1,0 +1,50 @@
+/* CARD DE CADASTRO */
+.cadastro-card {
+max-width: 1000px;
+margin-top: 8%;
+}
+
+/* LINHA DE INPUTS */
+.login-input-row {
+display: flex;
+gap: 15px;
+}
+
+.login-input-row .login-input-group {
+flex: 1;
+}
+
+/* BORDA DO MASCOTE */
+.mascot-border {
+border: 2px solid #00EAFF;
+border-radius: 10px;
+padding: 20px;
+background: rgba(0, 234, 255, 0.05);
+}
+
+/* BOTÃO CADASTRAR */
+.btn-cadastrar {
+background: #00EAFF;
+margin-top: 20px;
+color: #FFFFFf;
+width: 200px;
+}
+
+/* CRIAR CONTA */
+.create-account {
+color: #FFFFFf;
+text-align: center;
+font-sizE: 0.9rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 850px) {
+.login-input-row {
+flex-direction: column;
+gap: 20px;
+}
+
+.cadastro-card {
+    padding: 30px 20px;
+}
+}

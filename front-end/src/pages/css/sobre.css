@@ -1,0 +1,507 @@
+/* ================= RESETS E BASE ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    background-color: #000B17;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-title {
+    font-family: "Sora", sans-serif;
+    font-size: 48px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+.highlight {
+    background: linear-gradient(180deg, #00EAFF 33.89%, #0B7079 73.37%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ================= CARDS E CONTEÚDO SUPERIOR ================= */
+
+.card {
+    display: flex;
+    width: 100%;
+    border: 1.5px solid #00d4ff;
+    border-radius: 35px;
+    background: rgba(0, 11, 23, 0.8);
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.card-sidebar {
+    width: 129px;
+    flex-shrink: 0;
+    display: flex;
+    padding-left: 10px;
+}
+
+.card-ornament {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 30px 40px;
+    flex: 1;
+}
+
+.card-title {
+    color: #FFF;
+    font-family: "Sora", sans-serif;
+    font-size: 40px;
+    font-weight: 550;
+    line-height: 120%;
+    text-transform: uppercase;
+}
+
+.highlight-alt {
+    background: linear-gradient(88deg, #00EAFF 57.87%, #0B7079 102.06%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-text p {
+    color: #D7FBFE;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    line-height: 140%;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+
+/* ================= SEÇÃO FEEDBACK ================= */
+
+.feedback-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.feedback-title {
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.feedback-text p {
+    color: #D7FBFE;
+    text-align: justify;
+    font-family: "Sora", sans-serif;
+    font-size: 22px;
+    line-height: 140%;
+    margin-bottom: 20px;
+}
+
+.mascot-display {
+    flex-basis: 350px;
+    flex-shrink: 0;
+}
+
+
+/* ================= SEÇÃO CONCRETIZAÇÃO (IMAGEM CORRIGIDA) ================= */
+
+.concretizacao-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 80px;
+    gap: 50px;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+    /* Garante que fique acima de possíveis fundos */
+}
+
+.concretizacao-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.img-torta {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    transform: rotate(-12deg);
+    filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+    cursor: pointer;
+}
+
+.img-torta:hover {
+    transform: rotate(0deg) translateY(-8px);
+    filter: drop-shadow(0 0 30px rgba(0, 234, 255, 0.8));
+}
+
+.concretizacao-content {
+    flex: 1.5;
+}
+
+.concretizacao-title {
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.concretizacao-text p {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: "Sora", sans-serif;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+
+/* ================= SEÇÃO MISSÃO E FUTURO (BOX MENOR) ================= */
+
+.missao-futuro-section {
+    width: 100%;
+    background-color: #000B17;
+    position: relative;
+    margin-top: -80px;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.box-inverted {
+    position: relative;
+    transform: rotate(180deg);
+    width: 100%;
+    background-color: #000B17;
+}
+
+.box-inverted .hero-container {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #000B17 !important;
+    min-height: 90vh;
+}
+
+.missao-futuro-overlay {
+    position: absolute;
+    inset: 0;
+    transform: rotate(180deg);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 120px;
+    padding-bottom: 180px;
+}
+
+.missao-futuro-grid {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.missao-column,
+.futuro-column {
+    flex: 1;
+}
+
+.section-subtitle {
+    color: #ffffff;
+    font-family: "Sora", sans-serif;
+    font-size: 38px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.missao-futuro-grid p {
+    color: #D7FBFE;
+    font-size: 20px;
+    font-family: "Sora", sans-serif;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.missao-footer-text {
+    color: #D7FBFE;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    font-family: "Sora", sans-serif;
+    max-width: 900px;
+    line-height: 1.4;
+    padding: 0 20px;
+}
+
+
+/* FOOTER */
+
+.footer-absolute-overlay {
+    position: relative;
+    margin-top: 80px;
+    width: 100%;
+    z-index: 5;
+}
+
+.footer-absolute-wrapper .footer-container {
+    background-color: transparent !important;
+    width: 100%;
+    max-width: 100% !important;
+    padding: 30px 60px !important;
+    border-top: 1px solid rgba(215, 251, 254, 0.2) !important;
+}
+
+.footer-absolute-wrapper .footer-top,
+.footer-absolute-wrapper .footer-bottom {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 850px) {
+
+    .concretizacao-section,
+    .feedback-section,
+    .missao-futuro-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@keyframes flutuar {
+
+    0%,
+    100% {
+        transform: rotate(-12deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-8deg) translateY(-20px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 100px 20px 60px;
+    }
+
+    .card-content {
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 850px) {
+
+    .feedback-section,
+    .concretizacao-section,
+    .missao-futuro-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .mascot-display {
+        align-self: center;
+    }
+
+    .card-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 36px;
+    }
+
+    .card-title {
+        font-size: 30px;
+    }
+
+    .feedback-title,
+    .concretizacao-title,
+    .section-subtitle {
+        font-size: 28px;
+    }
+}
+
+.sobre-section,
+.concretizacao-section {
+    position: relative;
+    padding-top: 80px;
+}
+
+.concretizacao-title {
+    position: relative;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+.concretizacao-text,
+.sobre-text {
+    line-height: 1.7;
+    max-width: 900px;
+}
+
+@media (max-width: 1024px) {
+    .concretizacao-title {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .concretizacao-title {
+        font-size: 34px;
+        margin-bottom: 30px;
+    }
+
+    .concretizacao-text,
+    .sobre-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .missao-futuro-overlay {
+        padding-bottom: 320px;
+    }
+}
+
+
+/* ================= FUNDO NEON — SOBRE ================= */
+
+.sobre-glows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+/* Glow roxo */
+
+.sobre-glow-purple {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #a855f7;
+    opacity: 0.25;
+    filter: blur(120px);
+    border-radius: 50%;
+    top: 20%;
+    left: -200px;
+}
+
+
+/* Glow ciano */
+
+.sobre-glow-cyan {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #00eaff;
+    opacity: 0.18;
+    filter: blur(120px);
+    border-radius: 50%;
+    bottom: 10%;
+    right: -200px;
+}
+
+.container,
+.missao-futuro-section,
+.feedback-section,
+.concretizacao-section {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* ================= FUNDO CÍRCULOS — SOBRE ================= */
+
+.sobre-circles-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+/* Base */
+
+.sobre-circle {
+    position: absolute;
+    opacity: 0.8;
+    animation: sobreFloat 16s ease-in-out infinite alternate;
+}
+
+
+/* Variações de cor */
+
+.sobre-circle-purple {
+    filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)) drop-shadow(0 0 80px rgba(168, 85, 247, 0.4));
+}
+
+.sobre-circle-cyan {
+    filter: drop-shadow(0 0 30px rgba(0, 234, 255, 0.6)) drop-shadow(0 0 80px rgba(0, 234, 255, 0.4));
+}
+
+
+/* Posições */
+
+.sobre-circle.top-left {
+    top: 0%;
+    left: -180px;
+}
+
+.sobre-circle.bottom-right {
+    bottom: 5%;
+    right: -180px;
+}
+
+@keyframes sobreFloat {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(45px);
+    }
+}
