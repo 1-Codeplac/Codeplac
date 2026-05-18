@@ -16,37 +16,54 @@ import codeplac.codeplac.Security.TokenService;
 public class AuthService {
 
     @Autowired
-    private UsersRepository usersRepository; // Injeção de dependência do repositório de usuários
+    private UsersRepository usersRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Injeção para verificar senhas criptografadas
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private TokenService tokenService; // Injeção para geração de tokens JWT
+    private TokenService tokenService;
 
-    /**
-     * Realiza a autenticação do usuário e retorna um Map contendo o token e o tipo
-     * de usuário.
-     */
     public Map<String, String> authenticate(String cpf, String password) throws Excecao {
-        // Normaliza o CPF removendo caracteres não numéricos
-        String normalizedCpf = cpf.replaceAll("[^0-9]", "");
-        System.out.println("Tentativa de login para o cpf: " + normalizedCpf);
 
-        // Busca o usuário no banco de dados
+        // VALIDAÇÃO
+        if (cpf == null || cpf.isBlank()) {
+            throw new Excecao("CPF inválido");
+        }
+
+        if (password == null || password.isBlank()) {
+            throw new Excecao("Senha inválida");
+        }
+
+        // NORMALIZA CPF
+        String normalizedCpf = cpf.replaceAll("[^0-9]", "");
+
+        System.out.println("Tentativa de login para o CPF: " + normalizedCpf);
+
+        // BUSCA USUÁRIO
         UsersModel user = usersRepository.findByCpf(normalizedCpf)
                 .orElseThrow(() -> new Excecao("Usuário ou senha inválidos"));
 
-        // Verifica se a senha informada corresponde ao hash gravado no banco
+        System.out.println("Usuário encontrado: " + user.getNome());
+
+        // VERIFICA SENHA
         if (!passwordEncoder.matches(password, user.getSenha())) {
+
             System.out.println("Senha incorreta!");
+
             throw new Excecao("Usuário ou senha inválidos");
         }
 
-        // Gera o token e prepara a resposta
+        System.out.println("Senha correta!");
+
+        // GERA TOKEN
         String token = tokenService.generateToken(user);
 
+        System.out.println("TOKEN GERADO");
+
+        // RESPOSTA
         Map<String, String> response = new HashMap<>();
+
         response.put("token", token);
         response.put("tipoUsuario", user.getTipoUsuario().name());
 
