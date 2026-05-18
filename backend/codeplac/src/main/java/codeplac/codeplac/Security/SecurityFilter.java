@@ -41,12 +41,12 @@ public class SecurityFilter extends OncePerRequestFilter {
             new AntPathRequestMatcher("/auth/login", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/auth/forgot-password", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/auth/reset-password", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/users/register/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/equipes/inscricao/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/juizcodigo/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/juntese/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/recrutamento/**", HttpMethod.POST.name()),
-            new AntPathRequestMatcher("/event/list/**", HttpMethod.GET.name()),
+            new AntPathRequestMatcher("/users/register", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/equipes/inscricao", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/juizcodigo", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/juntese", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/recrutamento", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/event/list", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/event/{id}", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/ranking/{id}", HttpMethod.GET.name()));
 
