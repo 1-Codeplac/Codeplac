@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import codeplac.codeplac.DTO.RequestsDTO.Auth.LoginRequest;
-import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse;
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Service.AuthService;
 import codeplac.codeplac.Service.PasswordResetService;
@@ -31,25 +30,22 @@ public class AuthController {
   private PasswordResetService passwordResetService; // NOVA LINHA
 
   @PostMapping("/login")
-  public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+  public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     try {
-      // Chama o serviço de autenticação que retorna um Map contendo token e tipo de
-      // usuário
+      // Chama o serviço de autenticação
       Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword());
 
-      // Cria a resposta de login utilizando os dados retornados pelo serviço
-      // Nota: Certifique-se que sua classe LoginResponse aceite (String, String,
-      // String) no construtor
-      LoginResponse response = new LoginResponse(
-          loginRequest.getCpf(),
-          userData.get("token"),
-          userData.get("tipoUsuario"));
+      // Construímos um Map de resposta direto para garantir que chaves idênticas
+      // cheguem ao React
+      Map<String, String> response = new java.util.HashMap<>();
+      response.put("cpf", loginRequest.getCpf());
+      response.put("token", userData.get("token"));
+      response.put("role", userData.get("tipoUsuario")); // Mapeia 'tipoUsuario' do back para 'role' do front!
 
       return ResponseEntity.ok(response);
 
     } catch (Excecao e) {
-      // Se ocorrer uma exceção de autenticação, retorna erro 401 UNAUTHORIZED com a
-      // mensagem da exceção
+      // Retorna 401 se os dados forem inválidos
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);
     }
   }
