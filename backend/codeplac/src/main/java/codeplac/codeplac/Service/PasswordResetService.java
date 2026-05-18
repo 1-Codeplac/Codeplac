@@ -56,8 +56,6 @@ public class PasswordResetService {
                 LocalDateTime expiryDate = LocalDateTime.now().plusHours(TOKEN_VALIDITY_HOURS);
 
                 // 3. Persiste o token e a expiração no banco
-                // Nota: Certifique-se que o repositório tenha este método customizado ou use
-                // save()
                 usersRepository.updateResetToken(user.getCpf(), token, expiryDate);
 
                 // 4. Envia o e-mail
@@ -67,18 +65,19 @@ public class PasswordResetService {
         private void sendPasswordResetEmail(String email, String token, String appUrl) {
                 String subject = "CodeplaC - Solicitação de Redefinição de Senha";
 
-                // Monta o link que o usuário deve clicar
-                String resetUrl = appUrl + "/reset-password.html?token=" + token;
+                // CORREÇÃO AQUI: Removido o ".html" para alinhar com as rotas limpas do React
+                // Router
+                String resetUrl = appUrl + "/reset-password?token=" + token;
 
                 String message = String.format(
                                 """
-                                                Ol\u00e1!
+                                                Olá!
 
-                                                Voc\u00ea solicitou a redefini\u00e7\u00e3o de sua senha na plataforma CodeplaC. Clique no link abaixo para criar uma nova senha. Este link \u00e9 v\u00e1lido por %d hora(s).
+                                                Você solicitou a redefinição de sua senha na plataforma CodeplaC. Clique no link abaixo para criar uma nova senha. Este link é válido por %d hora(s).
 
-                                                Link de Redefini\u00e7\u00e3o: %s
+                                                Link de Redefinição: %s
 
-                                                Se voc\u00ea n\u00e3o solicitou esta altera\u00e7\u00e3o, ignore este e-mail.
+                                                Se você não solicitou esta alteração, ignore este e-mail.
 
                                                 Atenciosamente,
                                                 Equipe CodeplaC""",
