@@ -48,7 +48,11 @@ public class SecurityFilter extends OncePerRequestFilter {
             new AntPathRequestMatcher("/recrutamento", HttpMethod.POST.name()),
             new AntPathRequestMatcher("/event/list", HttpMethod.GET.name()),
             new AntPathRequestMatcher("/event/{id}", HttpMethod.GET.name()),
-            new AntPathRequestMatcher("/ranking/{id}", HttpMethod.GET.name()));
+            new AntPathRequestMatcher("/ranking/{id}", HttpMethod.GET.name()),
+
+            // CORREÇÃO: Liberando a rota de erro padrão para POST e GET no filtro manual
+            new AntPathRequestMatcher("/error", HttpMethod.POST.name()),
+            new AntPathRequestMatcher("/error", HttpMethod.GET.name()));
 
     @Override
     protected void doFilterInternal(@NotNull HttpServletRequest request,

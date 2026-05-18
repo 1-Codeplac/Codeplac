@@ -65,6 +65,10 @@ public class SecurityConfig {
                                                 .requestMatchers(HttpMethod.GET, "/ranking/{id}").permitAll()
                                                 .requestMatchers(HttpMethod.PUT, "/group/modify/{id}").permitAll()
 
+                                                // CORREÇÃO: Permitindo a rota global de erro do Spring para não gerar
+                                                // falso 403
+                                                .requestMatchers("/error").permitAll()
+
                                                 // Endpoints com Roles Específicas
                                                 .requestMatchers(HttpMethod.POST, "/event/create").hasRole("ADMIN")
                                                 .requestMatchers(HttpMethod.PUT, "/event/modify/{id}").hasRole("ADMIN")
