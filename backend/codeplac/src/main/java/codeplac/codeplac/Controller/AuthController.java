@@ -1,4 +1,4 @@
-package codeplac.codeplac.Controller; // Define o pacote onde esta classe está localizada
+package codeplac.codeplac.Controller;
 
 import java.util.Map;
 
@@ -14,79 +14,83 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import codeplac.codeplac.DTO.RequestsDTO.Auth.LoginRequest;
+import codeplac.codeplac.DTO.ResponsesDTO.Auth.LoginResponse; // Certifique-se de que esta importação está presente
 import codeplac.codeplac.Exception.Excecao;
 import codeplac.codeplac.Service.AuthService;
 import codeplac.codeplac.Service.PasswordResetService;
 
-@RestController // Indica que essa classe é um controlador REST, e que os métodos retornam dados
-                // (JSON)
-@RequestMapping("/auth") // Define o prefixo "/auth" para todas as rotas desta classe
+@RestController
+@RequestMapping("/auth")
 public class AuthController {
 
-  @Autowired // Injeta automaticamente uma instância de AuthService
+  @Autowired
   private AuthService authService;
 
-  @Autowired // NOVA LINHA
-  private PasswordResetService passwordResetService; // NOVA LINHA
+  @Autowired
+  private PasswordResetService passwordResetService;
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+  @SuppressWarnings("CallToPrintStackTrace")
+  public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
     try {
       // Chama o serviço de autenticação
       Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword());
 
-      // Construímos um Map de resposta direto para garantir que chaves idênticas
-      // cheguem ao React
-      Map<String, String> response = new java.util.HashMap<>();
-      response.put("cpf", loginRequest.getCpf());
-      response.put("token", userData.get("token"));
-      response.put("role", userData.get("tipoUsuario")); // Mapeia 'tipoUsuario' do back para 'role' do front!
+      // Proteção contra valores nulos que quebram a serialização e geram o Erro 500
+      String token = userData.get("token") != null ? userData.get("token") : "";
+      String role = userData.get("tipoUsuario") != null ? userData.get("tipoUsuario") : "PARTICIPANT";
+
+      // Instancia o DTO usando a estrutura exata esperada pelo React
+      LoginResponse response = new LoginResponse(
+          loginRequest.getCpf(),
+          token,
+          role);
 
       return ResponseEntity.ok(response);
 
     } catch (Excecao e) {
-      // Retorna 401 se os dados forem inválidos
+      // Se a senha estiver errada ou usuário não existir, devolve 401 limpo
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage(), e);
+    } catch (Exception e) {
+      // Captura qualquer outro erro inesperado e joga no console do Render com
+      // detalhes da linha
+      e.printStackTrace();
+      throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno no processamento do login.", e);
     }
   }
 
-  @PostMapping("/forgot-password") // NOVA LINHA
-  public ResponseEntity<Void> forgotPassword(@RequestBody Map<String, String> request) { // NOVA LINHA
-    String cpf = request.get("cpf"); // NOVA LINHA
+  @PostMapping("/forgot-password")
+  public ResponseEntity<Void> forgotPassword(@RequestBody Map<String, String> request) {
+    String cpf = request.get("cpf");
 
-    try { // NOVA LINHA
-      // A URL base do seu frontend onde estará a página de redefinição // NOVA LINHA
-      String appUrl = "https://www.codeplac.com.br"; // NOVA LINHA
-
-      passwordResetService.createPasswordResetToken(cpf, appUrl); // NOVA LINHA
-
-      // Retorna um status 200 OK, mesmo que o CPF não exista, por segurança, mas o
-      // Service já tratou a exceção. // NOVA LINHA
-      return ResponseEntity.ok().build(); // NOVA LINHA
-    } catch (Excecao e) { // NOVA LINHA
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e); // NOVA LINHA
-    } catch (MailException e) { // NOVA LINHA
+    try {
+      String appUrl = "https://www.codeplac.com.br";
+      passwordResetService.createPasswordResetToken(cpf, appUrl);
+      return ResponseEntity.ok().build();
+    } catch (Excecao e) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+    } catch (MailException e) {
       throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-          "Erro ao enviar e-mail. Verifique as configurações.", e); // NOVA LINHA
-    } // NOVA LINHA
-  } // NOVA LINHA
+          "Erro ao enviar e-mail. Verifique as configurações.", e);
+    }
+  }
 
-  @PostMapping("/reset-password") // NOVA LINHA
-  public ResponseEntity<Void> resetPassword( // NOVA LINHA
-      @RequestParam("token") String token, // NOVA LINHA
-      @RequestBody Map<String, String> request) { // NOVA LINHA
+  @PostMapping("/reset-password")
+  public ResponseEntity<Void> resetPassword(
+      @RequestParam("token") String token,
+      @RequestBody Map<String, String> request) {
 
-    String newPassword = request.get("newPassword"); // NOVA LINHA
+    String newPassword = request.get("newPassword");
 
-    if (newPassword == null || newPassword.isEmpty()) { // NOVA LINHA
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A nova senha não pode ser vazia."); // NOVA LINHA
-    } // NOVA LINHA
+    if (newPassword == null || newPassword.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A nova senha não pode ser vazia.");
+    }
 
-    try { // NOVA LINHA
-      passwordResetService.resetPassword(token, newPassword); // NOVA LINHA
-      return ResponseEntity.ok().build(); // NOVA LINHA
-    } catch (Excecao e) { // NOVA LINHA
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e); // NOVA LINHA
-    } // NOVA LINHA
-  } // NOVA LINHA
+    try {
+      passwordResetService.resetPassword(token, newPassword);
+      return ResponseEntity.ok().build();
+    } catch (Excecao e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+    }
+  }
 }
