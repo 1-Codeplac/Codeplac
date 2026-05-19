@@ -30,72 +30,36 @@ public class AuthController {
   private PasswordResetService passwordResetService;
 
   @PostMapping("/login")
-  @SuppressWarnings("CallToPrintStackTrace")
-  public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-
+  public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
     try {
-
-      // DEBUG COMPLETO
-      System.out.println("=================================");
-      System.out.println("LOGIN RECEBIDO");
-      System.out.println("CPF: " + loginRequest.getCpf());
-      System.out.println("PASSWORD: " + loginRequest.getPassword());
-      System.out.println("=================================");
 
       // VALIDAÇÃO
       if (loginRequest.getCpf() == null || loginRequest.getCpf().isBlank()) {
-        throw new ResponseStatusException(
-            HttpStatus.BAD_REQUEST,
-            "CPF não enviado!");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "CPF não enviado!"));
       }
 
       if (loginRequest.getPassword() == null || loginRequest.getPassword().isBlank()) {
-        throw new ResponseStatusException(
-            HttpStatus.BAD_REQUEST,
-            "Senha não enviada!");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message", "Senha não enviada!"));
       }
 
       // AUTENTICAÇÃO
-      Map<String, String> userData = authService.authenticate(
-          loginRequest.getCpf(),
-          loginRequest.getPassword());
+      Map<String, String> userData = authService.authenticate(loginRequest.getCpf(), loginRequest.getPassword());
 
-      System.out.println("AUTH OK");
+      String token = userData.get("token") != null ? userData.get("token") : "";
+      String role = userData.get("tipoUsuario") != null ? userData.get("tipoUsuario") : "PARTICIPANT";
 
-      String token = userData.get("token") != null
-          ? userData.get("token")
-          : "";
-
-      String role = userData.get("tipoUsuario") != null
-          ? userData.get("tipoUsuario")
-          : "PARTICIPANT";
-
-      LoginResponse response = new LoginResponse(
-          loginRequest.getCpf(),
-          token,
-          role);
-
+      LoginResponse response = new LoginResponse(loginRequest.getCpf(), token, role);
       return ResponseEntity.ok(response);
 
     } catch (Excecao e) {
-
-      System.out.println("ERRO DE AUTENTICAÇÃO:");
-      e.printStackTrace();
-
-      throw new ResponseStatusException(
-          HttpStatus.UNAUTHORIZED,
-          e.getMessage(),
-          e);
+      // Retorna erro de senha ou CPF não encontrado direto pro front
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", e.getMessage()));
 
     } catch (Exception e) {
-
-      System.out.println("ERRO INTERNO GERAL:");
-      e.printStackTrace();
-
-      throw new ResponseStatusException(
-          HttpStatus.INTERNAL_SERVER_ERROR,
-          "Erro interno no processamento do login.",
-          e);
+      // DEDO-DURO: Captura a falha do banco de dados e joga na cara do Frontend!
+      String causa = e.getCause() != null ? e.getCause().toString() : "Nenhuma causa detectada";
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .body(Map.of("message", "🚨 ERRO FATAL: " + e.getMessage() + " | CAUSA: " + causa));
     }
   }
 
