@@ -1,15 +1,15 @@
 package codeplac.codeplac.Security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import codeplac.codeplac.Enum.UserTipo; // Importação adicionada para usar o Enum
 import codeplac.codeplac.Model.UsersModel;
 import codeplac.codeplac.Repository.UsersRepository;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component
 public class CustomUserDetailService implements UserDetailsService {
@@ -35,11 +35,16 @@ public class CustomUserDetailService implements UserDetailsService {
 
         logger.debug("Usuário encontrado: {}", user.getCpf());
 
+        // CORREÇÃO: Verifica se o tipo de usuário no banco está nulo para evitar o
+        // NullPointerException.
+        // Se estiver nulo, forçamos o tipo para PARTICIPANT de forma segura.
+        UserTipo tipoSeguro = user.getTipoUsuario() != null ? user.getTipoUsuario() : UserTipo.PARTICIPANT;
+
         // Retorna o UserDetails com a senha e as roles/authorities
         return new org.springframework.security.core.userdetails.User(
                 user.getCpf(),
                 user.getSenha(),
-                user.getTipoUsuario().getAuthorities() // Assumindo que tipoUser tem authorities mapeadas
+                tipoSeguro.getAuthorities() // Agora usa a variável blindada contra nulos!
         );
     }
 }
