@@ -65,7 +65,11 @@ public class AuthService {
         Map<String, String> response = new HashMap<>();
 
         response.put("token", token);
-        response.put("tipoUsuario", user.getTipoUsuario().name());
+
+        // CORREÇÃO: Evita o NullPointerException caso o usuário não tenha um tipo
+        // definido no banco de dados.
+        // Se for nulo, ele assume que é "PARTICIPANT" por padrão.
+        response.put("tipoUsuario", user.getTipoUsuario() != null ? user.getTipoUsuario().name() : "PARTICIPANT");
 
         return response;
     }
