@@ -58,6 +58,9 @@ public class UsersModel {
     @Column(name = "hash_id", length = 255)
     private String hashId;
 
+    @Column(name = "foto_perfil", columnDefinition = "LONGTEXT") // CORREÇÃO: Campo para armazenar a imagem Base64 do React
+    private String fotoPerfil;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario", columnDefinition = "ENUM('ADMIN', 'PARTICIPANT')")
     private UserTipo tipoUsuario;
