@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -33,9 +32,7 @@ public class UsersController {
     @PostMapping("/register")
     public ResponseEntity<UserResponse> cadastrarUsuario(@RequestBody UserCreateRequest request) {
         try {
-            // Mapeia os dados do DTO para a entidade
             UsersModel user = new UsersModel();
-
             user.setCpf(request.getCpf().replaceAll("[^0-9]", ""));
             user.setNome(request.getNome());
             user.setSobrenome(request.getSobrenome());
@@ -77,11 +74,11 @@ public class UsersController {
     @PutMapping("/modify/{cpf}")
     public ResponseEntity<UserResponse> modificarUsuario(
             @PathVariable String cpf,
-            @RequestParam String field,
-            @RequestParam String password,
             @RequestBody UsersModel user) {
         try {
-            UserResponse updatedUser = usersService.updateUser(cpf, user, field, password);
+            // CORREÇÃO: Agora recebe apenas o corpo da requisição de forma dinâmica e
+            // segura
+            UserResponse updatedUser = usersService.updateUser(cpf, user);
             return new ResponseEntity<>(updatedUser, HttpStatus.OK);
         } catch (Excecao e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);

@@ -28,7 +28,6 @@ public class UsersService {
     private TokenService tokenService;
 
     public UserResponse createUser(UsersModel user) throws Excecao {
-        // Normaliza o CPF do novo usuário para garantir salvamento limpo
         String normalizedCpf = user.getCpf().replaceAll("[^0-9]", "");
 
         if (usersRepository.existsById(normalizedCpf)) {
@@ -43,9 +42,8 @@ public class UsersService {
         newUser.setTelefone(user.getTelefone());
         newUser.setSenha(passwordEncoder.encode(user.getSenha()));
         newUser.setTipoUsuario(user.getTipoUsuario());
-        newUser.setFotoPerfil(user.getFotoPerfil()); // Incluído o mapeamento da foto no cadastro
+        newUser.setFotoPerfil(user.getFotoPerfil());
 
-        // Gera um hash_id único
         newUser.setHashId(UUID.randomUUID().toString());
 
         String refreshToken = UUID.randomUUID().toString();
@@ -71,7 +69,6 @@ public class UsersService {
     }
 
     public UserResponse getUserByCpf(String cpf) throws Excecao {
-        // Limpa pontos e traços do CPF antes de buscar no banco
         String normalizedCpf = cpf.replaceAll("[^0-9]", "");
 
         Optional<UsersModel> optionalUser = usersRepository.findByCpf(normalizedCpf);
@@ -83,7 +80,6 @@ public class UsersService {
     }
 
     public boolean deleteUser(String cpf) throws Excecao {
-        // Limpa pontos e traços do CPF antes de deletar
         String normalizedCpf = cpf.replaceAll("[^0-9]", "");
 
         if (usersRepository.existsById(normalizedCpf)) {
@@ -95,54 +91,36 @@ public class UsersService {
     }
 
     /**
-     * Atualiza um campo específico do usuário após validar a senha atual.
+     * CORREÇÃO: Atualiza dinamicamente os campos enviados pelo corpo da requisição
+     * JSON do React.
      */
-    public UserResponse updateUser(String cpf, UsersModel user, String field, String password) throws Excecao {
-        // Limpa pontos e traços do CPF antes de buscar para atualizar
+    public UserResponse updateUser(String cpf, UsersModel user) throws Excecao {
         String normalizedCpf = cpf.replaceAll("[^0-9]", "");
 
         UsersModel existingUser = usersRepository.findByCpf(normalizedCpf)
                 .orElseThrow(() -> new Excecao("Usuário não encontrado com CPF: " + normalizedCpf));
 
-        // Validação de segurança: exige a senha atual para qualquer alteração
-        if (!passwordEncoder.matches(password, existingUser.getSenha())) {
-            throw new Excecao("Senha incorreta.");
+        // Atualização de campos dinâmicos (Só altera o que não for nulo/vazio)
+        if (isValid(user.getEmail())) {
+            existingUser.setEmail(user.getEmail());
         }
-
-        // Lógica de atualização baseada no campo informado
-        switch (field) {
-            case "email" -> {
-                if (isValid(user.getEmail()))
-                    existingUser.setEmail(user.getEmail());
-            }
-            case "nome" -> {
-                if (isValid(user.getNome()))
-                    existingUser.setNome(user.getNome());
-            }
-            case "sobrenome" -> {
-                if (isValid(user.getSobrenome()))
-                    existingUser.setSobrenome(user.getSobrenome());
-            }
-            case "telefone" -> {
-                if (isValid(user.getTelefone()))
-                    existingUser.setTelefone(user.getTelefone());
-            }
-            case "senha" -> {
-                if (isValid(user.getSenha())) {
-                    existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
-                }
-            }
-            case "tipoUsuario" -> {
-                if (user.getTipoUsuario() != null) {
-                    existingUser.setTipoUsuario(user.getTipoUsuario());
-                }
-            }
-            case "fotoPerfil" -> { // CORREÇÃO: Adicionado o caso para salvar a foto modificada vinda do perfil
-                if (isValid(user.getFotoPerfil())) {
-                    existingUser.setFotoPerfil(user.getFotoPerfil());
-                }
-            }
-            default -> throw new Excecao("Campo inválido: " + field);
+        if (isValid(user.getNome())) {
+            existingUser.setNome(user.getNome());
+        }
+        if (isValid(user.getSobrenome())) {
+            existingUser.setSobrenome(user.getSobrenome());
+        }
+        if (isValid(user.getTelefone())) {
+            existingUser.setTelefone(user.getTelefone());
+        }
+        if (isValid(user.getSenha())) {
+            existingUser.setSenha(passwordEncoder.encode(user.getSenha()));
+        }
+        if (user.getTipoUsuario() != null) {
+            existingUser.setTipoUsuario(user.getTipoUsuario());
+        }
+        if (isValid(user.getFotoPerfil())) {
+            existingUser.setFotoPerfil(user.getFotoPerfil());
         }
 
         usersRepository.save(existingUser);
@@ -150,7 +128,7 @@ public class UsersService {
     }
 
     private UserResponse createUserResponse(UsersModel user) {
-        UserResponse response = new UserResponse(
+        return new UserResponse(
                 user.getEmail(),
                 user.getNome(),
                 user.getSobrenome(),
@@ -159,14 +137,6 @@ public class UsersService {
                 user.getTipoUsuario(),
                 user.getRefreshToken(),
                 user.getAccessToken());
-
-        // Nota: Se a sua classe UserResponse.java ainda não tiver um campo próprio de
-        // receber a foto,
-        // adicione um atributo private String fotoPerfil nela com getters/setters e
-        // descomente a linha abaixo:
-        // response.setFotoPerfil(user.getFotoPerfil());
-
-        return response;
     }
 
     private boolean isValid(String value) {
