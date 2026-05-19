@@ -28,12 +28,15 @@ public class UsersService {
     private TokenService tokenService;
 
     public UserResponse createUser(UsersModel user) throws Excecao {
-        if (usersRepository.existsById(user.getCpf())) {
+        // Normaliza o CPF do novo usuário para garantir salvamento limpo
+        String normalizedCpf = user.getCpf().replaceAll("[^0-9]", "");
+
+        if (usersRepository.existsById(normalizedCpf)) {
             throw new Excecao("Usuário com CPF já existe.");
         }
 
         UsersModel newUser = new UsersModel();
-        newUser.setCpf(user.getCpf());
+        newUser.setCpf(normalizedCpf);
         newUser.setEmail(user.getEmail());
         newUser.setNome(user.getNome());
         newUser.setSobrenome(user.getSobrenome());
@@ -67,20 +70,26 @@ public class UsersService {
     }
 
     public UserResponse getUserByCpf(String cpf) throws Excecao {
-        Optional<UsersModel> optionalUser = usersRepository.findByCpf(cpf);
+        // CORREÇÃO: Limpa pontos e traços do CPF antes de buscar no banco
+        String normalizedCpf = cpf.replaceAll("[^0-9]", "");
+
+        Optional<UsersModel> optionalUser = usersRepository.findByCpf(normalizedCpf);
         if (optionalUser.isPresent()) {
             return createUserResponse(optionalUser.get());
         } else {
-            throw new Excecao("Usuário não encontrado com CPF: " + cpf);
+            throw new Excecao("Usuário não encontrado com CPF: " + normalizedCpf);
         }
     }
 
     public boolean deleteUser(String cpf) throws Excecao {
-        if (usersRepository.existsById(cpf)) {
-            usersRepository.deleteById(cpf);
+        // CORREÇÃO: Limpa pontos e traços do CPF antes de deletar
+        String normalizedCpf = cpf.replaceAll("[^0-9]", "");
+
+        if (usersRepository.existsById(normalizedCpf)) {
+            usersRepository.deleteById(normalizedCpf);
             return true;
         } else {
-            throw new Excecao("Usuário não encontrado com CPF: " + cpf);
+            throw new Excecao("Usuário não encontrado com CPF: " + normalizedCpf);
         }
     }
 
@@ -88,8 +97,11 @@ public class UsersService {
      * Atualiza um campo específico do usuário após validar a senha atual.
      */
     public UserResponse updateUser(String cpf, UsersModel user, String field, String password) throws Excecao {
-        UsersModel existingUser = usersRepository.findByCpf(cpf)
-                .orElseThrow(() -> new Excecao("Usuário não encontrado com CPF: " + cpf));
+        // CORREÇÃO: Limpa pontos e traços do CPF antes de buscar para atualizar
+        String normalizedCpf = cpf.replaceAll("[^0-9]", "");
+
+        UsersModel existingUser = usersRepository.findByCpf(normalizedCpf)
+                .orElseThrow(() -> new Excecao("Usuário não encontrado com CPF: " + normalizedCpf));
 
         // Validação de segurança: exige a senha atual para qualquer alteração
         if (!passwordEncoder.matches(password, existingUser.getSenha())) {
